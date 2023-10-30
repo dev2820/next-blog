@@ -25,6 +25,9 @@ export function Layout({ title, children }: Props) {
           <li>
             <Link to="/about">About Me</Link>
           </li>
+          <li>
+            <Link to="/posts">Posts</Link>
+          </li>
         </ul>
       </nav>
       <h1>{title}</h1>
