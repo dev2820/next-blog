@@ -47,3 +47,10 @@
 Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
 
 [<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+
+## TODO
+
+[ ] import sort 설치
+[ ] 테마 디자인
+[ ] 디자인 시스템 구축
+[ ] Unocss 적용
