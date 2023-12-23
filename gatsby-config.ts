@@ -11,6 +11,14 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
+    {
+      resolve: "gatsby-alias-imports",
+      options: {
+        aliases: {
+          "@": "src",
+        },
+      },
+    },
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",

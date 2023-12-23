@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Layout, Seo } from "../layouts";
+import { Layout, Seo } from "@/layouts";
 
 export default function About() {
   return (

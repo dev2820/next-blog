@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 
-import { Layout, Seo } from "../../layouts";
+import { Layout, Seo } from "@/layouts";
 
 interface Props {
   data: {

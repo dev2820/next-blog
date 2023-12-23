@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
-import { Layout, Seo } from "../layouts";
+import { Layout, Seo } from "@/layouts";
 
 const TITLE = "Home Page";
 
