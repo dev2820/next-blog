@@ -9,31 +9,31 @@ dependencies:
     specifier: ^3.0.0
     version: 3.0.0(@types/react@18.2.45)(react@18.2.0)
   gatsby:
-    specifier: ^5.12.4
+    specifier: ^5.13.1
     version: 5.13.1(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   gatsby-alias-imports:
     specifier: ^1.0.6
     version: 1.0.6(gatsby@5.13.1)
   gatsby-plugin-image:
-    specifier: ^3.12.3
+    specifier: ^3.13.0
     version: 3.13.0(@babel/core@7.23.6)(gatsby-plugin-sharp@5.13.0)(gatsby-source-filesystem@5.13.0)(gatsby@5.13.1)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
   gatsby-plugin-mdx:
-    specifier: ^5.12.3
+    specifier: ^5.13.0
     version: 5.13.0(@mdx-js/react@3.0.0)(gatsby-source-filesystem@5.13.0)(gatsby@5.13.1)(graphql@15.8.0)(react-dom@18.2.0)(react@18.2.0)
   gatsby-plugin-netlify-cms:
-    specifier: ^7.12.0
+    specifier: ^7.12.1
     version: 7.12.1(gatsby@5.13.1)(netlify-cms-app@2.15.72)(react-dom@18.2.0)(react@18.2.0)(webpack@5.89.0)
   gatsby-plugin-sharp:
-    specifier: ^5.12.3
+    specifier: ^5.13.0
     version: 5.13.0(gatsby@5.13.1)(graphql@15.8.0)
   gatsby-plugin-sitemap:
-    specifier: ^6.12.3
+    specifier: ^6.13.0
     version: 6.13.0(gatsby@5.13.1)(react-dom@18.2.0)(react@18.2.0)
   gatsby-source-filesystem:
-    specifier: ^5.12.1
+    specifier: ^5.13.0
     version: 5.13.0(gatsby@5.13.1)
   gatsby-transformer-sharp:
-    specifier: ^5.12.3
+    specifier: ^5.13.0
     version: 5.13.0(gatsby-plugin-sharp@5.13.0)(gatsby@5.13.1)(graphql@15.8.0)
   netlify-cms-app:
     specifier: ^2.15.72
@@ -47,16 +47,16 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20.3.3
+    specifier: ^20.10.5
     version: 20.10.5
   '@types/react':
-    specifier: ^18.2.14
+    specifier: ^18.2.45
     version: 18.2.45
   '@types/react-dom':
-    specifier: ^18.2.6
+    specifier: ^18.2.18
     version: 18.2.18
   typescript:
-    specifier: ^5.1.6
+    specifier: ^5.3.3
     version: 5.3.3
 
 packages:
