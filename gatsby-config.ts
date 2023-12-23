@@ -1,9 +1,12 @@
 import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
-    title: `Dev2820 Tech Blog`,
-    description: `Dev2820's tech, book, and something blog`,
+    title: `Terra's Tech Blog`,
+    description: `Terra's tech, book, and something blog`,
     siteUrl: `https://www.yourdomain.tld`,
   },
   graphqlTypegen: true,
