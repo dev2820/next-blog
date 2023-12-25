@@ -15,7 +15,6 @@ const config: GatsbyConfig = {
     excludeDatastoreFromEngineFunction: false,
   }),
   plugins: [
-    "gatsby-plugin-netlify",
     {
       resolve: "gatsby-alias-imports",
       options: {
