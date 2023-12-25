@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import adapter from "gatsby-adapter-netlify";
 
 const config: GatsbyConfig = {
   flags: {
@@ -10,6 +11,9 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`,
   },
   graphqlTypegen: true,
+  adapter: adapter({
+    excludeDatastoreFromEngineFunction: false,
+  }),
   plugins: [
     "gatsby-plugin-netlify",
     {
