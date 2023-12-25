@@ -11,6 +11,7 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
+    "gatsby-plugin-netlify",
     {
       resolve: "gatsby-alias-imports",
       options: {
