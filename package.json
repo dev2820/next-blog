@@ -18,7 +18,6 @@
   "dependencies": {
     "@mdx-js/react": "^3.0.0",
     "gatsby": "^5.13.1",
-    "gatsby-adapter-netlify": "^1.1.1",
     "gatsby-alias-imports": "^1.0.6",
     "gatsby-plugin-image": "^3.13.0",
     "gatsby-plugin-mdx": "^5.13.0",
