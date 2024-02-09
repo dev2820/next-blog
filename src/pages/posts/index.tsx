@@ -9,7 +9,8 @@ interface Props {
       nodes: {
         frontmatter: {
           title: string;
-          date: string;
+          created: string;
+          modified: string;
           slug: string;
         };
         id: string;
@@ -32,7 +33,7 @@ export default function AllPostsPage({ data }: Props) {
               <h2>
                 <Link to={frontmatter.slug}>{frontmatter.title}</Link>
               </h2>
-              <small>{frontmatter.date}</small>
+              <small>{frontmatter.created}</small>
               <p>{excerpt}</p>
             </article>
           </li>
@@ -46,11 +47,12 @@ export const Head = () => <Seo title="My Blog Posts" />;
 
 export const query = graphql`
   query {
-    allMdx(sort: { frontmatter: { date: DESC } }) {
+    allMdx(sort: { frontmatter: { created: DESC } }) {
       nodes {
         frontmatter {
           title
-          date(formatString: "YYYY/MM/DD")
+          created(formatString: "YYYY/MM/DD")
+          modified(formatString: "YYYY/MM/DD")
           slug
         }
         id
