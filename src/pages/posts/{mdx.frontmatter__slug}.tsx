@@ -1,7 +1,8 @@
-import React, { ReactNode } from "react";
-import { graphql } from "gatsby";
+import React, { ReactNode, useEffect } from "react";
+import { graphql, withPrefix } from "gatsby";
 
 import { Layout, Seo } from "@/layouts";
+import { loadScript } from "@/utils/loadScript";
 
 interface Props {
   data: {
@@ -17,6 +18,13 @@ export default function Post({ data, children }: Props) {
   const { mdx } = data;
   const { frontmatter } = mdx;
 
+  useEffect(() => {
+    const prismUrl = withPrefix("prism.js");
+    document
+      .querySelectorAll("pre")
+      .forEach(($pre) => $pre.classList.add("line-numbers"));
+    loadScript(prismUrl);
+  }, []);
   return <Layout title={frontmatter.title}>{children}</Layout>;
 }
 
