@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import { graphql, withPrefix } from "gatsby";
 
-import { Layout, Seo } from "@/layouts";
+import { Layout, PostSeo } from "@/layouts";
 import { loadScript } from "@/utils/loadScript";
 
 interface Props {
@@ -25,11 +25,12 @@ export default function Post({ data, children }: Props) {
       .forEach(($pre) => $pre.classList.add("line-numbers"));
     loadScript(prismUrl);
   }, []);
+
   return <Layout title={frontmatter.title}>{children}</Layout>;
 }
 
 export const Head = ({ data }: Props) => (
-  <Seo title={data.mdx.frontmatter.title} />
+  <PostSeo title={data.mdx.frontmatter.title} />
 );
 
 export const query = graphql`

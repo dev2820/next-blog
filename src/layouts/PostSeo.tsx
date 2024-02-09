@@ -1,12 +1,13 @@
 import * as React from "react";
 
 import { useSiteMetadata } from "../hooks";
+import { withPrefix } from "gatsby";
 
 interface Props {
   title: string;
 }
 
-export function Seo({ title }: Props) {
+export function PostSeo({ title }: Props) {
   const siteMetadata = useSiteMetadata();
 
   return (
@@ -14,6 +15,7 @@ export function Seo({ title }: Props) {
       <title>
         {title} | {siteMetadata.title}
       </title>
+      <link href={withPrefix("prism.css")} rel="stylesheet"></link>
     </>
   );
 }
