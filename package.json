@@ -8,9 +8,10 @@
     "gatsby"
   ],
   "scripts": {
-    "dev": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
+    "articles:fetch": "git submodule update --remote",
+    "dev": "yarn clean && yarn articles:fetch && gatsby develop",
+    "start": "yarn articles:fetch && gatsby develop",
+    "build": "yarn articles:fetch && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit"
