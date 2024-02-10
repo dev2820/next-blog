@@ -26,7 +26,11 @@ export default function Post({ data, children }: Props) {
     loadScript(prismUrl);
   }, []);
 
-  return <Layout title={frontmatter.title}>{children}</Layout>;
+  return (
+    <Layout title={frontmatter.title}>
+      <article>{children}</article>
+    </Layout>
+  );
 }
 
 export const Head = ({ data }: Props) => (
