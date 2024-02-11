@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect } from "react";
-import { graphql, withPrefix } from "gatsby";
+import { graphql, useStaticQuery, withPrefix } from "gatsby";
 
 import { Layout, PostSeo } from "@/layouts";
 import { loadScript } from "@/utils/loadScript";
@@ -42,6 +42,15 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
+      }
+    }
+    allFile(filter: { ext: { regex: "/(jpg|jpeg|png|gif)/" } }) {
+      edges {
+        node {
+          id
+          name
+          publicURL
+        }
       }
     }
   }
