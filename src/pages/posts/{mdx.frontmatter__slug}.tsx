@@ -44,14 +44,5 @@ export const query = graphql`
         title
       }
     }
-    allFile(filter: { ext: { regex: "/(jpg|jpeg|png|gif)/" } }) {
-      edges {
-        node {
-          id
-          name
-          publicURL
-        }
-      }
-    }
   }
 `;

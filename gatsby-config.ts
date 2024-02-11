@@ -27,13 +27,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [".mdx", ".md"],
-      },
-    },
-    "gatsby-plugin-sharp",
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -43,6 +37,7 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
