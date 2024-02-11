@@ -41,6 +41,7 @@ const config = {
       options: {
         name: "posts",
         path: `${__dirname}/articles`,
+        ignore: [`**/README.md`],
       },
     },
     "gatsby-plugin-sharp",
