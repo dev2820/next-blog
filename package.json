@@ -25,6 +25,7 @@
     "gatsby-plugin-netlify-cms": "^7.12.1",
     "gatsby-plugin-sharp": "^5.13.0",
     "gatsby-plugin-sitemap": "^6.13.0",
+    "gatsby-remark-gifs": "^1.2.0",
     "gatsby-remark-images": "^7.13.1",
     "gatsby-source-filesystem": "^5.13.0",
     "gatsby-transformer-sharp": "^5.13.0",

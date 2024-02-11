@@ -26,6 +26,7 @@ const config = {
       options: {
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
+          "gatsby-remark-gifs",
           {
             resolve: `gatsby-remark-images`,
             options: {

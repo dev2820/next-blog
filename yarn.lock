@@ -6363,6 +6363,14 @@ gatsby-react-router-scroll@^6.13.1:
     "@babel/runtime" "^7.20.13"
     prop-types "^15.8.1"
 
+gatsby-remark-gifs@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-gifs/-/gatsby-remark-gifs-1.2.0.tgz#213c73597f986cee735cea42afe3ba7c23715948"
+  integrity sha512-i6V1RjhP+5E9wAUgJ7kWB/kVBj46VE8yVNo1+iBb1THhlZfDnSRsXf3DfrWrUYPAk1uQt5QBIRJl6ipZrZjFKA==
+  dependencies:
+    is-relative-url "^3.0.0"
+    unist-util-visit "^2.0.3"
+
 gatsby-remark-images@^7.13.1:
   version "7.13.1"
   resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-7.13.1.tgz#a6b888a235787483bbba8669163475306718c6a4"
@@ -13343,7 +13351,7 @@ unist-util-visit@^1.0.0, unist-util-visit@^1.1.0:
   dependencies:
     unist-util-visit-parents "^2.0.0"
 
-unist-util-visit@^2.0.0:
+unist-util-visit@^2.0.0, unist-util-visit@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-2.0.3.tgz#c3703893146df47203bb8a9795af47d7b971208c"
   integrity sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==
