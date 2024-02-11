@@ -1,6 +1,4 @@
-import type { GatsbyConfig } from "gatsby";
-
-const config: GatsbyConfig = {
+const config = {
   flags: {
     DEV_SSR: true,
   },
@@ -12,6 +10,7 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     "gatsby-plugin-netlify",
+    "gatsby-plugin-netlify-cms",
     {
       resolve: "gatsby-alias-imports",
       options: {
@@ -20,7 +19,6 @@ const config: GatsbyConfig = {
         },
       },
     },
-    "gatsby-plugin-netlify-cms",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {
@@ -37,8 +35,6 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -46,6 +42,8 @@ const config: GatsbyConfig = {
         path: `${__dirname}/articles`,
       },
     },
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 };
 
