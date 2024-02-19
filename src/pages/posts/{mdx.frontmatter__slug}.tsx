@@ -4,6 +4,8 @@ import { graphql, useStaticQuery, withPrefix } from "gatsby";
 import { Layout, PostSeo } from "@/layouts";
 import { loadScript } from "@/utils/loadScript";
 
+import "@/assets/global.css";
+
 interface Props {
   data: {
     mdx: {

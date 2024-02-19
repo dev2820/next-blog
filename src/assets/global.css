@@ -1,0 +1,14 @@
+p {
+  line-height: 160%;
+}
+
+article {
+  max-width: 800px;
+}
+
+code {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background: #ccc;
+  color: tomato;
+}
