@@ -10,8 +10,8 @@ export default function MainPage() {
     <Layout title={TITLE}>
       <p>I'm making this by following the Gatsby Tutorial.</p>
       <StaticImage
-        alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
-        src="https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large"
+        alt="우리가게 정상영업합니다."
+        src={"../assets/images/hero.jpg"}
       />
     </Layout>
   );
