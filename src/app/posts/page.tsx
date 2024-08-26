@@ -1,8 +1,11 @@
-import { getAllPostsPath, getPostByPath } from "@/utils/posts";
+import { getAllPosts, getPostByPath } from "@/utils/post";
+import Link from "next/link";
 export default function PostsPage() {
-  const paths = getAllPostsPath();
-  const frontMatters = paths
-    .map(getPostByPath)
+  /**
+   * 포스트 조회, 최신 포스트 보기, 인기 포스트 보기 등 분류 제공
+   */
+  const posts = getAllPosts();
+  const frontMatters = posts
     .map((post) => post.data)
     .toSorted((a, b) =>
       new Date(a.created).getTime() < new Date(b.created).getTime() ? 1 : -1
@@ -12,7 +15,9 @@ export default function PostsPage() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <ul>
         {frontMatters.map((fm, i) => (
-          <li key={i}>{fm.title}</li>
+          <li key={i}>
+            <Link href={"/posts/" + fm.title}>{fm.title}</Link>
+          </li>
         ))}
       </ul>
     </main>

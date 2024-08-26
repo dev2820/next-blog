@@ -10,12 +10,16 @@
     "fetch-posts": "git submodule update --remote"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "next": "14.2.5",
+    "next-mdx-remote": "^5.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "@types/hast": "^3.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -25,7 +29,14 @@
     "glob": "^11.0.0",
     "gray-matter": "^4.0.3",
     "postcss": "^8",
+    "rehype": "^13.0.1",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-prism-plus": "^2.0.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
   }
 }
