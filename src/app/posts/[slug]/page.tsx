@@ -1,4 +1,4 @@
-import { getPostBySlug, rehypeImgTransformer, serialize } from "@/utils/post";
+import { getAllPosts, getPostBySlug, rehypeImgTransformer } from "@/utils/post";
 import { isNil } from "@/utils/predicate";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
@@ -13,12 +13,20 @@ import { Heading3 } from "@/components/Heading3";
 import { Heading4 } from "@/components/Heading4";
 import { Heading5 } from "@/components/Heading5";
 import { Heading6 } from "@/components/Heading6";
+import { readingTime } from "@/utils/reading-time";
 
 type PageProps = {
   params: {
     slug: string;
   };
 };
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+
+  return posts.map((p) => ({
+    slug: p.data.slug,
+  }));
+}
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
@@ -54,10 +62,12 @@ export default async function PostPage({ params }: PageProps) {
     },
   });
 
+  const readTime = readingTime(content);
   return (
     <main className="min-h-screen p-24">
       <Heading1 id={data.title}>{data.title}</Heading1>
-      <span>{format(data.created, "yyyy-MM-dd")}</span>
+      <span>{format(data.created, "yyyy-MM-dd")}</span>|
+      <span>{readTime} mins</span>
       {CompiledMDX}
     </main>
   );

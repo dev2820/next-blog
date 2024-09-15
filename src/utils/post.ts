@@ -40,15 +40,9 @@ export const getPostByPath = (postPath: string): Post | undefined => {
 };
 
 export const getPostBySlug = (slug: string): Post | undefined => {
-  const file = fs.readFileSync(
-    path.join(POSTS_PATH, slug, "index.mdx"),
-    "utf-8",
-  );
+  const post = getAllPosts().find((p) => p.data.slug === slug);
 
-  if (file) {
-    return toPost(getMatter(file));
-  }
-  return undefined;
+  return post;
 };
 
 export const getPostByTitle = (title: string): Post | undefined => {
