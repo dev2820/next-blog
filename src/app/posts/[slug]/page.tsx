@@ -56,7 +56,7 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen p-24">
-      <h1>{data.title}</h1>
+      <Heading1 id={data.title}>{data.title}</Heading1>
       <span>{format(data.created, "yyyy-MM-dd")}</span>
       {CompiledMDX}
     </main>
