@@ -3,11 +3,6 @@ import path from "path";
 import getMatter, { type GrayMatterFile } from "gray-matter";
 import fs from "fs";
 import type { Post, PostData } from "@/types/post";
-import { compileMDX } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypePrismPlus from "rehype-prism-plus";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { visit } from "unist-util-visit";
 import type { Root } from "hast";
 
@@ -47,7 +42,7 @@ export const getPostByPath = (postPath: string): Post | undefined => {
 export const getPostBySlug = (slug: string): Post | undefined => {
   const file = fs.readFileSync(
     path.join(POSTS_PATH, slug, "index.mdx"),
-    "utf-8"
+    "utf-8",
   );
 
   if (file) {
@@ -65,27 +60,7 @@ export const getPostByTitle = (title: string): Post | undefined => {
   return undefined;
 };
 
-export const serializeContent = async (source: string) => {
-  const { content } = await compileMDX({
-    source,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          rehypePrismPlus,
-          rehypeSlug,
-          rehypeAutolinkHeadings,
-          rehypeImgTransformer,
-        ],
-      },
-    },
-  });
-
-  return content;
-};
-
-function rehypeImgTransformer() {
+export function rehypeImgTransformer() {
   return (tree: Root) => {
     visit(tree, "element", (node) => {
       if (node.tagName === "img" && node.properties && node.properties.src) {
@@ -93,7 +68,7 @@ function rehypeImgTransformer() {
         // node.properties.src = path.join("/posts", `${node.properties.src}`);
         node.properties.src = path.join(
           "/posts/how-does-v8-array-sort-work",
-          `${node.properties.src}`
+          `${node.properties.src}`,
         );
       }
     });
