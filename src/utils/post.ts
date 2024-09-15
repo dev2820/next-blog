@@ -54,21 +54,6 @@ export const getPostByTitle = (title: string): Post | undefined => {
   return undefined;
 };
 
-export function rehypeImgTransformer() {
-  return (tree: Root) => {
-    visit(tree, "element", (node) => {
-      if (node.tagName === "img" && node.properties && node.properties.src) {
-        // 여기서 img의 src를 원하는 대로 수정
-        // node.properties.src = path.join("/posts", `${node.properties.src}`);
-        node.properties.src = path.join(
-          "/posts/how-does-v8-array-sort-work",
-          `${node.properties.src}`,
-        );
-      }
-    });
-  };
-}
-
 const toPost = (rawPost: GrayMatterFile<string>): Post => {
   const { data, content } = rawPost;
 
@@ -86,5 +71,6 @@ const toPostData = (rawPostData: GrayMatterFile<string>["data"]): PostData => {
     tags: [],
     summary: rawPostData.summary,
     draft: rawPostData.draft,
+    hero: rawPostData.hero,
   };
 };

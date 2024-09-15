@@ -10,4 +10,5 @@ export type PostData = {
   summary?: string;
   draft?: boolean;
   slug?: string;
+  hero?: string; // hero image까지의 path
 };

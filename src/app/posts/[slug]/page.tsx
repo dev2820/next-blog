@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug, rehypeImgTransformer } from "@/utils/post";
+import { getAllPosts, getPostBySlug } from "@/utils/post";
 import { isNil } from "@/utils/predicate";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
@@ -14,7 +14,10 @@ import { Heading4 } from "@/components/Heading4";
 import { Heading5 } from "@/components/Heading5";
 import { Heading6 } from "@/components/Heading6";
 import { Paragraph } from "@/components/Paragraph";
+import { Image } from "@/components/Image";
 import { readingTime } from "reading-time-estimator";
+import { HeroImage } from "@/components/HeroImage";
+import path from "path";
 
 type PageProps = {
   params: {
@@ -32,7 +35,7 @@ export async function generateStaticParams() {
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
-
+  const basePath = `/posts/${slug}/`;
   if (isNil(post)) {
     notFound();
   }
@@ -45,12 +48,7 @@ export default async function PostPage({ params }: PageProps) {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          rehypePrismPlus,
-          rehypeSlug,
-          rehypeAutolinkHeadings,
-          rehypeImgTransformer,
-        ],
+        rehypePlugins: [rehypePrismPlus, rehypeSlug, rehypeAutolinkHeadings],
       },
     },
     components: {
@@ -60,13 +58,31 @@ export default async function PostPage({ params }: PageProps) {
       h4: (props) => <Heading4 {...props} />,
       h5: (props) => <Heading5 {...props} />,
       h6: (props) => <Heading6 {...props} />,
-      paragraph: (props) => <Paragraph {...props} />,
+      p: (props) => <Paragraph {...props} />,
+      img: ({ alt, src, width, height, ...rest }) => (
+        <Image
+          src={path.join(basePath, src ?? "")}
+          alt={alt ?? ""}
+          width={Number(width ?? 500)}
+          height={Number(height ?? 300)}
+          {...rest}
+        />
+      ),
     },
   });
 
   const readTime = readingTime(content);
   return (
     <main className="min-h-screen p-24">
+      {data.hero && (
+        <HeroImage
+          src={path.join(`/posts/${slug}/`, data.hero)}
+          alt="hero image"
+          className="max-w-full w-full"
+          width="500"
+          height="300"
+        />
+      )}
       <Heading1 id={data.title}>{data.title}</Heading1>
       <span>{format(data.created, "yyyy-MM-dd")}</span>|
       <span>{readTime.minutes} mins</span>
