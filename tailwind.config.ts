@@ -17,6 +17,7 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
       },
       fontSize: {
+        paragraph: "16px",
         heading1: "40px",
         heading2: "28px",
         heading3: "24px",

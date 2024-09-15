@@ -14,6 +14,7 @@ import { Heading4 } from "@/components/Heading4";
 import { Heading5 } from "@/components/Heading5";
 import { Heading6 } from "@/components/Heading6";
 import { readingTime } from "@/utils/reading-time";
+import { Paragraph } from "@/components/Paragraph";
 
 type PageProps = {
   params: {
@@ -59,6 +60,7 @@ export default async function PostPage({ params }: PageProps) {
       h4: (props) => <Heading4 {...props} />,
       h5: (props) => <Heading5 {...props} />,
       h6: (props) => <Heading6 {...props} />,
+      paragraph: (props) => <Paragraph {...props} />,
     },
   });
 
