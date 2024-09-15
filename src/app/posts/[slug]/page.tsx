@@ -68,6 +68,7 @@ export default async function PostPage({ params }: PageProps) {
           {...rest}
         />
       ),
+      // code, pre, table, em(for caption), link, strong, blockquotes, li, ol, ul
     },
   });
 
