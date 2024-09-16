@@ -21,6 +21,7 @@ import { Emphasize } from "@/components/Emphasize";
 import { Strong } from "@/components/Strong";
 import { Anchor } from "@/components/Anchor";
 import { CodeBlock } from "@/components/CodeBlock";
+import { Blockquote } from "@/components/Blockquote";
 import { readingTime } from "reading-time-estimator";
 import path from "path";
 import { cx } from "@/utils/cx";
@@ -86,7 +87,8 @@ export default async function PostPage({ params }: PageProps) {
       code: (props) => <Code {...props} />,
       pre: (props) => <CodeBlock {...props} />,
       a: (props) => <Anchor {...props} />,
-      // table, blockquotes, li, ol, ul
+      blockquote: (props) => <Blockquote {...props} />,
+      // table``, li, ol, ul
     },
   });
 
