@@ -23,6 +23,7 @@ import { Pre } from "@/components/Pre";
 import { Caption } from "@/components/Caption";
 import { cx } from "@/utils/cx";
 import { Em } from "@/components/Em";
+import { Strong } from "@/components/Strong";
 
 type PageProps = {
   params: {
@@ -81,9 +82,10 @@ export default async function PostPage({ params }: PageProps) {
           className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-thin [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
         />
       ),
+      strong: (props) => <Strong {...props} />,
       code: (props) => <Code {...props} />,
       pre: (props) => <Pre {...props} />,
-      // table, em(for caption), link, strong, blockquotes, li, ol, ul
+      // table, link, blockquotes, li, ol, ul
     },
   });
 
