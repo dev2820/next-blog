@@ -6,14 +6,18 @@ import {
   type ComponentProps,
 } from "react";
 import "@/assets/prism/prism.css";
-
+/**
+ * TODO: prism font change
+ */
 export type PreProps = ComponentProps<"pre">;
 export function Pre(props: PreProps) {
   const { className, children, ...rest } = props;
   const languageClassName = extractLanguageStrings(className ?? "").join(" ");
   const child = Children.only(children);
   const codeBlock = isValidElement<HTMLElement>(child)
-    ? cloneElement(child, { className: languageClassName })
+    ? cloneElement(child, {
+        className: languageClassName,
+      })
     : child;
 
   return (

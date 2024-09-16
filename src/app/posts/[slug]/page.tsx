@@ -20,6 +20,9 @@ import { HeroImage } from "@/components/HeroImage";
 import path from "path";
 import { Code } from "@/components/Code";
 import { Pre } from "@/components/Pre";
+import { Caption } from "@/components/Caption";
+import { cx } from "@/utils/cx";
+import { Em } from "@/components/Em";
 
 type PageProps = {
   params: {
@@ -67,12 +70,20 @@ export default async function PostPage({ params }: PageProps) {
           alt={alt ?? ""}
           width={Number(width ?? 500)}
           height={Number(height ?? 300)}
+          className="mx-auto my-12"
           {...rest}
+        />
+      ),
+      em: (props) => (
+        <Em
+          {...props}
+          // for caption
+          className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-thin [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
         />
       ),
       code: (props) => <Code {...props} />,
       pre: (props) => <Pre {...props} />,
-      // code, pre, table, em(for caption), link, strong, blockquotes, li, ol, ul
+      // table, em(for caption), link, strong, blockquotes, li, ol, ul
     },
   });
 
