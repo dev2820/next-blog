@@ -19,6 +19,10 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
         monospace: ["var(--font-monospace-neon)"],
       },
+      screens: {
+        tablet: "640px",
+        desktop: "1280px",
+      },
       fontSize: {
         paragraph: [
           "16px",

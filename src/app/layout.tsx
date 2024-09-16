@@ -3,6 +3,8 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { cx } from "@/utils/cx";
 
+import "terra-design-system/react/style";
+
 const pretendard = localFont({
   src: "../assets/fonts/PretendardVariable.woff2",
   display: "swap",

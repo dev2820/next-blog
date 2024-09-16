@@ -2,13 +2,13 @@ import { getAllPosts, getPostBySlug } from "@/utils/post";
 import { isNil } from "@/utils/predicate";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { Heading2 } from "@/components/Heading2";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { Heading1 } from "@/components/Heading1";
+import { Heading2 } from "@/components/Heading2";
 import { Heading3 } from "@/components/Heading3";
 import { Heading4 } from "@/components/Heading4";
 import { Heading5 } from "@/components/Heading5";
@@ -20,10 +20,10 @@ import { HeroImage } from "@/components/HeroImage";
 import path from "path";
 import { Code } from "@/components/Code";
 import { Pre } from "@/components/Pre";
-import { Caption } from "@/components/Caption";
 import { cx } from "@/utils/cx";
 import { Em } from "@/components/Em";
 import { Strong } from "@/components/Strong";
+import { Anchor } from "@/components/Anchor";
 
 type PageProps = {
   params: {
@@ -69,9 +69,9 @@ export default async function PostPage({ params }: PageProps) {
         <Image
           src={path.join(basePath, src ?? "")}
           alt={alt ?? ""}
-          width={Number(width ?? 500)}
+          width={Number(width ?? 704)}
           height={Number(height ?? 300)}
-          className="mx-auto my-12"
+          className="mx-auto my-12 w-full max-w-[704px]"
           {...rest}
         />
       ),
@@ -85,14 +85,15 @@ export default async function PostPage({ params }: PageProps) {
       strong: (props) => <Strong {...props} />,
       code: (props) => <Code {...props} />,
       pre: (props) => <Pre {...props} />,
-      // table, link, blockquotes, li, ol, ul
+      a: (props) => <Anchor {...props} />,
+      // table, blockquotes, li, ol, ul
     },
   });
 
   const readTime = readingTime(content);
   return (
     <>
-      <main className="min-h-screen p-24">
+      <main className="min-h-screen max-w-[896px] desktop:p-24 p-6">
         {data.hero && (
           <HeroImage
             src={path.join(`/posts/${slug}/`, data.hero)}

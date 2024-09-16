@@ -16,7 +16,8 @@
     "next-mdx-remote": "^5.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^2.5.2",
+    "terra-design-system": "^1.0.18"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
