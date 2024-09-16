@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import { cx } from "@/utils/cx";
 
 const pretendard = localFont({
   src: "../assets/fonts/PretendardVariable.woff2",
   display: "swap",
   weight: "45 920",
   variable: "--font-pretendard",
+});
+
+const monospaceNeon = localFont({
+  src: "../assets/fonts/MonaspaceNeonVarVF.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-monospace-neon",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="kr" className={`${pretendard.variable}`}>
+    <html
+      lang="kr"
+      className={cx(`${pretendard.variable}`, monospaceNeon.variable)}
+    >
       <body className={pretendard.className}>{children}</body>
     </html>
   );

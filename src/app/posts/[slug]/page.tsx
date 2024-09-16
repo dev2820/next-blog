@@ -18,6 +18,7 @@ import { Image } from "@/components/Image";
 import { readingTime } from "reading-time-estimator";
 import { HeroImage } from "@/components/HeroImage";
 import path from "path";
+import { Code } from "@/components/Code";
 
 type PageProps = {
   params: {
@@ -68,6 +69,7 @@ export default async function PostPage({ params }: PageProps) {
           {...rest}
         />
       ),
+      code: (props) => <Code {...props} />,
       // code, pre, table, em(for caption), link, strong, blockquotes, li, ol, ul
     },
   });
