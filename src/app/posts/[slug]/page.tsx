@@ -19,6 +19,7 @@ import { readingTime } from "reading-time-estimator";
 import { HeroImage } from "@/components/HeroImage";
 import path from "path";
 import { Code } from "@/components/Code";
+import { Pre } from "@/components/Pre";
 
 type PageProps = {
   params: {
@@ -70,26 +71,29 @@ export default async function PostPage({ params }: PageProps) {
         />
       ),
       code: (props) => <Code {...props} />,
+      pre: (props) => <Pre {...props} />,
       // code, pre, table, em(for caption), link, strong, blockquotes, li, ol, ul
     },
   });
 
   const readTime = readingTime(content);
   return (
-    <main className="min-h-screen p-24">
-      {data.hero && (
-        <HeroImage
-          src={path.join(`/posts/${slug}/`, data.hero)}
-          alt="hero image"
-          className="max-w-full w-full"
-          width="500"
-          height="300"
-        />
-      )}
-      <Heading1 id={data.title}>{data.title}</Heading1>
-      <span>{format(data.created, "yyyy-MM-dd")}</span>|
-      <span>{readTime.minutes} mins</span>
-      {CompiledMDX}
-    </main>
+    <>
+      <main className="min-h-screen p-24">
+        {data.hero && (
+          <HeroImage
+            src={path.join(`/posts/${slug}/`, data.hero)}
+            alt="hero image"
+            className="max-w-full w-full"
+            width="500"
+            height="300"
+          />
+        )}
+        <Heading1 id={data.title}>{data.title}</Heading1>
+        <span>{format(data.created, "yyyy-MM-dd")}</span>|
+        <span>{readTime.minutes} mins</span>
+        {CompiledMDX}
+      </main>
+    </>
   );
 }
