@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { HeroImage } from "@/components/HeroImage";
 import { Heading1 } from "@/components/Heading1";
 import { Heading2 } from "@/components/Heading2";
 import { Heading3 } from "@/components/Heading3";
@@ -15,15 +16,14 @@ import { Heading5 } from "@/components/Heading5";
 import { Heading6 } from "@/components/Heading6";
 import { Paragraph } from "@/components/Paragraph";
 import { Image } from "@/components/Image";
-import { readingTime } from "reading-time-estimator";
-import { HeroImage } from "@/components/HeroImage";
-import path from "path";
 import { Code } from "@/components/Code";
-import { Pre } from "@/components/Pre";
-import { cx } from "@/utils/cx";
-import { Em } from "@/components/Em";
+import { Emphasize } from "@/components/Emphasize";
 import { Strong } from "@/components/Strong";
 import { Anchor } from "@/components/Anchor";
+import { CodeBlock } from "@/components/CodeBlock";
+import { readingTime } from "reading-time-estimator";
+import path from "path";
+import { cx } from "@/utils/cx";
 
 type PageProps = {
   params: {
@@ -76,7 +76,7 @@ export default async function PostPage({ params }: PageProps) {
         />
       ),
       em: (props) => (
-        <Em
+        <Emphasize
           {...props}
           // for caption
           className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-thin [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
@@ -84,7 +84,7 @@ export default async function PostPage({ params }: PageProps) {
       ),
       strong: (props) => <Strong {...props} />,
       code: (props) => <Code {...props} />,
-      pre: (props) => <Pre {...props} />,
+      pre: (props) => <CodeBlock {...props} />,
       a: (props) => <Anchor {...props} />,
       // table, blockquotes, li, ol, ul
     },

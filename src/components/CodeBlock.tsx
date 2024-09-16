@@ -9,8 +9,8 @@ import "@/assets/prism/prism.css";
 /**
  * TODO: prism font change
  */
-export type PreProps = ComponentProps<"pre">;
-export function Pre(props: PreProps) {
+export type CodeBlockProps = ComponentProps<"pre">;
+export function CodeBlock(props: CodeBlockProps) {
   const { className, children, ...rest } = props;
   const languageClassName = extractLanguageStrings(className ?? "").join(" ");
   const child = Children.only(children);
