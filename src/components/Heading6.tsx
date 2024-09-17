@@ -7,7 +7,10 @@ export function Heading6(props: Heading6Props) {
 
   return (
     <h6
-      className={cx("text-heading6 font-semibold leading-normal", className)}
+      className={cx(
+        "mt-2 mb-1 text-heading6 font-semibold leading-normal",
+        className,
+      )}
       {...rest}
     />
   );

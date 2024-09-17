@@ -27,6 +27,7 @@ import path from "path";
 import { cx } from "@/utils/cx";
 import { ListItem } from "@/components/ListItem";
 import { UnorderedList } from "@/components/UnorderedList";
+import { OrderedList } from "@/components/OrderedList";
 
 type PageProps = {
   params: {
@@ -92,7 +93,8 @@ export default async function PostPage({ params }: PageProps) {
       blockquote: (props) => <Blockquote {...props} />,
       li: ListItem,
       ul: UnorderedList,
-      // table, li, ol, ul
+      ol: OrderedList,
+      // table
     },
   });
 

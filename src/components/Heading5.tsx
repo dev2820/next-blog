@@ -7,7 +7,10 @@ export function Heading5(props: Heading5Props) {
 
   return (
     <h5
-      className={cx("text-heading5 font-semibold leading-normal", className)}
+      className={cx(
+        "mt-3 mb-1 text-heading5 font-semibold leading-normal",
+        className,
+      )}
       {...rest}
     />
   );
