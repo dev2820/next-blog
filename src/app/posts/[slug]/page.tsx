@@ -25,6 +25,8 @@ import { Blockquote } from "@/components/Blockquote";
 import { readingTime } from "reading-time-estimator";
 import path from "path";
 import { cx } from "@/utils/cx";
+import { ListItem } from "@/components/ListItem";
+import { UnorderedList } from "@/components/UnorderedList";
 
 type PageProps = {
   params: {
@@ -88,7 +90,9 @@ export default async function PostPage({ params }: PageProps) {
       pre: (props) => <CodeBlock {...props} />,
       a: (props) => <Anchor {...props} />,
       blockquote: (props) => <Blockquote {...props} />,
-      // table``, li, ol, ul
+      li: ListItem,
+      ul: UnorderedList,
+      // table, li, ol, ul
     },
   });
 
