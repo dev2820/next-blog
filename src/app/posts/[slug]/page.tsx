@@ -95,7 +95,7 @@ export default async function PostPage({ params }: PageProps) {
   const readTime = readingTime(content);
   return (
     <>
-      <main className="min-h-screen max-w-[896px] desktop:p-24 p-6">
+      <main className="min-h-screen max-w-[896px] desktop:p-24 p-6 text-gray-800">
         {data.hero && (
           <HeroImage
             src={path.join(`/posts/${slug}/`, data.hero)}
