@@ -8,7 +8,7 @@ export function Blockquote(props: BlockquoteProps) {
   return (
     <blockquote
       className={cx(
-        "border-l-4 border-green-500 p-4 bg-gray-100 text-gray-700",
+        "my-4 border-l-4 border-green-500 p-6 bg-gray-100 text-gray-700 [&_*:first-child]:mt-0 [&_*:last-child]:mb-0",
         className,
       )}
       {...rest}

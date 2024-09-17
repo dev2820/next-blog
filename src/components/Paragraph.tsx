@@ -7,10 +7,7 @@ export function Paragraph(props: ParagraphProps) {
 
   return (
     <p
-      className={cx(
-        "text-paragraph font-light leading-normal pt-4 pb-4",
-        className,
-      )}
+      className={cx("font-light leading-normal mt-2 mb-4", className)}
       {...rest}
     />
   );
