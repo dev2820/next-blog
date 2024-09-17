@@ -28,6 +28,12 @@ import { cx } from "@/utils/cx";
 import { ListItem } from "@/components/ListItem";
 import { UnorderedList } from "@/components/UnorderedList";
 import { OrderedList } from "@/components/OrderedList";
+import { Table } from "@/components/Table";
+import { TableHeader } from "@/components/TableHeader";
+import { TableBody } from "@/components/TableBody";
+import { TableHead } from "@/components/TableHead";
+import { TableRow } from "@/components/TableRow";
+import { TableCell } from "@/components/TableCell";
 
 type PageProps = {
   params: {
@@ -94,7 +100,12 @@ export default async function PostPage({ params }: PageProps) {
       li: ListItem,
       ul: UnorderedList,
       ol: OrderedList,
-      // table
+      table: Table,
+      thead: TableHeader,
+      tbody: TableBody,
+      tr: TableRow,
+      th: TableHead,
+      td: TableCell,
     },
   });
 
