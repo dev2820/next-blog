@@ -3,8 +3,6 @@ import path from "path";
 import getMatter, { type GrayMatterFile } from "gray-matter";
 import fs from "fs";
 import type { Post, PostData } from "@/types/post";
-import { visit } from "unist-util-visit";
-import type { Root } from "hast";
 
 const BASE_PATH = "/public/posts";
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
@@ -71,6 +69,6 @@ const toPostData = (rawPostData: GrayMatterFile<string>["data"]): PostData => {
     tags: [],
     summary: rawPostData.summary,
     draft: rawPostData.draft,
-    hero: rawPostData.hero,
+    image: rawPostData.image,
   };
 };
