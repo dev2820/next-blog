@@ -18,8 +18,10 @@ jobs:
           node-version: '22'  # 사용하는 Node.js 버전에 맞춰 변경
           cache: 'pnpm'  # pnpm 캐시 사용
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 8  # 사용할 pnpm 버전 (생략 가능, 기본 최신 버전)
         
       - name: Install and Build 🔧
         run: |
