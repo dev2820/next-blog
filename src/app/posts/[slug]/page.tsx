@@ -40,6 +40,7 @@ type PageProps = {
     slug: string;
   };
 };
+
 export async function generateStaticParams() {
   const posts = getAllPosts();
 
