@@ -118,7 +118,7 @@ export default async function PostPage({ params }: PageProps) {
       <main className="min-h-screen max-w-[896px] desktop:p-24 p-6 text-gray-800">
         {data.image && (
           <HeroImage
-            src={path.join(`/posts/${slug}/`, data.image)}
+            src={path.join(basePath, data.image)}
             alt="hero image"
             className="max-w-full w-full"
             width="500"
