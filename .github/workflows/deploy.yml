@@ -12,6 +12,15 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
+      - name: Setup Node.js and pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'  # 사용하는 Node.js 버전에 맞춰 변경
+          cache: 'pnpm'  # pnpm 캐시 사용
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+        
       - name: Install and Build 🔧
         run: |
           pnpm install
