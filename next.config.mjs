@@ -6,6 +6,7 @@ const nextConfig = {
   env: {
     siteURL: config.siteURL,
   },
+  basePath: "./",
 };
 
 export default nextConfig;
