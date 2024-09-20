@@ -11,17 +11,19 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-
-      - name: Setup Node.js and pnpm
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9  
+          run_install: false
+          
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  # 사용하는 Node.js 버전에 맞춰 변경
-          cache: 'pnpm'  # pnpm 캐시 사용
+          node-version: '22' 
+          cache: 'pnpm'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 8  # 사용할 pnpm 버전 (생략 가능, 기본 최신 버전)
         
       - name: Install and Build 🔧
         run: |
