@@ -1,14 +1,14 @@
 const config = {
   title: "Terra Dev Blog",
   description: "Hello World",
-  siteURL: "http://example.com",
+  siteURL: "https://dev2820.github.io/next-blog",
   language: "ko",
-  image: "http://example.com/images/hero.jpg",
-  favicon: "http://example.com/favicon.ico",
+  image: "https://dev2820.github.io/next-blog/images/hero.jpg",
+  favicon: "https://dev2820.github.io/next-blog/favicon.ico",
   author: {
     name: "dev2820(Terra)",
     email: "dev2820@gmail.com",
-    link: "https://example.com/about",
+    link: "https://dev2820.github.io/next-blog/about",
   },
 };
 
