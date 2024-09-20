@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 import withExportImages from "next-export-optimize-images";
-import config from "./config.json" assert { type: "json" };
+import config from "./config.js";
 const nextConfig = {
   output: "export",
   images: { unoptimized: true },

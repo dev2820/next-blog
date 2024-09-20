@@ -1,5 +1,5 @@
 import { Feed } from "feed";
-import config from "../config.json" assert { type: "json" };
+import config from "../config.js";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
