@@ -35,6 +35,8 @@ import { TableHead } from "@/components/TableHead";
 import { TableRow } from "@/components/TableRow";
 import { TableCell } from "@/components/TableCell";
 
+const BASE_PATH = process.env.basePath;
+
 type PageProps = {
   params: {
     slug: string;
@@ -52,7 +54,7 @@ export async function generateStaticParams() {
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
-  const basePath = `/posts/${slug}/`;
+  const basePath = `${BASE_PATH}/posts/${slug}/`;
   if (isNil(post)) {
     notFound();
   }
