@@ -96,8 +96,13 @@ export default async function PostPage({ params }: PageProps) {
         />
       ),
       strong: (props) => <Strong {...props} />,
-      code: (props) => <Code {...props} />,
-      pre: (props) => <CodeBlock {...props} />,
+      code: Code,
+      pre: ({ className, ...rest }) => (
+        <CodeBlock
+          className={cx("[&_code]:py-0 [&_code]:px-0", className)}
+          {...rest}
+        />
+      ),
       a: (props) => <Anchor {...props} />,
       blockquote: (props) => <Blockquote {...props} />,
       li: ListItem,

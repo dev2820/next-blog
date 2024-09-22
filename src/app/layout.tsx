@@ -37,10 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="kr"
-      className={cx(`${pretendard.variable}`, monospaceNeon.variable)}
-    >
+    <html lang="kr" className={cx(pretendard.variable, monospaceNeon.variable)}>
       <body className={pretendard.className}>{children}</body>
     </html>
   );

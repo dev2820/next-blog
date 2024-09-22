@@ -8,7 +8,7 @@ export function Code(props: CodeProps) {
   return (
     <code
       className={cx(
-        "py-1 px-2 rounded-md bg-gray-200 text-red-400 font-monospace",
+        "py-1 px-2 rounded-md bg-gray-200 text-red-400 !font-monospace",
         className,
       )}
       {...rest}

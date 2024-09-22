@@ -21,7 +21,7 @@ export function CodeBlock(props: CodeBlockProps) {
     : child;
 
   return (
-    <pre className={cx("font-monospace rounded-md", className)} {...rest}>
+    <pre className={cx("rounded-md", className)} {...rest}>
       {codeBlock}
     </pre>
   );
