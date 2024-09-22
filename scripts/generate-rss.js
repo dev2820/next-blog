@@ -33,8 +33,12 @@ const feed = new Feed({
   language: config.language,
   image: config.image,
   favicon: config.favicon,
-  copyright: `All rights reserved ${new Date().getFullYear()}, ${config.author.name}`,
-  author: config.author,
+  copyright: `All rights reserved ${new Date().getFullYear()}, ${config.author}(${config.nickname})`,
+  author: {
+    name: config.author,
+    email: config.email,
+    link: config.cv,
+  },
   feedLinks: {
     rss2: `${config.siteURL}/rss.xml`,
     json: `${config.siteURL}/feed.json`,
@@ -46,10 +50,16 @@ posts.forEach((post) => {
   feed.addItem({
     title: post.data.title,
     id: post.data.slug,
-    link: `${config.link}${post.data.slug}`,
+    link: `${config.siteURL}${post.data.slug}`,
     description: post.data.description,
     content: post.content,
-    author: [config.author],
+    author: [
+      {
+        name: config.author,
+        email: config.email,
+        link: config.cv,
+      },
+    ],
     date: new Date(post.data.created),
     image:
       post.data.image &&

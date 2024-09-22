@@ -5,11 +5,10 @@ const config = {
   language: "ko",
   image: "https://dev2820.github.io/next-blog/images/hero.jpg",
   favicon: "https://dev2820.github.io/next-blog/favicon.ico",
-  author: {
-    name: "dev2820(Terra)",
-    email: "dev2820@gmail.com",
-    link: "https://dev2820.github.io/next-blog/about",
-  },
+  author: "dev2820",
+  nickname: "Terra",
+  email: "dev2820@gmail.com",
+  cv: "https://dev2820.github.io/next-blog/about",
 };
 
 export default config;
