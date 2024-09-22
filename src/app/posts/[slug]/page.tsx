@@ -34,9 +34,6 @@ import { TableBody } from "@/components/post/elements/TableBody";
 import { TableHead } from "@/components/post/elements/TableHead";
 import { TableRow } from "@/components/post/elements/TableRow";
 import { TableCell } from "@/components/post/elements/TableCell";
-import { Avatar } from "terra-design-system/react";
-import { ComponentProps } from "react";
-import { AuthorAvatar } from "@/components/post/AuthorAvatar";
 import { AuthorInfo } from "@/components/post/AuthorInfo";
 
 const BASE_PATH = process.env.basePath ?? "";

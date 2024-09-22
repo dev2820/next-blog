@@ -24,8 +24,8 @@ dependencies:
     specifier: ^2.5.2
     version: 2.5.2
   terra-design-system:
-    specifier: ^1.0.18
-    version: 1.0.18(react@18.3.1)
+    specifier: ^1.0.22
+    version: 1.0.22(react@18.3.1)
 
 devDependencies:
   '@types/glob':
@@ -4344,8 +4344,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /terra-design-system@1.0.18(react@18.3.1):
-    resolution: {integrity: sha512-dC36bjO2cZft6TPpixcV8EKAm9/xWY3mIi0HbBV43h2MfUemDrFW0yV0o2gAyoiLaCforhc5ZNYaSg+jGCnNsA==}
+  /terra-design-system@1.0.22(react@18.3.1):
+    resolution: {integrity: sha512-QNVJE+dtjuEEVYbAywkvB3p7o+zmpqh2/DGkWnZsMbPqLTV9czoGIzggQTziyrBsDQKBzXQ2kr8FFqpZ9jlLag==}
     peerDependencies:
       react: ^18.2.0
     dependencies:

@@ -17,18 +17,18 @@ export function AuthorInfo(props: AuthorInfoProps) {
       className={cx("flex flex-row gap-4 items-center", className)}
       {...rest}
     >
-      <Skeleton isLoaded={!isFetching} className="!rounded-full">
-        <Avatar size="xl" src={author?.avatarURL} className="w-16 h-16" />
+      <Skeleton isLoaded={!isFetching} className="rounded-full">
+        <Avatar size="2xl" src={author?.avatarURL} className="w-16 h-16" />
       </Skeleton>
-      <div className="text-pretty">
-        <Skeleton isLoaded={!isFetching} className="max-w-36 h-6 mb-2">
-          <strong>
+      <div className="text-pretty flex flex-col gap-2">
+        <Skeleton isLoaded={!isFetching} className="h-fit w-fit">
+          <strong className="inline-block h-6 min-w-36">
             {author?.name}{" "}
             {author?.nickname && <span>({author.nickname})</span>}
           </strong>
         </Skeleton>
-        <Skeleton isLoaded={!isFetching} className="min-w-64 h-6">
-          <p className="whitespace-pre-wrap">{author?.bio}</p>
+        <Skeleton isLoaded={!isFetching} className="h-fit w-fit">
+          <p className="whitespace-pre-wrap h-6 min-w-64">{author?.bio}</p>
         </Skeleton>
       </div>
     </div>
