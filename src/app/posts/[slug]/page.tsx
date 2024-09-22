@@ -35,7 +35,7 @@ import { TableHead } from "@/components/post/TableHead";
 import { TableRow } from "@/components/post/TableRow";
 import { TableCell } from "@/components/post/TableCell";
 
-const BASE_PATH = process.env.basePath;
+const BASE_PATH = process.env.basePath ?? "";
 
 type PageProps = {
   params: {
