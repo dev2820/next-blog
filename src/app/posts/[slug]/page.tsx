@@ -8,7 +8,7 @@ import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import path from "node:path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { HeroImage } from "@/components/HeroImage";
+import { HeroImage } from "@/components/post/HeroImage";
 import { Heading1 } from "@/components/post/elements/Heading1";
 import { Heading2 } from "@/components/post/elements/Heading2";
 import { Heading3 } from "@/components/post/elements/Heading3";
@@ -36,7 +36,7 @@ import { TableRow } from "@/components/post/elements/TableRow";
 import { TableCell } from "@/components/post/elements/TableCell";
 import { Avatar } from "terra-design-system/react";
 import { ComponentProps } from "react";
-import { AuthorAvatar } from "@/components/AuthorAvatar";
+import { AuthorAvatar } from "@/components/post/AuthorAvatar";
 
 const BASE_PATH = process.env.basePath ?? "";
 
