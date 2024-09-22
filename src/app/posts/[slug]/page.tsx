@@ -6,34 +6,34 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
+import path from "node:path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { HeroImage } from "@/components/HeroImage";
-import { Heading1 } from "@/components/Heading1";
-import { Heading2 } from "@/components/Heading2";
-import { Heading3 } from "@/components/Heading3";
-import { Heading4 } from "@/components/Heading4";
-import { Heading5 } from "@/components/Heading5";
-import { Heading6 } from "@/components/Heading6";
-import { Paragraph } from "@/components/Paragraph";
-import { Image } from "@/components/Image";
-import { Code } from "@/components/Code";
-import { Emphasize } from "@/components/Emphasize";
-import { Strong } from "@/components/Strong";
-import { Anchor } from "@/components/Anchor";
-import { CodeBlock } from "@/components/CodeBlock";
-import { Blockquote } from "@/components/Blockquote";
+import { Heading1 } from "@/components/post/Heading1";
+import { Heading2 } from "@/components/post/Heading2";
+import { Heading3 } from "@/components/post/Heading3";
+import { Heading4 } from "@/components/post/Heading4";
+import { Heading5 } from "@/components/post/Heading5";
+import { Heading6 } from "@/components/post/Heading6";
+import { Paragraph } from "@/components/post/Paragraph";
+import { Image } from "@/components/post/Image";
+import { Code } from "@/components/post/Code";
+import { Emphasize } from "@/components/post/Emphasize";
+import { Strong } from "@/components/post/Strong";
+import { Anchor } from "@/components/post/Anchor";
+import { CodeBlock } from "@/components/post/CodeBlock";
+import { Blockquote } from "@/components/post/Blockquote";
 import { readingTime } from "reading-time-estimator";
-import path from "path";
 import { cx } from "@/utils/cx";
-import { ListItem } from "@/components/ListItem";
-import { UnorderedList } from "@/components/UnorderedList";
-import { OrderedList } from "@/components/OrderedList";
-import { Table } from "@/components/Table";
-import { TableHeader } from "@/components/TableHeader";
-import { TableBody } from "@/components/TableBody";
-import { TableHead } from "@/components/TableHead";
-import { TableRow } from "@/components/TableRow";
-import { TableCell } from "@/components/TableCell";
+import { ListItem } from "@/components/post/ListItem";
+import { UnorderedList } from "@/components/post/UnorderedList";
+import { OrderedList } from "@/components/post/OrderedList";
+import { Table } from "@/components/post/Table";
+import { TableHeader } from "@/components/post/TableHeader";
+import { TableBody } from "@/components/post/TableBody";
+import { TableHead } from "@/components/post/TableHead";
+import { TableRow } from "@/components/post/TableRow";
+import { TableCell } from "@/components/post/TableCell";
 
 const BASE_PATH = process.env.basePath;
 
@@ -71,13 +71,13 @@ export default async function PostPage({ params }: PageProps) {
       },
     },
     components: {
-      h1: (props) => <Heading1 {...props} />,
-      h2: (props) => <Heading2 {...props} />,
-      h3: (props) => <Heading3 {...props} />,
-      h4: (props) => <Heading4 {...props} />,
-      h5: (props) => <Heading5 {...props} />,
-      h6: (props) => <Heading6 {...props} />,
-      p: (props) => <Paragraph {...props} />,
+      h1: Heading1,
+      h2: Heading2,
+      h3: Heading3,
+      h4: Heading4,
+      h5: Heading5,
+      h6: Heading6,
+      p: Paragraph,
       img: ({ alt, src, width, height, ...rest }) => (
         <Image
           src={path.join(basePath, src ?? "")}
@@ -95,7 +95,7 @@ export default async function PostPage({ params }: PageProps) {
           className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-thin [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
         />
       ),
-      strong: (props) => <Strong {...props} />,
+      strong: Strong,
       code: Code,
       pre: ({ className, ...rest }) => (
         <CodeBlock
@@ -103,8 +103,8 @@ export default async function PostPage({ params }: PageProps) {
           {...rest}
         />
       ),
-      a: (props) => <Anchor {...props} />,
-      blockquote: (props) => <Blockquote {...props} />,
+      a: Anchor,
+      blockquote: Blockquote,
       li: ListItem,
       ul: UnorderedList,
       ol: OrderedList,
