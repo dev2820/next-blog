@@ -9,6 +9,7 @@ const config = {
   nickname: "Terra",
   email: "dev2820@gmail.com",
   cv: "https://dev2820.github.io/next-blog/about",
+  profile: "https://avatars.githubusercontent.com/u/40891497?v=4",
 };
 
 export default config;

@@ -34,6 +34,9 @@ import { TableBody } from "@/components/post/TableBody";
 import { TableHead } from "@/components/post/TableHead";
 import { TableRow } from "@/components/post/TableRow";
 import { TableCell } from "@/components/post/TableCell";
+import { Avatar } from "terra-design-system/react";
+import { ComponentProps } from "react";
+import { AuthorAvatar } from "@/components/AuthorAvatar";
 
 const BASE_PATH = process.env.basePath ?? "";
 
@@ -134,7 +137,28 @@ export default async function PostPage({ params }: PageProps) {
         <span>{format(data.created, "yyyy-MM-dd")}</span>|
         <span>{readTime.minutes} mins</span>
         {CompiledMDX}
+        <AuthorInfo />
       </main>
     </>
+  );
+}
+
+type AuthorInfoProps = ComponentProps<"div">;
+function AuthorInfo(props: AuthorInfoProps) {
+  const { className, ...rest } = props;
+  return (
+    <div
+      className={cx("grid grid-cols-[auto,1fr] gap-4 items-center", className)}
+      {...rest}
+    >
+      <AuthorAvatar size="lg" />
+      <div className="text-pretty">
+        <strong>title</strong>
+        <p className="whitespace-pre-wrap">
+          descriptiondescriptiondescriptiondescript iondescriptiondesc
+          riptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription
+        </p>
+      </div>
+    </div>
   );
 }
