@@ -18,7 +18,7 @@ export function AuthorInfo(props: AuthorInfoProps) {
       {...rest}
     >
       <Skeleton isLoaded={!isFetching} className="rounded-full">
-        <Avatar size="2xl" src={author?.avatarURL} className="w-16 h-16" />
+        <Avatar size={64} src={author?.avatarURL} />
       </Skeleton>
       <div className="text-pretty flex flex-col gap-2">
         <Skeleton isLoaded={!isFetching} className="h-fit w-fit">
