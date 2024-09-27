@@ -33,6 +33,7 @@
     "feed": "^4.2.2",
     "glob": "^11.0.0",
     "gray-matter": "^4.0.3",
+    "lucide-react": "^0.446.0",
     "next-export-optimize-images": "^4.5.0",
     "postcss": "^8",
     "reading-time-estimator": "^1.11.0",

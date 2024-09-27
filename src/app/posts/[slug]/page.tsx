@@ -35,8 +35,10 @@ import { TableHead } from "@/components/post/elements/TableHead";
 import { TableRow } from "@/components/post/elements/TableRow";
 import { TableCell } from "@/components/post/elements/TableCell";
 import { AuthorInfo } from "@/components/post/AuthorInfo";
+import { ShareButton } from "@/components/post/ShareButton";
 
 const BASE_PATH = process.env.basePath ?? "";
+const TITLE = process.env.title ?? "";
 
 type PageProps = {
   params: {
@@ -55,7 +57,7 @@ export async function generateStaticParams() {
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
-  const basePath = `${BASE_PATH}/posts/${slug}/`;
+  const basePath = `${BASE_PATH}/posts/${slug}`;
   if (isNil(post)) {
     notFound();
   }
@@ -119,6 +121,7 @@ export default async function PostPage({ params }: PageProps) {
   });
 
   const readTime = readingTime(content);
+
   return (
     <>
       <main className="min-h-screen max-w-[896px] desktop:p-24 p-6 text-gray-800">
@@ -135,6 +138,14 @@ export default async function PostPage({ params }: PageProps) {
         <span>{format(data.created, "yyyy-MM-dd")}</span>|
         <span>{readTime.minutes} mins</span>
         {CompiledMDX}
+        <ShareButton
+          size="lg"
+          shareData={{
+            title: `${TITLE} - ${data.title}`,
+            text: data.summary,
+            url: basePath,
+          }}
+        />
         <AuthorInfo />
       </main>
     </>
