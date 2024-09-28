@@ -53,7 +53,8 @@ export async function generateStaticParams() {
     slug: p.data.slug,
   }));
 }
-
+// TODO: JSON-LD 적용
+// TODO: Metadata 적용
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
@@ -121,32 +122,49 @@ export default async function PostPage({ params }: PageProps) {
   });
 
   const readTime = readingTime(content);
-
+  // TODO: localization 고려
+  const createdAt = format(data.created, "yyyy-MM-dd");
   return (
     <>
       <main className="min-h-screen max-w-[896px] desktop:p-24 p-6 text-gray-800">
-        {data.image && (
-          <HeroImage
-            src={path.join(basePath, data.image)}
-            alt="hero image"
-            className="max-w-full w-full"
-            width="500"
-            height="300"
-          />
-        )}
-        <Heading1 id={data.title}>{data.title}</Heading1>
-        <span>{format(data.created, "yyyy-MM-dd")}</span>|
-        <span>{readTime.minutes} mins</span>
-        {CompiledMDX}
-        <ShareButton
-          size="lg"
-          shareData={{
-            title: `${TITLE} - ${data.title}`,
-            text: data.summary,
-            url: basePath,
-          }}
-        />
-        <AuthorInfo />
+        <article>
+          <header id="post-meta">
+            {data.image && (
+              <HeroImage
+                src={path.join(basePath, data.image)}
+                alt="hero image"
+                className="max-w-full w-full"
+                width="500"
+                height="300"
+              />
+            )}
+            <Heading2 id={data.title}>{data.title}</Heading2>
+            <time dateTime={createdAt} aria-label={`Published on ${createdAt}`}>
+              {format(data.created, "yyyy-MM-dd")}
+            </time>
+            |
+            <time
+              dateTime={`PT${readTime.minutes}M`}
+              aria-label="Estimated reading time"
+            >
+              {readTime.minutes} mins
+            </time>
+          </header>
+          <section id="content">
+            {CompiledMDX}
+            <ShareButton
+              size="lg"
+              shareData={{
+                title: `${TITLE} - ${data.title}`,
+                text: data.summary,
+                url: basePath,
+              }}
+              aria-label="Share this article"
+            />
+            <AuthorInfo />
+          </section>
+          <footer></footer>
+        </article>
       </main>
     </>
   );
