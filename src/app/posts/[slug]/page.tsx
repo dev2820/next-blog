@@ -47,15 +47,6 @@ type PageProps = {
   };
 };
 
-export async function generateStaticParams() {
-  const posts = getAllPosts();
-
-  return posts.map((p) => ({
-    slug: p.data.slug,
-  }));
-}
-// TODO: JSON-LD 적용
-// TODO: Metadata 적용
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
