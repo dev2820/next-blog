@@ -134,7 +134,7 @@ export default async function PostPage({ params }: PageProps) {
               <HeroImage
                 src={path.join(basePath, data.image)}
                 alt="hero image"
-                className="max-w-full w-full"
+                className="max-w-full w-full rounded-md"
                 width="500"
                 height="300"
               />
