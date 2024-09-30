@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build && pnpm generate:rss",
     "generate:rss": "node ./scripts/generate-rss.js",
-    "preview": "next build && pnpx http-server out",
+    "preview": "MODE=development next build && pnpx http-server -o out",
     "start": "next start",
     "lint": "next lint",
     "fetch-posts": "git submodule update --remote"
