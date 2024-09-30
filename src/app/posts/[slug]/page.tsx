@@ -139,11 +139,11 @@ export default async function PostPage({ params }: PageProps) {
                 height="300"
               />
             )}
-            <Heading2 id={data.title}>{data.title}</Heading2>
+            <Heading1 id={data.title}>{data.title}</Heading1>
             <time dateTime={createdAt} aria-label={`Published on ${createdAt}`}>
               {format(data.created, "yyyy-MM-dd")}
-            </time>
-            |
+            </time>{" "}
+            |{" "}
             <time
               dateTime={`PT${readTime.minutes}M`}
               aria-label="Estimated reading time"
