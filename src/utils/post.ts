@@ -65,6 +65,7 @@ const toPostData = (rawPostData: GrayMatterFile<string>["data"]): PostData => {
   return {
     title: rawPostData.title,
     created: rawPostData.created,
+    modified: rawPostData.modified,
     slug: rawPostData.slug,
     tags: [],
     summary: rawPostData.summary,

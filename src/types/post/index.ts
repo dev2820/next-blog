@@ -7,6 +7,7 @@ export type PostData = {
   title: string;
   created: string;
   tags: string[];
+  modified?: string;
   summary?: string;
   draft?: boolean;
   slug?: string;
