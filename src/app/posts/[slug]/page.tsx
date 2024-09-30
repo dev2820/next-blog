@@ -39,6 +39,7 @@ import { ShareButton } from "@/components/post/ShareButton";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
+const AUTHOR = process.env.author ?? "";
 
 type PageProps = {
   params: {
@@ -161,11 +162,20 @@ export default async function PostPage({ params }: PageProps) {
               }}
               aria-label="Share this article"
             />
+          </section>
+          <section id="author">
             <AuthorInfo />
           </section>
-          <footer></footer>
         </article>
       </main>
+      <footer>
+        {/**
+         * TODO: Contact me 추가
+         */}
+        <p>
+          &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights reserved.
+        </p>
+      </footer>
     </>
   );
 }
