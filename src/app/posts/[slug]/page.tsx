@@ -41,7 +41,6 @@ import { cx } from "@/utils/cx";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
-const AUTHOR = process.env.author ?? "";
 
 type PageProps = {
   params: {
@@ -120,55 +119,45 @@ export default async function PostPage({ params }: PageProps) {
   const createdAt = format(data.created, "yyyy-MM-dd");
   return (
     <>
-      <main className="min-h-screen max-w-[896px] desktop:p-24 p-6 text-gray-800">
-        <article>
-          <header id="post-meta">
-            {data.image && (
-              <HeroImage
-                src={path.join(basePath, data.image)}
-                alt="hero image"
-                className="max-w-full w-full rounded-md"
-                width="500"
-                height="300"
-              />
-            )}
-            <Heading1 id={data.title}>{data.title}</Heading1>
-            <time dateTime={createdAt} aria-label={`Published on ${createdAt}`}>
-              {format(data.created, "yyyy-MM-dd")}
-            </time>{" "}
-            |{" "}
-            <time
-              dateTime={`PT${readTime.minutes}M`}
-              aria-label="Estimated reading time"
-            >
-              {readTime.minutes} mins
-            </time>
-          </header>
-          <section id="content">
-            {CompiledMDX}
-            <ShareButton
-              size="lg"
-              shareData={{
-                title: `${TITLE} - ${data.title}`,
-                text: data.summary,
-                url: basePath,
-              }}
-              aria-label="Share this article"
+      <article>
+        <header id="post-meta">
+          {data.image && (
+            <HeroImage
+              src={path.join(basePath, data.image)}
+              alt="hero image"
+              className="max-w-full w-full rounded-md"
+              width="500"
+              height="300"
             />
-          </section>
-          <section id="author">
-            <AuthorInfo />
-          </section>
-        </article>
-      </main>
-      <footer>
-        {/**
-         * TODO: Contact me 추가
-         */}
-        <p>
-          &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights reserved.
-        </p>
-      </footer>
+          )}
+          <Heading1 id={data.title}>{data.title}</Heading1>
+          <time dateTime={createdAt} aria-label={`Published on ${createdAt}`}>
+            {format(data.created, "yyyy-MM-dd")}
+          </time>{" "}
+          |{" "}
+          <time
+            dateTime={`PT${readTime.minutes}M`}
+            aria-label="Estimated reading time"
+          >
+            {readTime.minutes} mins
+          </time>
+        </header>
+        <section id="content">
+          {CompiledMDX}
+          <ShareButton
+            size="lg"
+            shareData={{
+              title: `${TITLE} - ${data.title}`,
+              text: data.summary,
+              url: basePath,
+            }}
+            aria-label="Share this article"
+          />
+        </section>
+        <section id="author">
+          <AuthorInfo />
+        </section>
+      </article>
     </>
   );
 }

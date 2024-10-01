@@ -4,6 +4,10 @@ import localFont from "next/font/local";
 import { cx } from "@/utils/cx";
 
 import "terra-design-system/react/style";
+import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
+import { ComponentProps } from "react";
+
+const AUTHOR = process.env.author ?? "";
 
 const pretendard = localFont({
   src: "../assets/fonts/PretendardVariable.woff2",
@@ -38,7 +42,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr" className={cx(pretendard.variable, monospaceNeon.variable)}>
-      <body className={pretendard.className}>{children}</body>
+      <body className={cx(pretendard.className, "flex flex-col")}>
+        <div className="w-full max-w-screen-md self-center">
+          <Header></Header>
+          <main className="p-6 text-gray-800">{children}</main>
+          <footer>
+            {/**
+             * TODO: Contact me 추가
+             */}
+            <p>
+              &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights
+              reserved.
+            </p>
+          </footer>
+        </div>
+      </body>
     </html>
+  );
+}
+
+type HeaderProps = ComponentProps<"header">;
+function Header(props: HeaderProps) {
+  const { className, ...rest } = props;
+  return (
+    <header className={cx("flex flex-row justify-center", className)} {...rest}>
+      {/** logo */}
+      <GlobalNavigationBar />
+    </header>
   );
 }
