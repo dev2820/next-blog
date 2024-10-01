@@ -1,4 +1,4 @@
-import { getPostBySlug } from "@/utils/post";
+import { generateTOC, getPostBySlug } from "@/utils/post";
 import { isNil } from "@/utils/predicate";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
@@ -38,6 +38,7 @@ import {
 import { AuthorInfo } from "@/components/post/AuthorInfo";
 import { ShareButton } from "@/components/post/ShareButton";
 import { cx } from "@/utils/cx";
+import { TableOfContents } from "@/components/post/TableOfContents";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -57,6 +58,8 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   const { data, content } = post;
+
+  const toc = generateTOC(content);
 
   const { content: CompiledMDX } = await compileMDX({
     source: content,
@@ -145,6 +148,9 @@ export default async function PostPage({ params }: PageProps) {
             {readTime.minutes} mins
           </time>
         </header>
+        <section id="table-of-header">
+          <TableOfContents toc={toc} />
+        </section>
         <section id="content">
           {CompiledMDX}
           <ShareButton

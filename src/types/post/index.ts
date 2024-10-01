@@ -1,3 +1,5 @@
+export type * from "./table-of-contents";
+
 export type Post = {
   data: PostData;
   content: string;

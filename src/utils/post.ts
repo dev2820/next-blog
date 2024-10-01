@@ -3,6 +3,7 @@ import path from "path";
 import getMatter, { type GrayMatterFile } from "gray-matter";
 import fs from "fs";
 import type { Post, PostData } from "@/types/post";
+import { TableOfContentsItem } from "@/types/post/table-of-contents";
 
 const BASE_PATH = "/public/posts";
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
@@ -72,4 +73,34 @@ const toPostData = (rawPostData: GrayMatterFile<string>["data"]): PostData => {
     draft: rawPostData.draft,
     image: rawPostData.image,
   };
+};
+
+export const generateTOC = (markdown: string): TableOfContentsItem[] => {
+  // Split the markdown content by lines
+  const lines = markdown.split("\n");
+  const toc: TableOfContentsItem[] = [];
+
+  // Regular expression to match headers (##, ###, etc.)
+  const headerRegex = /^(#{2,6})\s+(.+)$/;
+
+  lines.forEach((line) => {
+    const match = line.match(headerRegex);
+    if (match) {
+      const level = Number(match[1].length); // Number of # characters
+      const content = match[2].trim(); // Extract header content
+      const slug =
+        "#" +
+        content
+          .toLowerCase()
+          .replace(
+            /[^\w\s\u4E00-\u9FFF\uAC00-\uD7A3\u3130-\u318F\u3040-\u30FF\u00C0-\u024F\u1E00-\u1EFF-]/g,
+            ""
+          ) // Remove special characters
+          .replace(/\s+/g, "-"); // Replace spaces with hyphens
+
+      toc.push({ level, content, slug });
+    }
+  });
+
+  return toc;
 };
