@@ -17,7 +17,7 @@ export default function PostsPage() {
       <ul>
         {frontMatters.map((fm, i) => (
           <li key={i}>
-            <Link href={"/posts/" + fm.title}>{fm.title}</Link>
+            <Link href={"/posts/" + fm.slug}>{fm.title}</Link>
           </li>
         ))}
       </ul>
