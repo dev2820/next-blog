@@ -9,6 +9,17 @@ const NAVIGATION_MENUS = [
   {
     href: "/posts",
     label: "Posts",
+    disabled: false,
+  },
+  {
+    href: "/about",
+    label: "About Me",
+    disabled: true,
+  },
+  {
+    href: "/contact",
+    label: "Contact",
+    disabled: true,
   },
 ];
 export type GlobalNavigationBarProps = ComponentProps<"nav">;
@@ -21,8 +32,11 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
       <menu className="flex flex-row gap-8">
         {NAVIGATION_MENUS.map((m) => (
           <li key={m.href}>
-            <Link href={m.href}>
-              <NavigationItem isActive={pathname.startsWith(m.href)}>
+            <Link href={m.disabled ? "" : m.href} aria-disabled={m.disabled}>
+              <NavigationItem
+                active={pathname.startsWith(m.href)}
+                disabled={m.disabled}
+              >
                 {m.label}
               </NavigationItem>
             </Link>
@@ -34,16 +48,18 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
 }
 
 type NavigationItemProps = ComponentProps<"div"> & {
-  isActive?: boolean;
+  active?: boolean;
+  disabled?: boolean;
 };
 const NavigationItem = (props: NavigationItemProps) => {
-  const { isActive, children, className, ...rest } = props;
+  const { active, disabled, children, className, ...rest } = props;
   return (
     <div
       className={cx(
         "cursor-pointer",
-        "text-gray-700 hover:text-gray-900 duration-200 font-medium",
-        isActive && "text-primary hover:text-primary",
+        "text-neutral-500 hover:text-neutral-900 duration-200 font-medium",
+        active && "text-primary hover:text-primary",
+        disabled && "cursor-not-allowed text-muted hover:text-muted",
         className
       )}
       {...rest}

@@ -25,6 +25,7 @@ const config: Config = {
       },
       colors: {
         primary: "#4CAF50",
+        muted: "rgb(212 212 212)",
       },
       lineHeight: {
         normal: "1.6",
