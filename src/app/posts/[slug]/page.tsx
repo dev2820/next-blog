@@ -150,7 +150,7 @@ export default async function PostPage({ params }: PageProps) {
         </header>
         <section
           id="table-of-header"
-          className="absolute -right-20 translate-x-full h-full w-56 desktop:block hidden"
+          className="absolute -right-20 translate-x-full h-full w-60 desktop:block hidden"
         >
           <TableOfContents toc={toc} className="sticky top-2 " />
         </section>

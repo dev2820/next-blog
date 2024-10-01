@@ -44,7 +44,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="kr" className={cx(pretendard.variable, monospaceNeon.variable)}>
+    <html
+      lang="kr"
+      className={cx(
+        pretendard.variable,
+        monospaceNeon.variable,
+        "scroll-smooth"
+      )}
+    >
       <body className={cx(pretendard.className, "flex flex-col text-gray-800")}>
         <Header className="self-center w-full max-w-screen-md px-4"></Header>
         <main className="self-center w-full max-w-screen-md p-4 text-gray-800">
