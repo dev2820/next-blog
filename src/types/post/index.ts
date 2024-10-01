@@ -5,7 +5,7 @@ export type Post = {
 
 export type PostData = {
   title: string;
-  created: string;
+  published: string;
   tags: string[];
   modified?: string;
   summary?: string;

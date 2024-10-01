@@ -116,7 +116,7 @@ export default async function PostPage({ params }: PageProps) {
 
   const readTime = readingTime(content);
   // TODO: localization 고려
-  const createdAt = format(data.created, "yyyy-MM-dd");
+  const publishedAt = format(data.published, "yyyy-MM-dd");
   return (
     <>
       <article>
@@ -131,8 +131,11 @@ export default async function PostPage({ params }: PageProps) {
             />
           )}
           <Heading1 id={data.title}>{data.title}</Heading1>
-          <time dateTime={createdAt} aria-label={`Published on ${createdAt}`}>
-            {format(data.created, "yyyy-MM-dd")}
+          <time
+            dateTime={publishedAt}
+            aria-label={`Published on ${publishedAt}`}
+          >
+            {format(data.published, "yyyy-MM-dd")}
           </time>{" "}
           |{" "}
           <time

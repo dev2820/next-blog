@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PageProps) {
         },
       ],
       article: {
-        publishedTime: post?.data.created,
+        publishedTime: post?.data.published,
         modifiedTime: post?.data.modified,
         authors: [GITHUB_URL],
         tags: post?.data.tags,

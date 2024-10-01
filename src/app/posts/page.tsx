@@ -9,7 +9,7 @@ export default function PostsPage() {
   const frontMatters = posts
     .map((post) => post.data)
     .toSorted((a, b) =>
-      new Date(a.created).getTime() < new Date(b.created).getTime() ? 1 : -1
+      new Date(a.published).getTime() < new Date(b.published).getTime() ? 1 : -1
     );
 
   return (
