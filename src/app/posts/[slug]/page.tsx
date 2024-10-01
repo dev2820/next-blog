@@ -150,9 +150,9 @@ export default async function PostPage({ params }: PageProps) {
         </header>
         <section
           id="table-of-header"
-          className="absolute -right-20 translate-x-full h-full w-60 desktop:block hidden"
+          className="absolute -right-12 translate-x-full h-full w-52 desktop:block hidden"
         >
-          <TableOfContents toc={toc} className="sticky top-2 " />
+          <TableOfContents toc={toc} className="sticky top-24" />
         </section>
         <section id="content">
           {CompiledMDX}
