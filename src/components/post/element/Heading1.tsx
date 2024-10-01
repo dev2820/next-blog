@@ -8,8 +8,8 @@ export function Heading1(props: Heading1Props) {
   return (
     <h1
       className={cx(
-        "mt-7 mb-4 text-heading1 font-bold leading-normal",
-        className,
+        "mt-10 mb-4 text-heading1 font-bold leading-normal",
+        className
       )}
       {...rest}
     />

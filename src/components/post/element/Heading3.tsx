@@ -6,10 +6,10 @@ export function Heading3(props: Heading3Props) {
   const { className, ...rest } = props;
 
   return (
-    <h2
+    <h3
       className={cx(
-        "mt-5 mb-2 text-heading3 font-semibold leading-normal",
-        className,
+        "mt-7 mb-2 text-heading3 font-semibold leading-normal",
+        className
       )}
       {...rest}
     />

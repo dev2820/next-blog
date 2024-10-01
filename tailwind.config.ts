@@ -26,6 +26,9 @@ const config: Config = {
       colors: {
         primary: "#4CAF50",
       },
+      lineHeight: {
+        normal: "1.6",
+      },
       fontSize: {
         paragraph: [
           "16px",
