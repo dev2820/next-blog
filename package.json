@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "MODE=development next dev",
     "build": "next build && pnpm generate:rss",
     "generate:rss": "node ./scripts/generate-rss.js",
     "preview": "MODE=development next build && pnpx http-server -o out",
