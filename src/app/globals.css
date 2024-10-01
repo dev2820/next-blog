@@ -5,6 +5,12 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 249, 249, 243;
+  /**
+   * css for terra-design-system
+   */
+  --my-colors-primary-500: #4caf50;
+  --my-colors-primary-700: #43a047;
+  --my-colors-primary-800: #388e3c;
 }
 
 @media (prefers-color-scheme: dark) {
