@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import "terra-design-system/react/style"; // trds의 style의 우선순위를 낮추기 위해 위에 위치
 import "./globals.css";
 import localFont from "next/font/local";
 import { cx } from "@/utils/cx";
 
-import "terra-design-system/react/style";
 import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
@@ -45,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr" className={cx(pretendard.variable, monospaceNeon.variable)}>
-      <body className={cx(pretendard.className, "flex flex-col")}>
+      <body className={cx(pretendard.className, "flex flex-col text-gray-800")}>
         <Header className="self-center w-full max-w-screen-md px-4"></Header>
         <main className="self-center w-full max-w-screen-md p-4 text-gray-800">
           {children}
@@ -69,7 +69,10 @@ function Header(props: HeaderProps) {
   const { className, ...rest } = props;
   return (
     <header
-      className={cx("flex flex-row justify-center py-2", className)}
+      className={cx(
+        "flex flex-row justify-center py-2 items-center",
+        className
+      )}
       {...rest}
     >
       <Link href="/">

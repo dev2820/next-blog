@@ -23,6 +23,9 @@ const config: Config = {
         tablet: "640px",
         desktop: "1280px",
       },
+      colors: {
+        primary: "#4CAF50",
+      },
       fontSize: {
         paragraph: [
           "16px",
