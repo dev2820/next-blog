@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug } from "@/utils/post";
+import { getPostBySlug } from "@/utils/post";
 import { isNil } from "@/utils/predicate";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
@@ -9,33 +9,35 @@ import rehypeSlug from "rehype-slug";
 import path from "node:path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { HeroImage } from "@/components/post/HeroImage";
-import { Heading1 } from "@/components/post/elements/Heading1";
-import { Heading2 } from "@/components/post/elements/Heading2";
-import { Heading3 } from "@/components/post/elements/Heading3";
-import { Heading4 } from "@/components/post/elements/Heading4";
-import { Heading5 } from "@/components/post/elements/Heading5";
-import { Heading6 } from "@/components/post/elements/Heading6";
-import { Paragraph } from "@/components/post/elements/Paragraph";
-import { Image } from "@/components/post/elements/Image";
-import { Code } from "@/components/post/elements/Code";
-import { Emphasize } from "@/components/post/elements/Emphasize";
-import { Strong } from "@/components/post/elements/Strong";
-import { Anchor } from "@/components/post/elements/Anchor";
-import { CodeBlock } from "@/components/post/elements/CodeBlock";
-import { Blockquote } from "@/components/post/elements/Blockquote";
 import { readingTime } from "reading-time-estimator";
-import { cx } from "@/utils/cx";
-import { ListItem } from "@/components/post/elements/ListItem";
-import { UnorderedList } from "@/components/post/elements/UnorderedList";
-import { OrderedList } from "@/components/post/elements/OrderedList";
-import { Table } from "@/components/post/elements/Table";
-import { TableHeader } from "@/components/post/elements/TableHeader";
-import { TableBody } from "@/components/post/elements/TableBody";
-import { TableHead } from "@/components/post/elements/TableHead";
-import { TableRow } from "@/components/post/elements/TableRow";
-import { TableCell } from "@/components/post/elements/TableCell";
+import {
+  Anchor,
+  Blockquote,
+  Code,
+  CodeBlock,
+  Emphasize,
+  Heading1,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
+  Image,
+  ListItem,
+  OrderedList,
+  Paragraph,
+  Strong,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  UnorderedList,
+} from "@/components/post/element";
 import { AuthorInfo } from "@/components/post/AuthorInfo";
 import { ShareButton } from "@/components/post/ShareButton";
+import { cx } from "@/utils/cx";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
