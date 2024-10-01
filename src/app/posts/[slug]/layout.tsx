@@ -7,6 +7,7 @@ const TITLE = process.env.title ?? "";
 const AUTHOR = process.env.author ?? "";
 const SITE_URL = process.env.siteURL ?? "";
 const GITHUB_URL = process.env.github_URL ?? "";
+const BASE_PATH = process.env.basePath ?? "";
 
 type PageProps = {
   params: {
@@ -21,11 +22,11 @@ export async function generateStaticParams() {
     slug: p.data.slug,
   }));
 }
-
 // TODO: Metadata 적용
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
+  const basePath = `${BASE_PATH}/posts/${slug}`;
 
   return {
     title: `${TITLE} - ${post?.data.title}`,
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: PageProps) {
       description: post?.data.summary,
       images: [
         {
-          url: post?.data.image,
+          url: path.join(basePath, post?.data.image ?? ""),
           width: 800,
           height: 600,
           alt: post?.data.title,
