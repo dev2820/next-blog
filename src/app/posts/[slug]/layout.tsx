@@ -29,16 +29,17 @@ export async function generateMetadata({ params }: PageProps) {
   const basePath = `${BASE_PATH}/posts/${slug}`;
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: `${TITLE} - ${post?.data.title}`,
     description: post?.data.summary,
     author: AUTHOR,
     alternates: {
-      canonical: path.join(SITE_URL, slug),
+      canonical: slug,
     },
     openGraph: {
       type: "article",
       locale: "ko_KR",
-      url: path.join(SITE_URL, slug),
+      url: slug,
       title: post?.data.title,
       description: post?.data.summary,
       images: [
