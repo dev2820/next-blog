@@ -6,6 +6,8 @@ import { cx } from "@/utils/cx";
 import "terra-design-system/react/style";
 import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
+import Link from "next/link";
 
 const AUTHOR = process.env.author ?? "";
 
@@ -65,8 +67,14 @@ type HeaderProps = ComponentProps<"header">;
 function Header(props: HeaderProps) {
   const { className, ...rest } = props;
   return (
-    <header className={cx("flex flex-row justify-center", className)} {...rest}>
-      {/** logo */}
+    <header
+      className={cx("flex flex-row justify-center py-2", className)}
+      {...rest}
+    >
+      <Link href="/">
+        <BrandLogo height={48} />
+      </Link>
+      <div className="flex-1" />
       <GlobalNavigationBar />
     </header>
   );
