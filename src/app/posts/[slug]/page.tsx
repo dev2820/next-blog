@@ -122,7 +122,7 @@ export default async function PostPage({ params }: PageProps) {
   const publishedAt = format(data.published, "yyyy-MM-dd");
   return (
     <>
-      <article>
+      <article className="relative">
         <header id="post-meta">
           {data.image && (
             <HeroImage
@@ -148,8 +148,11 @@ export default async function PostPage({ params }: PageProps) {
             {readTime.minutes} mins
           </time>
         </header>
-        <section id="table-of-header">
-          <TableOfContents toc={toc} />
+        <section
+          id="table-of-header"
+          className="absolute -right-20 translate-x-full h-full w-56 desktop:block hidden"
+        >
+          <TableOfContents toc={toc} className="sticky top-2 " />
         </section>
         <section id="content">
           {CompiledMDX}

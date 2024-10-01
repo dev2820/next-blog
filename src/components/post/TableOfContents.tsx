@@ -21,23 +21,31 @@ export function TableOfContents(props: TableOfContentProps) {
 
   useTableOfContents({
     onVisible: (entry) => {
+      /**
+       * TODO: 더 좋은 ToC 알고리즘
+       */
       const id = entry.target.getAttribute("id");
       const targetEl = itemsRef.current.find(
         ($el) => $el?.dataset["id"] === `#${id}`
       );
 
       if (targetEl) {
+        itemsRef.current.forEach(($el) => {
+          if ($el) {
+            $el.dataset["active"] = "false";
+          }
+        });
         targetEl.dataset["active"] = "true";
       }
     },
     onInvisible: (entry) => {
-      const id = entry.target.getAttribute("id");
-      const targetEl = itemsRef.current.find(
-        ($el) => $el?.dataset["id"] === `#${id}`
-      );
-      if (targetEl) {
-        targetEl.dataset["active"] = "false";
-      }
+      // const id = entry.target.getAttribute("id");
+      // const targetEl = itemsRef.current.find(
+      //   ($el) => $el?.dataset["id"] === `#${id}`
+      // );
+      // if (targetEl) {
+      //   targetEl.dataset["active"] = "false";
+      // }
     },
   });
 
@@ -71,7 +79,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(function Item(props, ref) {
   return (
     <div
       className={cx(
-        'border-l data-[active="true"]:border-l-primary data-[active="true"]:border-l-2',
+        'relative py-1 before:absolute before:left-0 before:top-0 before:h-full before:w-0.5 before:bg-transparent data-[active="true"]:before:bg-primary before:duration-300',
         item.level === 1 && "pl-2",
         item.level === 2 && "pl-4",
         item.level === 3 && "pl-8",
