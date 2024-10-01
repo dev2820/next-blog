@@ -45,19 +45,19 @@ export default function RootLayout({
   return (
     <html lang="kr" className={cx(pretendard.variable, monospaceNeon.variable)}>
       <body className={cx(pretendard.className, "flex flex-col")}>
-        <div className="w-full max-w-screen-md self-center">
-          <Header></Header>
-          <main className="p-6 text-gray-800">{children}</main>
-          <footer>
-            {/**
-             * TODO: Contact me 추가
-             */}
-            <p>
-              &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights
-              reserved.
-            </p>
-          </footer>
-        </div>
+        <Header className="self-center w-full max-w-screen-md px-4"></Header>
+        <main className="self-center w-full max-w-screen-md p-4 text-gray-800">
+          {children}
+        </main>
+        <footer className="self-center w-full max-w-screen-md px-4">
+          {/**
+           * TODO: Contact me 추가
+           */}
+          <p>
+            &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights
+            reserved.
+          </p>
+        </footer>
       </body>
     </html>
   );
