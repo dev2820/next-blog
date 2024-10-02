@@ -28,9 +28,7 @@ export const useTableOfContents = (props: UseTableOfContentsProps) => {
       }
     );
 
-    const contentSections = document.querySelectorAll(
-      'section[data-content="true"]'
-    );
+    const contentSections = document.querySelectorAll("div#content section");
     contentSections.forEach(($el) => {
       observerRef.current?.observe($el);
     });

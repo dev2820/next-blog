@@ -150,7 +150,7 @@ export default async function PostPage({ params }: PageProps) {
           </time>
         </header>
 
-        <section id="content" className="relative">
+        <div id="content" className="relative">
           <div
             id="table-of-header"
             className="absolute -right-12 translate-x-full h-full w-52 desktop:block hidden"
@@ -167,7 +167,7 @@ export default async function PostPage({ params }: PageProps) {
             }}
             aria-label="Share this article"
           />
-        </section>
+        </div>
         <section id="author">
           <AuthorInfo />
         </section>

@@ -1,6 +1,6 @@
 import { findAfter } from "unist-util-find-after";
 import { visit, Visitor } from "unist-util-visit";
-import type { Root, Node, Heading, Parent, RootContent } from "mdast";
+import type { Root, Node, Heading } from "mdast";
 
 const MAX_HEADING_DEPTH = 6;
 
@@ -38,12 +38,8 @@ const sectionize: Visitor<Heading> = (node, index, parent) => {
     return node.type === "export";
   };
   const end = findAfter(parent, start, isEnd); // parent의 start 다음부터 isEnd가 true일 때까지 iteration
-  if (!end) {
-    return;
-  }
 
-  const endIndex = parent.children.indexOf(end);
-  console.log(end, endIndex);
+  const endIndex = end ? parent.children.indexOf(end) : -1;
 
   const between = parent.children.slice(
     startIndex,
@@ -61,7 +57,6 @@ const sectionize: Visitor<Heading> = (node, index, parent) => {
       hName: "section",
       hProperties: {
         "aria-labelledby": convertHeaderContentToId(contentOfHeader),
-        "data-content": true,
       },
     },
   };
