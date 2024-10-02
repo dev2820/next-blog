@@ -34,6 +34,9 @@ devDependencies:
   '@types/hast':
     specifier: ^3.0.4
     version: 3.0.4
+  '@types/mdast':
+    specifier: ^4.0.4
+    version: 4.0.4
   '@types/node':
     specifier: ^20
     version: 20.15.0
@@ -85,6 +88,9 @@ devDependencies:
   rehype-slug:
     specifier: ^6.0.0
     version: 6.0.0
+  remark:
+    specifier: ^15.0.1
+    version: 15.0.1
   remark-gfm:
     specifier: ^4.0.0
     version: 4.0.0
@@ -97,6 +103,9 @@ devDependencies:
   unified:
     specifier: ^11.0.5
     version: 11.0.5
+  unist-util-find-after:
+    specifier: ^5.0.0
+    version: 5.0.0
   unist-util-visit:
     specifier: ^5.0.0
     version: 5.0.0
@@ -4599,6 +4608,17 @@ packages:
       unified: 11.0.5
     dev: true
 
+  /remark@15.0.1:
+    resolution: {integrity: sha512-Eht5w30ruCXgFmxVUSlNWQ9iiimq07URKeFS3hNc8cUWy1llX4KDWfyEDZRycMc+znsN9Ux5/tJ/BFdgdOwA3A==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      remark-parse: 11.0.0
+      remark-stringify: 11.0.0
+      unified: 11.0.5
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -5184,6 +5204,13 @@ packages:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
+    dev: true
+
+  /unist-util-find-after@5.0.0:
+    resolution: {integrity: sha512-amQa0Ep2m6hE2g72AugUItjbuM8X8cGQnFoHk0pGfrFeT9GZhzN5SW8nRsiGKK7Aif4CrACPENkA6P/Lw6fHGQ==}
+    dependencies:
+      '@types/unist': 3.0.3
+      unist-util-is: 6.0.0
     dev: true
 
   /unist-util-is@5.2.1:

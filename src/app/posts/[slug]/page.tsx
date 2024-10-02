@@ -39,6 +39,7 @@ import { AuthorInfo } from "@/components/post/AuthorInfo";
 import { ShareButton } from "@/components/post/ShareButton";
 import { cx } from "@/utils/cx";
 import { TableOfContents } from "@/components/post/TableOfContents";
+import { remarkSectionize } from "@/utils/remark";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -66,7 +67,7 @@ export default async function PostPage({ params }: PageProps) {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkGfm, remarkSectionize],
         rehypePlugins: [rehypePrismPlus, rehypeSlug, rehypeAutolinkHeadings],
       },
     },

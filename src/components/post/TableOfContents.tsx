@@ -74,7 +74,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(function Item(props, ref) {
   return (
     <div
       className={cx(
-        'text-sm font-light py-0.5 text-neutral-400 data-[active="true"]:text-primary duration-200 hover:text-primary',
+        'text-sm font-light data-[active="true"]:text-base py-0.5 text-neutral-400 data-[active="true"]:text-primary duration-200 hover:text-primary',
         item.level === 1 && "pl-2",
         item.level === 2 && "pl-4",
         item.level === 3 && "pl-10",
