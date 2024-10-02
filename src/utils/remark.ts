@@ -43,6 +43,7 @@ const sectionize: Visitor<Heading> = (node, index, parent) => {
   }
 
   const endIndex = parent.children.indexOf(end);
+  console.log(end, endIndex);
 
   const between = parent.children.slice(
     startIndex,
@@ -60,6 +61,7 @@ const sectionize: Visitor<Heading> = (node, index, parent) => {
       hName: "section",
       hProperties: {
         "aria-labelledby": convertHeaderContentToId(contentOfHeader),
+        "data-content": true,
       },
     },
   };

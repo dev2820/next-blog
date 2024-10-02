@@ -21,10 +21,8 @@ export function TableOfContents(props: TableOfContentProps) {
 
   useTableOfContents({
     onVisible: (entry) => {
-      /**
-       * TODO: 더 좋은 ToC 알고리즘
-       */
-      const id = entry.target.getAttribute("id");
+      const id = entry.target.getAttribute("aria-labelledby");
+
       const targetEl = itemsRef.current.find(
         ($el) => $el?.dataset["id"] === `#${id}`
       );
@@ -34,7 +32,7 @@ export function TableOfContents(props: TableOfContentProps) {
       }
     },
     onInvisible: (entry) => {
-      const id = entry.target.getAttribute("id");
+      const id = entry.target.getAttribute("aria-labelledby");
       const targetEl = itemsRef.current.find(
         ($el) => $el?.dataset["id"] === `#${id}`
       );
@@ -74,7 +72,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(function Item(props, ref) {
   return (
     <div
       className={cx(
-        'text-sm font-light data-[active="true"]:text-base py-0.5 text-neutral-400 data-[active="true"]:text-primary duration-200 hover:text-primary',
+        'text-sm font-light data-[active="true"]:text-base data-[active="true"]:font-semibold py-0.5 text-neutral-400 data-[active="true"]:text-primary duration-200 hover:text-primary',
         item.level === 1 && "pl-2",
         item.level === 2 && "pl-4",
         item.level === 3 && "pl-10",
