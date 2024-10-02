@@ -1,7 +1,10 @@
 // TODO: JSON-LD 적용
 
 import { getAllPosts, getPostBySlug } from "@/utils/post";
+import Script from "next/script";
 import path from "node:path";
+
+import "prism-themes/themes/prism-dracula.css";
 
 const TITLE = process.env.title ?? "";
 const AUTHOR = process.env.author ?? "";
@@ -65,5 +68,16 @@ export default function PostLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      {children}
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></Script>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></Script>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></Script>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></Script>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-tsx.min.js"></Script>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></Script>
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></Script>
+    </>
+  );
 }

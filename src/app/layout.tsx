@@ -53,6 +53,10 @@ export default function RootLayout({
       )}
     >
       <body className={cx(pretendard.className, "flex flex-col text-gray-800")}>
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+          rel="stylesheet"
+        />
         <Header className="self-center w-full max-w-screen-md px-4"></Header>
         <main className="self-center w-full max-w-screen-md p-4 text-gray-800">
           {children}

@@ -100,7 +100,7 @@ export default async function PostPage({ params }: PageProps) {
       code: Code,
       pre: ({ className, ...rest }) => (
         <CodeBlock
-          className={cx("[&_code]:py-0 [&_code]:px-0", className)}
+          className={cx("[&_code]:py-0 [&_code]:px-0 line-numbers", className)}
           {...rest}
         />
       ),

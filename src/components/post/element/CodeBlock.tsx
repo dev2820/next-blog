@@ -5,10 +5,7 @@ import {
   isValidElement,
   type ComponentProps,
 } from "react";
-import "@/assets/prism/prism.css";
-/**
- * TODO: prism font change
- */
+
 export type CodeBlockProps = ComponentProps<"pre">;
 export function CodeBlock(props: CodeBlockProps) {
   const { className, children, ...rest } = props;
