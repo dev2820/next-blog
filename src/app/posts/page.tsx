@@ -14,7 +14,18 @@ export default function PostsPage() {
 
   return (
     <>
+      {/**
+       * 검색바 -> 검색 페이지로 이동
+       */
+      /**
+       * 태그 검색
+       * 태그 표시(w. 갯수)
+       */}
       <ul>
+        {/**
+         * 모든 포스트 최신순 정렬
+         * 정렬 변경 (최신순, 역순)
+         */}
         {frontMatters.map((fm, i) => (
           <li key={i}>
             <Link href={"/posts/" + fm.slug}>{fm.title}</Link>
