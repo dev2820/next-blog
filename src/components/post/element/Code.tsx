@@ -9,7 +9,7 @@ export function Code(props: CodeProps) {
     <code
       className={cx(
         "rounded-md bg-gray-200 text-red-400",
-        "py-1 px-2",
+        "py-0.5 px-2",
         className
       )}
       {...rest}
