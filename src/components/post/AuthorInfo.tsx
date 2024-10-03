@@ -2,34 +2,25 @@
 
 import { ComponentProps } from "react";
 import { cx } from "@/utils/cx";
-import { Avatar, Skeleton } from "terra-design-system/react";
-import { useAuthor } from "@/hooks/use-author";
+import { Avatar } from "terra-design-system/react";
+import authorData from "@/assets/data/github-profile.json";
 
 export type AuthorInfoProps = ComponentProps<"div">;
 export function AuthorInfo(props: AuthorInfoProps) {
   const { className, ...rest } = props;
-  const { isFetching, author } = useAuthor();
-
-  // TODO: show profile skeleton
 
   return (
     <div
       className={cx("flex flex-row gap-4 items-center", className)}
       {...rest}
     >
-      <Skeleton isLoaded={!isFetching} className="rounded-full">
-        <Avatar size={64} src={author?.avatarURL} className="w-16 h-16" />
-      </Skeleton>
+      <Avatar size={64} src={authorData?.avatarURL} className="w-16 h-16" />
       <div className="text-pretty flex flex-col gap-2">
-        <Skeleton isLoaded={!isFetching} className="h-fit w-fit">
-          <strong className="inline-block h-6 min-w-36">
-            {author?.name}{" "}
-            {author?.nickname && <span>({author.nickname})</span>}
-          </strong>
-        </Skeleton>
-        <Skeleton isLoaded={!isFetching} className="h-fit w-fit">
-          <p className="whitespace-pre-wrap h-6 min-w-64">{author?.bio}</p>
-        </Skeleton>
+        <strong className="inline-block h-6 min-w-36">
+          {authorData?.name}{" "}
+          {authorData?.nickname && <span>({authorData.nickname})</span>}
+        </strong>
+        <p className="whitespace-pre-wrap h-6 min-w-64">{authorData?.bio}</p>
       </div>
     </div>
   );

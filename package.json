@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "MODE=development next dev",
-    "build": "next build && pnpm generate:rss",
+    "build": "pnpm fetch:github-profile && next build && pnpm generate:rss",
     "generate:rss": "node ./scripts/generate-rss.js",
     "preview": "MODE=development next build && pnpx http-server -o out",
     "start": "next start",
     "lint": "next lint",
-    "fetch-posts": "git submodule update --remote"
+    "fetch:posts": "git submodule update --remote",
+    "fetch:github-profile": "node ./scripts/fetch-github-profile.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
