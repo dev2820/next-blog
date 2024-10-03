@@ -26,7 +26,10 @@ async function updateAuthor() {
     "../src/assets/data/github-profile.json"
   );
   const author = await fetchAuthor("dev2820");
-  fs.writeFileSync(pathToData, JSON.stringify(author), "utf-8");
+  fs.writeFileSync(pathToData, JSON.stringify(author), {
+    encoding: "utf-8",
+    flag: "a",
+  });
 }
 
 updateAuthor();
