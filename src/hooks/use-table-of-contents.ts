@@ -38,7 +38,7 @@ export const useTableOfContents = (props: UseTableOfContentsProps) => {
         observerRef.current.disconnect();
       }
     };
-  }, []);
+  }, [onVisible, onInvisible]);
 
   return null;
 };
