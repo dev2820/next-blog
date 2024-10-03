@@ -33,7 +33,9 @@ const feed = new Feed({
   language: config.language,
   image: config.image,
   favicon: config.favicon,
-  copyright: `All rights reserved ${new Date().getFullYear()}, ${config.author}(${config.nickname})`,
+  copyright: `All rights reserved ${new Date().getFullYear()}, ${
+    config.author
+  }(${config.nickname})`,
   author: {
     name: config.author,
     email: config.email,
@@ -60,7 +62,7 @@ posts.forEach((post) => {
         link: config.cv,
       },
     ],
-    date: new Date(post.data.created),
+    date: new Date(post.data.published),
     image:
       post.data.image &&
       path.join(config.siteURL, post.data.slug, post.data.image),
