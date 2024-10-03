@@ -23,7 +23,7 @@ export const useTableOfContents = (props: UseTableOfContentsProps) => {
       },
       {
         root: null,
-        rootMargin: "-20% 0px",
+        rootMargin: "-30% 0px",
         threshold: 0,
       }
     );
