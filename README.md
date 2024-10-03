@@ -16,6 +16,3 @@
 - [ ] 추천 기능 추가
   - [ ] 추천 게시물 (post 하단)
   - [ ] 추천 게시물 (home)
-- [ ] 댓글 기능 추가
-- [ ] 좋아요 기능 추가
-      https://bepyan.github.io/blog/nextjs-blog/6-comments
