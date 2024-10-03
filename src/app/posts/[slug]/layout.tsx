@@ -71,6 +71,9 @@ export default function PostLayout({
   return (
     <>
       {children}
+      {/**
+       * prism (for code highlight)
+       */}
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></Script>
