@@ -14,21 +14,22 @@ const toAuthor = (rawAuthor) => {
     nickname: rawAuthor.name,
     avatarURL: rawAuthor.avatar_url,
     githubURL: rawAuthor.html_url,
-    company: rawAuthor.company ?? undefined,
-    location: rawAuthor.location ?? undefined,
-    bio: rawAuthor.bio ?? undefined,
+    company: rawAuthor.company ?? "",
+    location: rawAuthor.location ?? "",
+    bio: rawAuthor.bio ?? "",
   };
 };
 
 async function updateAuthor() {
-  const pathToData = path.resolve(
-    import.meta.dirname,
-    "../src/assets/data/github-profile.json"
+  const pathToData = path.join(
+    process.env.PWD,
+    "./src/assets/data/github-profile.json"
   );
+
   const author = await fetchAuthor("dev2820");
   fs.writeFileSync(pathToData, JSON.stringify(author), {
     encoding: "utf-8",
-    flag: "a",
+    flag: "w+",
   });
 }
 
