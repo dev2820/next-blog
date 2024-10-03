@@ -27,6 +27,15 @@ async function updateAuthor() {
   );
 
   const author = await fetchAuthor("dev2820");
+
+  // 폴더 경로를 추출
+  const dir = path.dirname(pathToData);
+
+  // 폴더가 존재하지 않으면 생성
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
   fs.writeFileSync(pathToData, JSON.stringify(author), {
     encoding: "utf-8",
     flag: "w+",
