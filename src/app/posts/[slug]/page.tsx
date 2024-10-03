@@ -153,12 +153,9 @@ export default async function PostPage({ params }: PageProps) {
         </header>
 
         <div id="content" className="relative">
-          <div
-            id="table-of-header"
-            className="absolute -right-12 translate-x-full h-full w-52 desktop:block hidden"
-          >
+          <aside className="absolute -right-12 translate-x-full h-full w-52 desktop:block hidden">
             <TableOfContents toc={toc} className="sticky top-24" />
-          </div>
+          </aside>
           {CompiledMDX}
           <ShareButton
             size="lg"
@@ -173,7 +170,9 @@ export default async function PostPage({ params }: PageProps) {
         <section id="author">
           <AuthorInfo />
         </section>
-        <Comment />
+        <section id="comments-and-reaction">
+          <Comment className="w-full" />
+        </section>
       </article>
     </>
   );

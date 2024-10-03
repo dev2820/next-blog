@@ -1,8 +1,13 @@
+import { cx } from "@/utils/cx";
 import Script from "next/script";
+import { ComponentProps } from "react";
 
-export function Comment() {
+export type CommentProps = ComponentProps<"div">;
+export function Comment(props: CommentProps) {
+  const { className, ...rest } = props;
+
   return (
-    <section>
+    <>
       {/**
        * giscus (for comment & reaction)
        */}
@@ -23,7 +28,7 @@ export function Comment() {
         cross-origin="anonymous"
         async
       ></Script>
-      <div className="giscus w-full min-w-screen-md"></div>
-    </section>
+      <div className={cx("giscus", className)} {...rest}></div>
+    </>
   );
 }
