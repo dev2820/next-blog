@@ -22,13 +22,14 @@ const NAVIGATION_MENUS = [
     disabled: true,
   },
 ];
+
 export type GlobalNavigationBarProps = ComponentProps<"nav">;
 export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
   const { className, ...rest } = props;
   const pathname = usePathname();
 
   return (
-    <nav className={cx("", className)} {...rest}>
+    <nav className={className} {...rest}>
       <menu className="flex flex-row gap-8">
         {NAVIGATION_MENUS.map((m) => (
           <li key={m.href}>

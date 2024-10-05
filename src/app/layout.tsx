@@ -8,6 +8,7 @@ import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
+import { SearchButton } from "@/components/SearchButton";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
@@ -90,7 +91,11 @@ function Header(props: HeaderProps) {
         <BrandLogo height={48} />
       </Link>
       <div className="flex-1" />
-      <GlobalNavigationBar />
+      <GlobalNavigationBar className="mr-8" />
+      <SearchButton />
+      {/**
+       * TODO: 모바일일 때 drawer로 변경
+       */}
     </header>
   );
 }

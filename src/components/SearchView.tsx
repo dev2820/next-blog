@@ -3,9 +3,16 @@
 import { useMount } from "@/hooks/use-mount";
 import { createSearch } from "@/utils/post/search";
 import Link from "next/link";
-import { type ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import {
+  type ChangeEvent,
+  ComponentProps,
+  KeyboardEvent,
+  useRef,
+  useState,
+} from "react";
 import mockPosts from "@/__mocks__/post-list.json";
 import { Input } from "terra-design-system/react";
+import { cx } from "@/utils/cx";
 
 async function fetchPostList() {
   if (process.env.NEXT_PUBLIC_MODE === "development") {
@@ -17,7 +24,9 @@ async function fetchPostList() {
   return result;
 }
 
-export default function SearchPage() {
+export type SearchViewProps = ComponentProps<"div">;
+export function SearchView(props: SearchViewProps) {
+  const { className, ...rest } = props;
   /**
    * TODO: search 자료구조 만들기
    * TODO: search result 만들기
@@ -60,12 +69,14 @@ export default function SearchPage() {
   };
 
   return (
-    <>
+    <div className={cx("flex flex-col items-center", className)} {...rest}>
       {/**
        * 검색바
        */}
       <Input
         type="search"
+        placeholder="Type to search"
+        className="w-full max-w-96"
         value={keyword}
         onChange={handleKeywordInput}
         onKeyDown={handleSearch}
@@ -80,6 +91,6 @@ export default function SearchPage() {
       {/**
        * 이런 포스트는 어떠세요
        */}
-    </>
+    </div>
   );
 }
