@@ -4,6 +4,9 @@ import { cx } from "@/utils/cx";
 import Link from "next/link";
 import { ComponentProps } from "react";
 import { usePathname } from "next/navigation";
+import { useScreen } from "@/hooks/use-screen";
+import { IconButton } from "terra-design-system/react";
+import { MenuIcon } from "lucide-react";
 
 const NAVIGATION_MENUS = [
   {
@@ -26,10 +29,19 @@ const NAVIGATION_MENUS = [
 export type GlobalNavigationBarProps = ComponentProps<"nav">;
 export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
   const { className, ...rest } = props;
+  const { isSmallerThanDesktop } = useScreen();
   const pathname = usePathname();
 
+  if (isSmallerThanDesktop) {
+    return (
+      <IconButton variant="ghost" className={cx(className)}>
+        <MenuIcon />
+      </IconButton>
+    );
+  }
+
   return (
-    <nav className={className} {...rest}>
+    <nav className={cx(className)} {...rest}>
       <menu className="flex flex-row gap-8">
         {NAVIGATION_MENUS.map((m) => (
           <li key={m.href}>

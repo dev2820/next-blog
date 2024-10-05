@@ -1,15 +1,23 @@
 "use client";
 
-import { Dialog, IconButton } from "terra-design-system/react";
+import { Dialog, IconButton, IconButtonProps } from "terra-design-system/react";
 import { SearchIcon, XIcon } from "lucide-react";
 import { SearchView } from "./SearchView";
+import { cx } from "@/utils/cx";
 
-export function SearchButton() {
+export type SearchButtonProps = IconButtonProps;
+export function SearchButton(props: SearchButtonProps) {
+  const { className, ...rest } = props;
   return (
     <>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <IconButton size="md" variant="ghost">
+          <IconButton
+            size="md"
+            variant="ghost"
+            className={cx(className)}
+            {...rest}
+          >
             <SearchIcon />
           </IconButton>
         </Dialog.Trigger>

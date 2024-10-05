@@ -20,8 +20,8 @@ const config: Config = {
         monospace: ["var(--font-monospace-neon)"],
       },
       screens: {
-        tablet: "640px",
-        desktop: "1280px",
+        tablet: "601px",
+        desktop: "1023px",
       },
       colors: {
         primary: "#4CAF50",
