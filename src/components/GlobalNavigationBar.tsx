@@ -2,11 +2,12 @@
 
 import { cx } from "@/utils/cx";
 import Link from "next/link";
-import { ComponentProps } from "react";
+import { ComponentProps, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScreen } from "@/hooks/use-screen";
-import { IconButton } from "terra-design-system/react";
+import { Drawer, IconButton } from "terra-design-system/react";
 import { MenuIcon } from "lucide-react";
+import { BrandLogo } from "./BrandLogo";
 
 const NAVIGATION_MENUS = [
   {
@@ -31,12 +32,57 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
   const { className, ...rest } = props;
   const { isSmallerThanDesktop } = useScreen();
   const pathname = usePathname();
-
+  const [isDrawerOpened, setIsDrawerOpened] = useState<boolean>(false);
   if (isSmallerThanDesktop) {
     return (
-      <IconButton variant="ghost" className={cx(className)}>
-        <MenuIcon />
-      </IconButton>
+      <Drawer.Root
+        open={isDrawerOpened}
+        onInteractOutside={() => setIsDrawerOpened(false)}
+        onEscapeKeyDown={() => setIsDrawerOpened(false)}
+      >
+        <Drawer.Trigger asChild>
+          <IconButton
+            variant="ghost"
+            className={cx(className)}
+            onClick={() => setIsDrawerOpened(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Drawer.Trigger>
+        <Drawer.Content className="w-svw max-w-96 flex flex-col">
+          <Drawer.Title className="mt-4 self-center">
+            <BrandLogo />
+          </Drawer.Title>
+          <Drawer.Body className="mt-8">
+            <nav>
+              <menu className="flex flex-col divide-y">
+                {NAVIGATION_MENUS.map((m) => (
+                  <li
+                    key={m.href}
+                    className={cx(
+                      !m.disabled && "hover:bg-black/5 duration-200"
+                    )}
+                  >
+                    <Link
+                      href={m.disabled ? "" : m.href}
+                      aria-disabled={m.disabled}
+                      onClick={() => setIsDrawerOpened(false)}
+                    >
+                      <NavigationItem
+                        active={pathname.startsWith(m.href)}
+                        disabled={m.disabled}
+                        className="h-12 leading-[48px] px-2 text-center"
+                      >
+                        {m.label}
+                      </NavigationItem>
+                    </Link>
+                  </li>
+                ))}
+              </menu>
+            </nav>
+          </Drawer.Body>
+        </Drawer.Content>
+      </Drawer.Root>
     );
   }
 
