@@ -9,6 +9,7 @@ const nextConfig = {
   env: {
     ...config,
     basePath: DEV_MODE ? "" : "/next-blog",
+    mode: process.env.MODE,
   },
   basePath: DEV_MODE ? "" : "/next-blog",
 };
