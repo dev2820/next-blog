@@ -104,5 +104,3 @@ export const generateTOC = (markdown: string): TableOfContentsItem[] => {
 
   return toc;
 };
-
-export * from "./search";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMount } from "@/hooks/use-mount";
-import { createSearch } from "@/utils/post/search";
+import { createSearch } from "@/utils/search";
 import Link from "next/link";
 import {
   type ChangeEvent,
