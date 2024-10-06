@@ -25,7 +25,7 @@ async function fetchPostList() {
     return result;
   }
 
-  const result = await (await fetch("/post-list.json")).json();
+  const result = await (await fetch("/next-blog/post-list.json")).json();
   return result;
 }
 
