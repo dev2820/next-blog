@@ -17,6 +17,7 @@ import { SearchIcon, XIcon } from "lucide-react";
 import { useScreen } from "@/hooks/use-screen";
 import type { Post } from "@/types/post";
 import { FuseResult } from "fuse.js";
+import { delayFn } from "@/utils/delay";
 
 async function fetchPostList() {
   if (process.env.NEXT_PUBLIC_MODE === "development") {
@@ -45,7 +46,7 @@ export function SearchView(props: SearchViewProps) {
   const searchEngineRef = useRef<{
     search: (keyword: string) => FuseResult<Post>[];
   } | null>(null);
-
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const readyForSearch = async () => {
     const postList = await fetchPostList();
     searchEngineRef.current = {
@@ -61,6 +62,9 @@ export function SearchView(props: SearchViewProps) {
 
   useMount(() => {
     readyForSearch();
+    delayFn(200, () => {
+      searchInputRef.current?.focus();
+    });
   });
 
   const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,10 +99,12 @@ export function SearchView(props: SearchViewProps) {
           <input
             type="search"
             placeholder="Type to search"
-            autoFocus
+            ref={searchInputRef}
             className={cx(
               "w-full h-11 rounded-lg text-md bg-white/15 caret-white pl-11 pr-11 shadow-xl",
-              "border-2 focus:outline-none border-transparent focus:border-primary duration-200"
+              "duration-200",
+              "border-2 focus:outline-none border-transparent focus:border-primary",
+              "focus-visible:outline-none focus-visible:border-primary"
             )}
             value={keyword}
             onChange={handleInputSearch}

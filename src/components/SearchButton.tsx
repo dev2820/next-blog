@@ -14,6 +14,7 @@ export function SearchButton(props: SearchButtonProps) {
   return (
     <>
       <Dialog.Root
+        lazyMount
         onEscapeKeyDown={dialogHandler.close}
         open={dialogHandler.isOpen}
       >
