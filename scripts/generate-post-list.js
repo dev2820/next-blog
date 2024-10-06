@@ -14,14 +14,8 @@ const postNames = fs
 const posts = postNames.map((p) => {
   const mdxPath = path.join(path2out, p, "index.mdx");
   const mdxFile = fs.readFileSync(mdxPath, "utf8");
-  const { data } = matter(mdxFile);
-  const htmlPath = path.join(path2out, `${data.slug}.html`);
-  const htmlFile = fs.readFileSync(htmlPath, "utf8");
 
-  return {
-    data,
-    content: htmlFile,
-  };
+  return matter(mdxFile);
 });
 
 const generatePostList = (posts) => {
@@ -31,7 +25,7 @@ const generatePostList = (posts) => {
     tags: p.data.tags ?? [],
     content: p.content,
   });
-  const postList = posts.map(postToListItem);
+  const postList = posts.filter((p) => p.data.draft).map(postToListItem);
 
   fs.writeFileSync(path2PostList, JSON.stringify(postList), {
     encoding: "utf-8",
