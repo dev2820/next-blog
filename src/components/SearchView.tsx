@@ -7,8 +7,6 @@ import {
   type ChangeEvent,
   ComponentProps,
   FormEvent,
-  KeyboardEvent,
-  useEffect,
   useRef,
   useState,
 } from "react";
