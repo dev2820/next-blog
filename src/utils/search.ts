@@ -1,3 +1,4 @@
+import type { Post } from "@/types/post";
 import Fuse, {
   type FuseResult,
   type Expression,
@@ -7,13 +8,13 @@ import Fuse, {
 /**
  * @see https://www.fusejs.io/api/options.html
  */
-const options: IFuseOptions<unknown> = {
+const options: IFuseOptions<Post> = {
   includeScore: true,
   includeMatches: true,
   shouldSort: true,
   minMatchCharLength: 2,
   findAllMatches: false,
-  keys: ["title", "tags", "slug", "content"],
+  keys: ["data.title", "data.tags", "data.slug", "content"],
   // getFn: (obj, path) => {
   //   const value = Fuse.config.getFn(obj, path);
   //   return decomposeHangul(value); // 한글 자모 분리
@@ -23,18 +24,15 @@ const options: IFuseOptions<unknown> = {
 /**
  * TODO: Fix type
  */
-export const search = <T = unknown>(
-  list: T[],
-  keyword: string | Expression
-) => {
+export const search = (list: Post[], keyword: string | Expression) => {
   const fuse = new Fuse(list, options);
 
   return fuse.search(keyword);
 };
 
-export const createSearch = <T = unknown>(
-  list: T[]
-): ((keyword: string) => FuseResult<T>[]) => {
+export const createSearch = (
+  list: Post[]
+): ((keyword: string) => FuseResult<Post>[]) => {
   const fuse = new Fuse(list, options);
 
   return (keyword: string) => {

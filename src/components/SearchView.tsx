@@ -11,10 +11,12 @@ import {
   useState,
 } from "react";
 import mockPosts from "@/__mocks__/post-list.json";
-import { Button, IconButton, Input } from "terra-design-system/react";
+import { Button, IconButton } from "terra-design-system/react";
 import { cx } from "@/utils/cx";
 import { SearchIcon, XIcon } from "lucide-react";
 import { useScreen } from "@/hooks/use-screen";
+import type { Post } from "@/types/post";
+import { FuseResult } from "fuse.js";
 
 async function fetchPostList() {
   if (process.env.NEXT_PUBLIC_MODE === "development") {
@@ -39,9 +41,9 @@ export function SearchView(props: SearchViewProps) {
    */
   const { isMobile } = useScreen();
   const [keyword, setKeyword] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<FuseResult<Post>[]>([]);
   const searchEngineRef = useRef<{
-    search: (keyword: string) => any;
+    search: (keyword: string) => FuseResult<Post>[];
   } | null>(null);
 
   const readyForSearch = async () => {
@@ -74,12 +76,12 @@ export function SearchView(props: SearchViewProps) {
     e.preventDefault();
 
     const results = searchPost(keyword);
-    setSearchResults(results);
-    console.log(results);
+    if (results) {
+      setSearchResults(results);
+    }
   };
 
   const handleClickSearchResult = () => {
-    console.log("?");
     onClickSearchResult?.();
   };
 
@@ -144,17 +146,17 @@ export function SearchView(props: SearchViewProps) {
       <div className="text-left w-full max-w-[568px]">
         {/**
          * 검색 결과
-         * - 목룍 UI
+         * - 목록 UI (Highlight 겹치는 부분)
          * - 검색 결과가 없을 때 화면
          */}
         <ul className="mt-16">
           {searchResults.map((sr) => (
             <li key={sr.refIndex}>
               <Link
-                href={`/posts/${sr.item.slug}`}
+                href={`/posts/${sr.item.data.slug}`}
                 onClick={handleClickSearchResult}
               >
-                <div className="bg-white/15">{sr.item.title}</div>
+                <div className="bg-white/15">{sr.item.data.title}</div>
               </Link>
             </li>
           ))}

@@ -19,13 +19,7 @@ const posts = postNames.map((p) => {
 });
 
 const generatePostList = (posts) => {
-  const postToListItem = (p) => ({
-    title: p.data.title,
-    slug: p.data.slug,
-    tags: p.data.tags ?? [],
-    content: p.content,
-  });
-  const postList = posts.filter((p) => p.data.draft).map(postToListItem);
+  const postList = posts.filter((p) => p.data.draft);
 
   fs.writeFileSync(path2PostList, JSON.stringify(postList), {
     encoding: "utf-8",
