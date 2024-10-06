@@ -6,8 +6,9 @@ import { ComponentProps, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScreen } from "@/hooks/use-screen";
 import { Drawer, IconButton } from "terra-design-system/react";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
+import { useDisclosure } from "@/hooks/use-disclosure";
 
 const NAVIGATION_MENUS = [
   {
@@ -32,26 +33,31 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
   const { className, ...rest } = props;
   const { isSmallerThanDesktop } = useScreen();
   const pathname = usePathname();
-  const [isDrawerOpened, setIsDrawerOpened] = useState<boolean>(false);
+  const drawerHandler = useDisclosure(false);
   if (isSmallerThanDesktop) {
     return (
       <Drawer.Root
-        open={isDrawerOpened}
-        onInteractOutside={() => setIsDrawerOpened(false)}
-        onEscapeKeyDown={() => setIsDrawerOpened(false)}
+        open={drawerHandler.isOpen}
+        onInteractOutside={drawerHandler.close}
+        onEscapeKeyDown={drawerHandler.close}
       >
         <Drawer.Trigger asChild>
           <IconButton
             variant="ghost"
             className={cx(className)}
-            onClick={() => setIsDrawerOpened(true)}
+            onClick={drawerHandler.open}
           >
             <MenuIcon />
           </IconButton>
         </Drawer.Trigger>
         <Drawer.Content className="w-svw max-w-96 flex flex-col">
-          <Drawer.Title className="mt-4 self-center">
+          <Drawer.Title className="w-full mt-4 self-start px-4 flex flex-row justify-between items-center">
             <BrandLogo />
+            <Drawer.CloseTrigger asChild onClick={drawerHandler.close}>
+              <IconButton variant="ghost">
+                <XIcon strokeWidth={1} size={24} />
+              </IconButton>
+            </Drawer.CloseTrigger>
           </Drawer.Title>
           <Drawer.Body className="mt-8">
             <nav>
@@ -66,7 +72,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                     <Link
                       href={m.disabled ? "" : m.href}
                       aria-disabled={m.disabled}
-                      onClick={() => setIsDrawerOpened(false)}
+                      onClick={drawerHandler.close}
                     >
                       <NavigationItem
                         active={pathname.startsWith(m.href)}
