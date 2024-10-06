@@ -28,7 +28,7 @@ export function SearchButton(props: SearchButtonProps) {
             <SearchIcon />
           </IconButton>
         </Dialog.Trigger>
-        <Dialog.Content className="relative w-full h-full bg-transparent p-8 flex flex-col items-center">
+        <Dialog.Content className="relative w-full h-full bg-transparent backdrop-blur-md p-8 flex flex-col items-center">
           <header className="relative flex flex-row justify-center mb-16 w-full max-w-screen-md text-white">
             <h2 className="text-2xl h-11 leading-[44px]">Search</h2>
             <Dialog.CloseTrigger

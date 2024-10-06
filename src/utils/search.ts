@@ -14,7 +14,7 @@ const options: IFuseOptions<Post> = {
   shouldSort: true,
   minMatchCharLength: 2,
   findAllMatches: false,
-  keys: ["data.title", "data.tags", "data.slug", "content"],
+  keys: ["data.title", "data.tags", "data.summary", "content"],
   // getFn: (obj, path) => {
   //   const value = Fuse.config.getFn(obj, path);
   //   return decomposeHangul(value); // 한글 자모 분리

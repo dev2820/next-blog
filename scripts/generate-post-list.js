@@ -3,7 +3,6 @@ import path from "node:path";
 import matter from "gray-matter";
 
 const postDir = path.join(process.cwd(), "public/posts");
-const path2out = path.join(process.cwd(), "out/posts");
 const path2PostList = path.join(process.cwd(), "out/post-list.json");
 
 const postNames = fs
@@ -12,7 +11,7 @@ const postNames = fs
   .filter((p) => p !== "README.md");
 
 const posts = postNames.map((p) => {
-  const mdxPath = path.join(path2out, p, "index.mdx");
+  const mdxPath = path.join(postDir, p, "index.mdx");
   const mdxFile = fs.readFileSync(mdxPath, "utf8");
 
   return matter(mdxFile);

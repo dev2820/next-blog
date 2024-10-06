@@ -7,6 +7,7 @@ import {
   type ChangeEvent,
   ComponentProps,
   FormEvent,
+  ReactNode,
   useRef,
   useState,
 } from "react";
@@ -16,7 +17,7 @@ import { cx } from "@/utils/cx";
 import { SearchIcon, XIcon } from "lucide-react";
 import { useScreen } from "@/hooks/use-screen";
 import type { Post } from "@/types/post";
-import { FuseResult } from "fuse.js";
+import { FuseResult, FuseResultMatch } from "fuse.js";
 import { delayFn } from "@/utils/delay";
 
 async function fetchPostList() {
@@ -42,6 +43,7 @@ export function SearchView(props: SearchViewProps) {
    */
   const { isMobile } = useScreen();
   const [keyword, setKeyword] = useState<string>("");
+  const [lastKeyword, setLastKeyword] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<FuseResult<Post>[]>([]);
   const searchEngineRef = useRef<{
     search: (keyword: string) => FuseResult<Post>[];
@@ -80,6 +82,7 @@ export function SearchView(props: SearchViewProps) {
     e.preventDefault();
 
     const results = searchPost(keyword);
+    setLastKeyword(keyword);
     if (results) {
       setSearchResults(results);
     }
@@ -149,28 +152,105 @@ export function SearchView(props: SearchViewProps) {
          * 태그 표시(w. 갯수)
          */}
       </form>
-      <div className="text-left w-full max-w-[568px]">
-        {/**
-         * 검색 결과
-         * - 목록 UI (Highlight 겹치는 부분)
-         * - 검색 결과가 없을 때 화면
-         */}
-        <ul className="mt-16">
-          {searchResults.map((sr) => (
-            <li key={sr.refIndex}>
-              <Link
-                href={`/posts/${sr.item.data.slug}`}
-                onClick={handleClickSearchResult}
-              >
-                <div className="bg-white/15">{sr.item.data.title}</div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="text-left w-full max-w-[568px] text-white">
+        {lastKeyword && (
+          <>
+            <p className="mt-16 text-xl">
+              <Highlight>{lastKeyword}</Highlight> 검색 결과:{" "}
+              <Highlight>{searchResults.length}</Highlight>개의 포스트
+            </p>
+            <ul className="mt-4">
+              {searchResults.map((sr) => (
+                <li key={sr.refIndex}>
+                  <Link
+                    href={`/posts/${sr.item.data.slug}`}
+                    onClick={handleClickSearchResult}
+                  >
+                    {/**
+                     * 검색 결과
+                     * - 검색 결과가 없을 때 화면
+                     */}
+                    <SearchResult
+                      result={sr}
+                      className="hover:bg-white/20 duration-200"
+                    ></SearchResult>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
       {/**
        * 이런 포스트는 어떠세요
        */}
     </div>
   );
+}
+
+type SearchResultSection = ComponentProps<"section"> & {
+  result: FuseResult<Post>;
+};
+const SearchResult = (props: SearchResultSection) => {
+  const { result, className, ...rest } = props;
+  const { item, matches } = result;
+
+  const titleMatch = matches?.find((match) => match.key === "data.title");
+  const summaryMatch = matches?.find((match) => match.key === "data.summary");
+
+  return (
+    <section className={cx("bg-white/15 rounded-md p-4", className)} {...rest}>
+      {titleMatch && titleMatch.value && titleMatch.indices ? (
+        <h3 className="text-2xl">
+          {splitByIndices(
+            titleMatch.value,
+            titleMatch.indices as [number, number][]
+          ).map((token, idx) =>
+            idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
+          )}
+        </h3>
+      ) : (
+        <h3 className="text-2xl">{item.data.title}</h3>
+      )}
+      {summaryMatch && summaryMatch.value && summaryMatch.indices ? (
+        <p className="mt-4">
+          {splitByIndices(
+            summaryMatch.value,
+            summaryMatch.indices as [number, number][]
+          ).map((token, idx) =>
+            idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
+          )}
+        </p>
+      ) : (
+        <p className="mt-4">{item.data.summary}</p>
+      )}
+    </section>
+  );
+};
+
+const Highlight = ({ children }: { children: ReactNode }) => {
+  return <span className="text-primary">{children}</span>;
+};
+
+function splitByIndices(str: string, pairs: [number, number][]) {
+  const result = [];
+  let lastIdx = 0;
+
+  pairs.forEach((pair) => {
+    const [startIdx, endIdx] = pair;
+
+    // lastIdx부터 startIdx까지 자른 부분을 배열에 추가
+    result.push(str.slice(lastIdx, startIdx));
+
+    // startIdx부터 endIdx까지 자른 부분을 배열에 추가
+    result.push(str.slice(startIdx, endIdx + 1));
+
+    // 마지막 인덱스를 업데이트
+    lastIdx = endIdx + 1;
+  });
+
+  // 마지막 범위부터 끝까지 남은 부분을 배열에 추가
+  result.push(str.slice(lastIdx));
+
+  return result;
 }
