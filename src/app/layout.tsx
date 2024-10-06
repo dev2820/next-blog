@@ -58,8 +58,8 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
           rel="stylesheet"
         />
-        <Header className="self-center w-full max-w-screen-md px-4"></Header>
-        <main className="self-center w-full max-w-screen-md p-4 text-gray-800">
+        <Header className="self-center w-full max-w-screen-md px-4 fixed top-0 z-50 bg-white/75 backdrop-blur-sm"></Header>
+        <main className="self-center w-full max-w-screen-md p-4 mt-16 text-gray-800">
           {children}
         </main>
         <footer className="self-center w-full max-w-screen-md px-4 h-96">
