@@ -85,8 +85,8 @@ export default async function PostPage({ params }: PageProps) {
         <Image
           src={path.join(basePath, src ?? "")}
           alt={alt ?? ""}
-          width={Number(width ?? 704)}
-          height={Number(height ?? 300)}
+          width={0}
+          height={0}
           className="mx-auto my-12 w-full max-w-[704px]"
           {...rest}
         />
@@ -132,8 +132,8 @@ export default async function PostPage({ params }: PageProps) {
               src={path.join(basePath, data.image)}
               alt="hero image"
               className="max-w-full w-full rounded-md"
-              width="500"
-              height="300"
+              width={0}
+              height={0}
             />
           )}
           <Heading1 id={data.title}>{data.title}</Heading1>
