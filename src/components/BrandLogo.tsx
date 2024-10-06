@@ -12,9 +12,7 @@ export type BrandLogoProps = Omit<ImageProps, "src" | "alt">;
 export function BrandLogo(props: BrandLogoProps) {
   const { className, ...rest } = props;
 
-  const { isMobile } = useScreen();
-
-  const src = isMobile ? logoSVG : logoFullSVG;
+  const src = logoFullSVG;
 
   return <Image src={src} alt={`${NICKNAME}'s Devlog logo`} {...rest} />;
 }
