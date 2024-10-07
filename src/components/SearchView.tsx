@@ -19,6 +19,8 @@ import { useScreen } from "@/hooks/use-screen";
 import type { Post } from "@/types/post";
 import { FuseResult, FuseResultMatch } from "fuse.js";
 import { delayFn } from "@/utils/delay";
+import Image from "next/image";
+import pepeSadImg from "@/assets/images/pepe-sad.png";
 
 async function fetchPostList() {
   if (process.env.NEXT_PUBLIC_MODE === "development") {
@@ -166,10 +168,6 @@ export function SearchView(props: SearchViewProps) {
                     href={`/posts/${sr.item.data.slug}`}
                     onClick={handleClickSearchResult}
                   >
-                    {/**
-                     * 검색 결과
-                     * - 검색 결과가 없을 때 화면
-                     */}
                     <SearchResult
                       result={sr}
                       className="hover:bg-white/20 duration-200"
@@ -178,6 +176,17 @@ export function SearchView(props: SearchViewProps) {
                 </li>
               ))}
             </ul>
+            {searchResults.length === 0 && (
+              <div className="flex flex-col place-items-center mt-16">
+                <Image
+                  src={pepeSadImg}
+                  alt={"pepe-sad"}
+                  width={192}
+                  height={0}
+                />
+                <p className="text-lg mt-8">검색 결과가 없습니다요...</p>
+              </div>
+            )}
           </>
         )}
       </div>
