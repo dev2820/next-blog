@@ -4,27 +4,21 @@ import { useMount } from "@/hooks/use-mount";
 import { createSearch } from "@/utils/search";
 import Link from "next/link";
 import {
-  type ChangeEvent,
   ComponentProps,
   ElementRef,
-  FormEvent,
   ReactNode,
   useEffect,
   useRef,
   useState,
 } from "react";
 import mockPosts from "@/__mocks__/post-list.json";
-import { Button, IconButton } from "terra-design-system/react";
 import { cx } from "@/utils/cx";
-import { SearchIcon, XIcon } from "lucide-react";
-import { useScreen } from "@/hooks/use-screen";
 import type { Post } from "@/types/post";
-import { FuseResult, FuseResultMatch } from "fuse.js";
+import { FuseResult } from "fuse.js";
 import { delayFn } from "@/utils/delay";
 import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
 import { SearchInput } from "@/components/search/SearchInput";
-import { debounce } from "@/utils/debounce";
 import { useDebounce } from "@/hooks/use-debounce";
 
 async function fetchPostList() {
