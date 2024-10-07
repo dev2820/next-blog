@@ -9,6 +9,7 @@ import {
   ElementRef,
   FormEvent,
   ReactNode,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -23,7 +24,8 @@ import { delayFn } from "@/utils/delay";
 import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
 import { SearchInput } from "@/components/search/SearchInput";
-import { isNil } from "@/utils/predicate";
+import { debounce } from "@/utils/debounce";
+import { useDebounce } from "@/hooks/use-debounce";
 
 async function fetchPostList() {
   if (process.env.NEXT_PUBLIC_MODE === "development") {
@@ -46,9 +48,8 @@ export function SearchView(props: SearchViewProps) {
    * TODO: 태그 검색 만들기
    *
    */
-  const { isMobile } = useScreen();
   const [keyword, setKeyword] = useState<string>("");
-  const [lastKeyword, setLastKeyword] = useState<string | null>(null);
+  const debouncedKeyword = useDebounce(keyword, 300);
   const [searchResults, setSearchResults] = useState<FuseResult<Post>[]>([]);
   const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
 
@@ -75,22 +76,19 @@ export function SearchView(props: SearchViewProps) {
     });
   });
 
-  const handleChangeSearch = (keyword: string) => {
-    if (keyword === "") {
-      setSearchResults([]);
-      setLastKeyword("");
-    }
-    setKeyword(keyword ?? "");
-  };
-
-  const handleSubmitSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const results = searchPost(keyword);
-    setLastKeyword(keyword);
+  useEffect(() => {
+    const results = searchPost(debouncedKeyword);
     if (results) {
       setSearchResults(results);
     }
+  }, [debouncedKeyword]);
+
+  const handleChangeSearch = (keyword: string) => {
+    setKeyword(keyword ?? "");
+  };
+
+  const handleClearSearch = () => {
+    setKeyword("");
   };
 
   const handleClickSearchResult = () => {
@@ -101,47 +99,28 @@ export function SearchView(props: SearchViewProps) {
     <div className={cx("flex flex-col items-center", className)} {...rest}>
       <form
         className="w-full max-w-[568px] text-white flex flex-row gap-4"
-        onSubmit={handleSubmitSearch}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
       >
-        <div className="relative flex-1">
-          <SearchInput
-            className="w-full h-11"
-            placeholder="Type to search"
-            initialFocus
-            onChangeSearch={handleChangeSearch}
-            ref={searchInputRef}
-          />
-        </div>
-        {isMobile ? (
-          <IconButton
-            size="lg"
-            theme="primary"
-            className="flex-none"
-            type="submit"
-          >
-            <SearchIcon size={24} />
-          </IconButton>
-        ) : (
-          <Button
-            size="lg"
-            theme="primary"
-            className="flex-none"
-            type="submit"
-            leftIcon={<SearchIcon size={20} />}
-          >
-            Search
-          </Button>
-        )}
+        <SearchInput
+          className="flex-1 w-full h-11"
+          placeholder="Type to search"
+          value={keyword}
+          onChangeSearch={handleChangeSearch}
+          onClearSearch={handleClearSearch}
+          ref={searchInputRef}
+        />
         {/**
          * 태그 검색
          * 태그 표시(w. 갯수)
          */}
       </form>
       <div className="text-left w-full max-w-[568px] text-white">
-        {lastKeyword && (
+        {debouncedKeyword && (
           <>
             <p className="mt-16 text-xl">
-              <Highlight>{lastKeyword}</Highlight> 검색 결과:{" "}
+              <Highlight>{debouncedKeyword}</Highlight> 검색 결과:{" "}
               <Highlight>{searchResults.length}</Highlight>개의 포스트
             </p>
             <ul className="mt-4">

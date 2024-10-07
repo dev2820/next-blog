@@ -13,32 +13,30 @@ import {
 
 export type SearchInputProps = ComponentPropsWithoutRef<"label"> & {
   onChangeSearch?: (keyword: string) => void;
+  onClearSearch?: () => void;
+  value?: string;
   placeholder?: string;
-  debounce?: boolean;
   defaultValue?: string;
-  initialFocus?: boolean;
 };
 export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
   (props, ref) => {
     const {
       onChangeSearch,
+      onClearSearch,
+      value,
       placeholder,
       defaultValue,
-      initialFocus,
       className,
       ...rest
     } = props;
-    const [value, setValue] = useState<string>(defaultValue ?? "");
 
     const handleTypingSearch = (e: ChangeEvent<HTMLInputElement>) => {
       const newKeyword = e.currentTarget.value;
 
-      setValue(newKeyword);
       onChangeSearch?.(newKeyword);
     };
 
     const handleClearSearch = () => {
-      setValue("");
       onChangeSearch?.("");
     };
 
@@ -60,7 +58,6 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
               "focus-visible:outline-none focus-visible:border-primary"
             )}
             value={value}
-            autoFocus={initialFocus}
             onChange={handleTypingSearch}
           />
           <button
