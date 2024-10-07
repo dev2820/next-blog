@@ -6,7 +6,7 @@ import Fuse, {
 } from "fuse.js";
 
 /**
- *
+ * TODO: fuse result 타입 개선하기 (fuse 숨기기)
  */
 
 /**

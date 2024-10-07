@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import rehypePrismPlus from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import path from "node:path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -69,7 +68,7 @@ export default async function PostPage({ params }: PageProps) {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkSectionize],
-        rehypePlugins: [rehypePrismPlus, rehypeSlug, rehypeAutolinkHeadings],
+        rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
       },
     },
     components: {
@@ -99,12 +98,9 @@ export default async function PostPage({ params }: PageProps) {
       ),
       strong: Strong,
       code: Code,
-      pre: ({ className, ...rest }) => (
-        <CodeBlock
-          className={cx("[&_code]:py-0 [&_code]:px-0 line-numbers", className)}
-          {...rest}
-        />
-      ),
+      pre: ({ children }) => {
+        return <CodeBlock>{children}</CodeBlock>;
+      },
       a: Anchor,
       blockquote: Blockquote,
       li: ListItem,
