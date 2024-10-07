@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   type ChangeEvent,
   ComponentProps,
+  ElementRef,
   FormEvent,
   ReactNode,
   useRef,
@@ -21,6 +22,8 @@ import { FuseResult, FuseResultMatch } from "fuse.js";
 import { delayFn } from "@/utils/delay";
 import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
+import { SearchInput } from "@/components/search/SearchInput";
+import { isNil } from "@/utils/predicate";
 
 async function fetchPostList() {
   if (process.env.NEXT_PUBLIC_MODE === "development") {
@@ -47,10 +50,11 @@ export function SearchView(props: SearchViewProps) {
   const [keyword, setKeyword] = useState<string>("");
   const [lastKeyword, setLastKeyword] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<FuseResult<Post>[]>([]);
+  const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
+
   const searchEngineRef = useRef<{
     search: (keyword: string) => FuseResult<Post>[];
   } | null>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const readyForSearch = async () => {
     const postList = await fetchPostList();
     searchEngineRef.current = {
@@ -71,13 +75,12 @@ export function SearchView(props: SearchViewProps) {
     });
   });
 
-  const handleInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    setKeyword(input);
-  };
-
-  const handleClickSearchClear = () => {
-    setKeyword("");
+  const handleChangeSearch = (keyword: string) => {
+    if (keyword === "") {
+      setSearchResults([]);
+      setLastKeyword("");
+    }
+    setKeyword(keyword ?? "");
   };
 
   const handleSubmitSearch = (e: FormEvent<HTMLFormElement>) => {
@@ -101,33 +104,13 @@ export function SearchView(props: SearchViewProps) {
         onSubmit={handleSubmitSearch}
       >
         <div className="relative flex-1">
-          <input
-            type="search"
+          <SearchInput
+            className="w-full h-11"
             placeholder="Type to search"
+            initialFocus
+            onChangeSearch={handleChangeSearch}
             ref={searchInputRef}
-            className={cx(
-              "w-full h-11 rounded-lg text-md bg-white/15 caret-white pl-11 pr-11 shadow-xl",
-              "duration-200",
-              "border-2 focus:outline-none border-transparent focus:border-primary",
-              "focus-visible:outline-none focus-visible:border-primary"
-            )}
-            value={keyword}
-            onChange={handleInputSearch}
           />
-          <SearchIcon
-            size={20}
-            className="absolute left-3 top-1/2 -translate-y-1/2"
-          />
-          {keyword.length > 0 && (
-            <button
-              id="search-cancel-btn"
-              className="absolute right-0 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
-              type="button"
-              onClick={handleClickSearchClear}
-            >
-              <XIcon size={20} />
-            </button>
-          )}
         </div>
         {isMobile ? (
           <IconButton
