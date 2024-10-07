@@ -6,6 +6,10 @@ import Fuse, {
 } from "fuse.js";
 
 /**
+ *
+ */
+
+/**
  * @see https://www.fusejs.io/api/options.html
  */
 const options: IFuseOptions<Post> = {
