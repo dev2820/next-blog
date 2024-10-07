@@ -40,7 +40,6 @@ import { ShareButton } from "@/components/post/ShareButton";
 import { cx } from "@/utils/cx";
 import { TableOfContents } from "@/components/post/TableOfContents";
 import { remarkSectionize } from "@/utils/remark";
-import Script from "next/script";
 import { Comment } from "@/components/post/Comment";
 
 const BASE_PATH = process.env.basePath ?? "";
