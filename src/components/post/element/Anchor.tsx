@@ -5,7 +5,7 @@ import { Link, type LinkProps } from "terra-design-system/react";
 
 export type AnchorProps = LinkProps;
 export function Anchor(props: AnchorProps) {
-  const { className, ...rest } = props;
+  const { className, target = "_blank", ...rest } = props;
 
-  return <Link className={cx(className)} {...rest} />;
+  return <Link className={cx(className)} target={target} {...rest} />;
 }
