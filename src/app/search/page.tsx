@@ -119,12 +119,9 @@ export default function SearchPage() {
       <div className="text-left w-full">
         {isStale && debouncedQuery.length > 0 && !isSearching && (
           <>
-            <small className="block mt-12 text-xl">
-              키워드: <Highlight>&quot;{debouncedQuery}&quot;</Highlight>
-            </small>
-            <strong className="mt-1 block text-2xl font-bold">
-              검색 결과: <Highlight>{searchResults.length}</Highlight>개의
-              포스트
+            <strong className="mt-12 block text-3xl font-bold">
+              <Highlight>&quot;{debouncedQuery}&quot;</Highlight> 검색 결과:{" "}
+              <Highlight>{searchResults.length}</Highlight>개의 포스트
             </strong>
             <ul className="mt-4">
               {searchResults.map((sr) => (
