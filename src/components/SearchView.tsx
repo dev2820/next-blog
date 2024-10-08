@@ -10,8 +10,8 @@ import {
   useEffect,
   useRef,
   useState,
+  useTransition,
 } from "react";
-import mockPosts from "@/__mocks__/post-list.json";
 import { cx } from "@/utils/cx";
 import type { Post } from "@/types/post";
 import { delayFn } from "@/utils/delay";
@@ -19,16 +19,7 @@ import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
 import { SearchInput } from "@/components/search/SearchInput";
 import { useDebounce } from "@/hooks/use-debounce";
-
-async function fetchPostList() {
-  if (process.env.NEXT_PUBLIC_MODE === "development") {
-    const result = mockPosts;
-    return result;
-  }
-
-  const result = await (await fetch("/next-blog/post-list.json")).json();
-  return result;
-}
+import { useSearchPosts } from "@/hooks/use-search-posts";
 
 export type SearchViewProps = ComponentProps<"div"> & {
   onClickSearchResult?: () => void;
@@ -43,40 +34,33 @@ export function SearchView(props: SearchViewProps) {
    */
   const [keyword, setKeyword] = useState<string>("");
   const debouncedKeyword = useDebounce(keyword, 300);
+  const isStale = keyword === debouncedKeyword;
   const [searchResults, setSearchResults] = useState<SearchResult<Post>[]>([]);
   const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
+  const [isSearching, startTransition] = useTransition();
 
-  const searchEngineRef = useRef<{
-    search: ReturnType<typeof createSearch<Post>>;
-  } | null>(null);
-  const readyForSearch = async () => {
-    const postList = (await fetchPostList()) as Post[];
-    searchEngineRef.current = {
-      search: createSearch<Post>(postList, {
-        keys: ["data.title", "data.tags", "data.summary", "content"],
-      }),
-    };
-  };
-
-  const searchPost = (keyword: string) => {
-    if (searchEngineRef.current) {
-      return searchEngineRef.current.search(keyword);
-    }
-  };
+  const search = useSearchPosts({
+    keys: ["data.title", "data.tags", "data.summary", "content"],
+  });
 
   useMount(() => {
-    readyForSearch();
     delayFn(200, () => {
       searchInputRef.current?.focus();
     });
   });
 
   useEffect(() => {
-    const results = searchPost(debouncedKeyword);
-    if (results) {
-      setSearchResults(results);
+    if (!search) {
+      return;
     }
-  }, [debouncedKeyword]);
+
+    startTransition(() => {
+      const results = search(debouncedKeyword);
+      if (results) {
+        setSearchResults(results);
+      }
+    });
+  }, [debouncedKeyword, search]);
 
   const handleChangeSearch = (keyword: string) => {
     setKeyword(keyword ?? "");
@@ -112,7 +96,7 @@ export function SearchView(props: SearchViewProps) {
          */}
       </form>
       <div className="text-left w-full max-w-[568px] text-white">
-        {debouncedKeyword && (
+        {isStale && debouncedKeyword.length > 0 && !isSearching && (
           <>
             <p className="mt-16 text-xl">
               <Highlight>{debouncedKeyword}</Highlight> 검색 결과:{" "}
