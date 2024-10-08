@@ -49,7 +49,7 @@ export function CodeBlock(props: CodeBlockProps) {
 
   return (
     <_CodeBlock code={code} language={language} theme={themes.dracula}>
-      <div className="relative">
+      <div className="relative my-8">
         <_CodeBlock.Code
           className={cx(
             "py-2 px-8 bg-[#282a36] rounded-md overflow-scroll",
