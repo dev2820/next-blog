@@ -1,6 +1,6 @@
 import { Post } from "@/types/post";
-import { createSearch } from "@/utils/search";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { createSearch, SearchResult } from "@/utils/search";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import { useMount } from "./use-mount";
 import mockPosts from "@/__mocks__/post-list.json";
 
@@ -8,6 +8,8 @@ export const useSearchPosts = (
   // posts: Post[] = [],
   options: { keys: string[] }
 ) => {
+  const [searchResults, setSearchResults] = useState<SearchResult<Post>[]>([]);
+  const [isSearching, startTransition] = useTransition();
   const searchFnRef = useRef<ReturnType<typeof createSearch<Post>> | null>(
     null
   );
@@ -24,7 +26,20 @@ export const useSearchPosts = (
     updatePostList();
   });
 
-  return searchFnRef.current;
+  const search = useCallback((keyword: string) => {
+    if (searchFnRef.current) {
+      const result = searchFnRef.current(keyword);
+      startTransition(() => {
+        setSearchResults(result);
+      });
+    }
+  }, []);
+
+  return {
+    search,
+    isSearching,
+    results: searchResults,
+  };
 };
 
 async function fetchPostList() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMount } from "@/hooks/use-mount";
-import { createSearch, type SearchResult } from "@/utils/search";
+import { type SearchResult } from "@/utils/search";
 import Link from "next/link";
 import {
   ComponentProps,
@@ -9,8 +9,6 @@ import {
   ReactNode,
   useEffect,
   useRef,
-  useState,
-  useTransition,
 } from "react";
 import { cx } from "@/utils/cx";
 import type { Post } from "@/types/post";
@@ -18,8 +16,8 @@ import { delayFn } from "@/utils/delay";
 import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
 import { SearchInput } from "@/components/search/SearchInput";
-import { useDebounce } from "@/hooks/use-debounce";
 import { useSearchPosts } from "@/hooks/use-search-posts";
+import { useSearchQuery } from "@/hooks/use-search-query";
 
 export type SearchViewProps = ComponentProps<"div"> & {
   onClickSearchResult?: () => void;
@@ -27,21 +25,23 @@ export type SearchViewProps = ComponentProps<"div"> & {
 export function SearchView(props: SearchViewProps) {
   const { className, onClickSearchResult, ...rest } = props;
   /**
-   * TODO: search 자료구조 만들기
-   * TODO: search result 만들기
    * TODO: 태그 검색 만들기
    *
    */
-  const [keyword, setKeyword] = useState<string>("");
-  const debouncedKeyword = useDebounce(keyword, 300);
-  const isStale = keyword === debouncedKeyword;
-  const [searchResults, setSearchResults] = useState<SearchResult<Post>[]>([]);
-  const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
-  const [isSearching, startTransition] = useTransition();
 
-  const search = useSearchPosts({
+  const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
+  const { query, debouncedQuery, updateQuery, isStale } = useSearchQuery("");
+  const {
+    search,
+    isSearching,
+    results: searchResults,
+  } = useSearchPosts({
     keys: ["data.title", "data.tags", "data.summary", "content"],
   });
+
+  useEffect(() => {
+    search(debouncedQuery);
+  }, [debouncedQuery, search]);
 
   useMount(() => {
     delayFn(200, () => {
@@ -49,25 +49,12 @@ export function SearchView(props: SearchViewProps) {
     });
   });
 
-  useEffect(() => {
-    if (!search) {
-      return;
-    }
-
-    startTransition(() => {
-      const results = search(debouncedKeyword);
-      if (results) {
-        setSearchResults(results);
-      }
-    });
-  }, [debouncedKeyword, search]);
-
-  const handleChangeSearch = (keyword: string) => {
-    setKeyword(keyword ?? "");
+  const handleChangeSearch = (query: string) => {
+    updateQuery(query ?? "");
   };
 
   const handleClearSearch = () => {
-    setKeyword("");
+    updateQuery("");
   };
 
   const handleClickSearchResult = () => {
@@ -85,7 +72,7 @@ export function SearchView(props: SearchViewProps) {
         <SearchInput
           className="flex-1 w-full h-11"
           placeholder="Type to search"
-          value={keyword}
+          value={query}
           onChangeSearch={handleChangeSearch}
           onClearSearch={handleClearSearch}
           ref={searchInputRef}
@@ -96,10 +83,10 @@ export function SearchView(props: SearchViewProps) {
          */}
       </form>
       <div className="text-left w-full max-w-[568px] text-white">
-        {isStale && debouncedKeyword.length > 0 && !isSearching && (
+        {isStale && debouncedQuery.length > 0 && !isSearching && (
           <>
             <p className="mt-16 text-xl">
-              <Highlight>{debouncedKeyword}</Highlight> 검색 결과:{" "}
+              <Highlight>{debouncedQuery}</Highlight> 검색 결과:{" "}
               <Highlight>{searchResults.length}</Highlight>개의 포스트
             </p>
             <ul className="mt-4">
