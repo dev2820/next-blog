@@ -7,7 +7,6 @@ import {
   ComponentProps,
   ElementRef,
   ReactNode,
-  Suspense,
   useEffect,
   useMemo,
   useRef,
@@ -21,14 +20,11 @@ import pepeSadImg from "@/assets/images/pepe-sad.png";
 import { SearchInput } from "@/components/search/SearchInput";
 import { useSearchPosts } from "@/hooks/use-search-posts";
 import { useSearchQuery } from "@/hooks/use-search-query";
-import mockPosts from "@/__mocks__/post-list.json";
 import { Button } from "terra-design-system/react";
+import { fetchPostListForSearch } from "@/utils/search";
+import { isSuccess } from "@/utils/predicate";
 
 export default function SearchPage() {
-  /**
-   * TODO: 태그 검색 만들기
-   *
-   */
   const [posts, setPosts] = useState<Post[]>([]);
   const tagsMap = useMemo(() => {
     return posts
@@ -51,8 +47,10 @@ export default function SearchPage() {
   });
 
   const updatePosts = async () => {
-    const postList = (await fetchPostList()) as Post[];
-    setPosts(postList);
+    const result = await fetchPostListForSearch();
+    if (isSuccess(result)) {
+      setPosts(result.data);
+    }
   };
 
   useEffect(() => {
@@ -72,10 +70,6 @@ export default function SearchPage() {
 
   const handleClearSearch = () => {
     updateQuery("");
-  };
-
-  const handleClickSearchResult = () => {
-    // search
   };
 
   const handleClickTag = () => {
@@ -126,10 +120,7 @@ export default function SearchPage() {
             <ul className="mt-4">
               {searchResults.map((sr) => (
                 <li key={sr.refIndex} className="mb-4 last:mb-0">
-                  <Link
-                    href={`/posts/${sr.item.data.slug}`}
-                    onClick={handleClickSearchResult}
-                  >
+                  <Link href={`/posts/${sr.item.data.slug}`}>
                     <SearchResultSection
                       result={sr}
                       className="bg-gray-100 hover:bg-gray-200 duration-200"
@@ -225,12 +216,4 @@ function splitByIndices(str: string, pairs: [number, number][]) {
 
   return result;
 }
-async function fetchPostList() {
-  if (process.env.NEXT_PUBLIC_MODE === "development") {
-    const result = mockPosts;
-    return result;
-  }
-
-  const result = await (await fetch("/next-blog/post-list.json")).json();
-  return result;
-}
+async function fetchPostList() {}

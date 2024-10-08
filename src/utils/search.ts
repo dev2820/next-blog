@@ -1,5 +1,33 @@
 import type { Post } from "@/types/post";
 import Fuse from "fuse.js";
+import mockPosts from "@/__mocks__/post-list.json";
+
+export async function fetchPostListForSearch() {
+  try {
+    if (process.env.NEXT_PUBLIC_MODE === "development") {
+      const result = mockPosts;
+      return {
+        isFailed: false,
+        data: result,
+        error: null,
+      };
+    }
+
+    const result = await (await fetch("/next-blog/post-list.json")).json();
+
+    return {
+      isFailed: false,
+      data: result as Post[],
+      error: null,
+    };
+  } catch (err) {
+    return {
+      isFailed: true,
+      data: null,
+      error: err as Error,
+    };
+  }
+}
 
 /**
  * TODO: fuse result 타입 개선하기 (fuse 숨기기)
