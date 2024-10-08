@@ -42,7 +42,7 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
 
     return (
       <>
-        <label className={cx("relative", className)} {...rest} ref={ref}>
+        <label className={cx("relative ", className)} {...rest} ref={ref}>
           <SearchIcon
             size={20}
             className="absolute left-3 top-1/2 -translate-y-1/2"
@@ -52,7 +52,7 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
             placeholder={placeholder}
             className={cx(
               "peer",
-              "h-full w-full rounded-lg text-md bg-white/15 caret-white pl-11 pr-11 shadow-xl",
+              "h-full w-full rounded-lg text-md bg-white caret-primary pl-11 pr-11 shadow-xl",
               "duration-200",
               "border-2 focus:outline-none border-transparent focus:border-primary",
               "focus-visible:outline-none focus-visible:border-primary"

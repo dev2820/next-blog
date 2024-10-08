@@ -1,11 +1,9 @@
 import { Post } from "@/types/post";
 import { createSearch, SearchResult } from "@/utils/search";
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
-import { useMount } from "./use-mount";
-import mockPosts from "@/__mocks__/post-list.json";
 
 export const useSearchPosts = (
-  // posts: Post[] = [],
+  posts: Post[] = [],
   options: { keys: string[] }
 ) => {
   const [searchResults, setSearchResults] = useState<SearchResult<Post>[]>([]);
@@ -14,17 +12,11 @@ export const useSearchPosts = (
     null
   );
 
-  const updatePostList = async () => {
-    const postList = (await fetchPostList()) as Post[];
-
-    searchFnRef.current = createSearch<Post>(postList, {
+  useEffect(() => {
+    searchFnRef.current = createSearch<Post>(posts, {
       ...options,
     });
-  };
-
-  useMount(() => {
-    updatePostList();
-  });
+  }, [options, posts]);
 
   const search = useCallback((keyword: string) => {
     if (searchFnRef.current) {
@@ -41,13 +33,3 @@ export const useSearchPosts = (
     results: searchResults,
   };
 };
-
-async function fetchPostList() {
-  if (process.env.NEXT_PUBLIC_MODE === "development") {
-    const result = mockPosts;
-    return result;
-  }
-
-  const result = await (await fetch("/next-blog/post-list.json")).json();
-  return result;
-}

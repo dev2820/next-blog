@@ -34,6 +34,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
   const { isSmallerThanDesktop } = useScreen();
   const pathname = usePathname();
   const drawerHandler = useDisclosure(false);
+
   if (isSmallerThanDesktop) {
     return (
       <Drawer.Root

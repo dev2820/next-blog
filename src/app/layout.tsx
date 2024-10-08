@@ -87,11 +87,10 @@ function Header(props: HeaderProps) {
         <BrandLogo height={48} />
       </Link>
       <div className="flex-1" />
-      {/**
-       * TODO: 모바일일 때 drawer로 변경
-       */}
       <GlobalNavigationBar className="mr-1 desktop:mr-8" />
-      <SearchButton />
+      <Link href="/search">
+        <SearchButton />
+      </Link>
     </header>
   );
 }
