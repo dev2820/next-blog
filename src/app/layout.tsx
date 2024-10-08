@@ -8,7 +8,7 @@ import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
-import { SearchButton } from "@/components/SearchButton";
+import { SearchButton } from "@/components/search/SearchButton";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
