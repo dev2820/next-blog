@@ -1,7 +1,7 @@
 "use client";
 
 import { useMount } from "@/hooks/use-mount";
-import { createSearch } from "@/utils/search";
+import { createSearch, type SearchResult } from "@/utils/search";
 import Link from "next/link";
 import {
   ComponentProps,
@@ -14,7 +14,6 @@ import {
 import mockPosts from "@/__mocks__/post-list.json";
 import { cx } from "@/utils/cx";
 import type { Post } from "@/types/post";
-import { FuseResult } from "fuse.js";
 import { delayFn } from "@/utils/delay";
 import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
@@ -44,16 +43,18 @@ export function SearchView(props: SearchViewProps) {
    */
   const [keyword, setKeyword] = useState<string>("");
   const debouncedKeyword = useDebounce(keyword, 300);
-  const [searchResults, setSearchResults] = useState<FuseResult<Post>[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResult<Post>[]>([]);
   const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
 
   const searchEngineRef = useRef<{
-    search: (keyword: string) => FuseResult<Post>[];
+    search: ReturnType<typeof createSearch<Post>>;
   } | null>(null);
   const readyForSearch = async () => {
-    const postList = await fetchPostList();
+    const postList = (await fetchPostList()) as Post[];
     searchEngineRef.current = {
-      search: createSearch(postList),
+      search: createSearch<Post>(postList, {
+        keys: ["data.title", "data.tags", "data.summary", "content"],
+      }),
     };
   };
 
@@ -124,10 +125,10 @@ export function SearchView(props: SearchViewProps) {
                     href={`/posts/${sr.item.data.slug}`}
                     onClick={handleClickSearchResult}
                   >
-                    <SearchResult
+                    <SearchResultSection
                       result={sr}
                       className="hover:bg-white/20 duration-200"
-                    ></SearchResult>
+                    ></SearchResultSection>
                   </Link>
                 </li>
               ))}
@@ -154,9 +155,9 @@ export function SearchView(props: SearchViewProps) {
 }
 
 type SearchResultSection = ComponentProps<"section"> & {
-  result: FuseResult<Post>;
+  result: SearchResult<Post>;
 };
-const SearchResult = (props: SearchResultSection) => {
+const SearchResultSection = (props: SearchResultSection) => {
   const { result, className, ...rest } = props;
   const { item, matches } = result;
 

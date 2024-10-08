@@ -1,46 +1,40 @@
 import type { Post } from "@/types/post";
-import Fuse, {
-  type FuseResult,
-  type Expression,
-  type IFuseOptions,
-} from "fuse.js";
+import Fuse from "fuse.js";
 
 /**
  * TODO: fuse result 타입 개선하기 (fuse 숨기기)
  */
-
-/**
- * @see https://www.fusejs.io/api/options.html
- */
-const options: IFuseOptions<Post> = {
-  includeScore: true,
-  includeMatches: true,
-  shouldSort: true,
-  minMatchCharLength: 2,
-  findAllMatches: false,
-  keys: ["data.title", "data.tags", "data.summary", "content"],
-  // getFn: (obj, path) => {
-  //   const value = Fuse.config.getFn(obj, path);
-  //   return decomposeHangul(value); // 한글 자모 분리
-  // },
+export type SearchResult<T> = {
+  item: T;
+  refIndex: number;
+  score?: number;
+  matches?: {
+    indices: [number, number][];
+    key?: string;
+    refIndex?: number;
+    value?: string;
+  }[];
 };
-
-/**
- * TODO: Fix type
- */
-export const search = (list: Post[], keyword: string | Expression) => {
-  const fuse = new Fuse(list, options);
-
-  return fuse.search(keyword);
-};
-
-export const createSearch = (
-  list: Post[]
-): ((keyword: string) => FuseResult<Post>[]) => {
-  const fuse = new Fuse(list, options);
+export const createSearch = <T>(
+  list: T[],
+  options?: {
+    keys: string[];
+  }
+): ((keyword: string) => SearchResult<T>[]) => {
+  /**
+   * @see https://www.fusejs.io/api/options.html
+   */
+  const fuse = new Fuse(list, {
+    includeScore: true,
+    includeMatches: true,
+    shouldSort: true,
+    minMatchCharLength: 2,
+    findAllMatches: false,
+    ...options,
+  });
 
   return (keyword: string) => {
-    return fuse.search(keyword);
+    return fuse.search(keyword) as SearchResult<T>[];
   };
 };
 /**
