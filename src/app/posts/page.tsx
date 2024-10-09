@@ -16,9 +16,6 @@ export default function PostsPage() {
   return (
     <>
       {/**
-       * 검색바 -> 검색 페이지로 이동
-       */
-      /**
        * 태그 검색
        * 태그 표시(w. 갯수)
        */}
