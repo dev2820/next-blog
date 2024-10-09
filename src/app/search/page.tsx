@@ -6,9 +6,7 @@ import Link from "next/link";
 import {
   ComponentProps,
   ElementRef,
-  FormEvent,
   ReactNode,
-  Suspense,
   useMemo,
   useRef,
   useState,
@@ -26,7 +24,10 @@ import { useSearchParams } from "next/navigation";
 import { Skeleton } from "terra-design-system/react";
 
 export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const currentQuery = searchParams.get("q");
   const [posts, setPosts] = useState<Post[]>([]);
+  const [isFetching, setIsFetchPosts] = useState<boolean>(false);
   const tagsMap = useMemo(() => {
     return posts
       .map((p) => p.data.tags)
@@ -37,15 +38,19 @@ export default function SearchPage() {
       );
   }, [posts]);
 
-  const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
-  const searchParams = useSearchParams();
-  const currentQuery = searchParams.get("q");
-  const [typedQuery, setTypedQuery] = useState<string>(currentQuery ?? "");
-  const [queriedPosts, setQueriedPosts] = useState<SearchResult<Post>[] | null>(
-    null
-  );
+  const queriedPosts = useMemo<SearchResult<Post>[] | null>(() => {
+    if (!currentQuery || posts.length <= 0) {
+      return null;
+    }
+    return search(currentQuery, posts, {
+      keys: ["data.title", "data.tags", "data.summary", "content"],
+    });
+  }, [currentQuery, posts]);
 
-  const updatePosts = async (query: string) => {
+  const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
+  const [typedQuery, setTypedQuery] = useState<string>(currentQuery ?? "");
+
+  const updatePosts = async () => {
     const result = await fetchPostListForSearch();
     if (isFailed(result)) {
       return;
@@ -53,10 +58,7 @@ export default function SearchPage() {
 
     const posts = result.value;
     setPosts(posts);
-    const queriedPosts = search(query, posts, {
-      keys: ["data.title", "data.tags", "data.summary", "content"],
-    });
-    setQueriedPosts(queriedPosts);
+    setIsFetchPosts(true);
   };
 
   useMount(() => {
@@ -64,9 +66,7 @@ export default function SearchPage() {
       searchInputRef.current?.focus();
     });
 
-    if (currentQuery) {
-      updatePosts(currentQuery);
-    }
+    updatePosts();
   });
 
   const handleChangeQuery = (newQuery: string) => {
@@ -97,57 +97,52 @@ export default function SearchPage() {
           />
         </form>
       </fieldset>
-      <div className="flex flex-row gap-3 mt-2 flex-wrap">
-        {[...tagsMap.entries()].map(([tag, count]) => (
-          <Link key={tag} href={`/tags/${tag}`}>
-            <Tag
-              key={tag}
-              className="text-sm px-3"
-              text={`${tag} (${count})`}
-            />
-          </Link>
-        ))}
-      </div>
       <hr className="w-full my-8" />
       <div className="text-left w-full">
-        {currentQuery && isNil(queriedPosts) && (
+        {currentQuery && (
           <>
-            <Skeleton className="">
-              <strong className="block text-3xl font-bold">loading...</strong>
-            </Skeleton>
-            <Skeleton className="mt-4 block h-32" />
-          </>
-        )}
-        {!isNil(queriedPosts) && (
-          <>
-            <strong className="block text-3xl font-bold">
-              <Highlight>&quot;{currentQuery}&quot;</Highlight> 검색 결과:{" "}
-              <Highlight>{queriedPosts?.length}</Highlight>개의 포스트
-            </strong>
-            {queriedPosts.length <= 0 && (
-              <div className="flex flex-col place-items-center mt-16">
-                <Image
-                  src={pepeSadImg}
-                  alt={"pepe-sad"}
-                  width={192}
-                  height={0}
-                />
-                <p className="text-lg mt-8">검색 결과가 없습니다요...</p>
-              </div>
+            {isNil(queriedPosts) && (
+              <>
+                <Skeleton className="">
+                  <strong className="block text-3xl font-bold">
+                    loading...
+                  </strong>
+                </Skeleton>
+                <Skeleton className="mt-4 block h-32" />
+              </>
             )}
-            {queriedPosts.length > 0 && (
-              <ul className="mt-4">
-                {queriedPosts.map((sr) => (
-                  <li key={sr.refIndex} className="mb-4 last:mb-0">
-                    <Link href={`/posts/${sr.item.data.slug}`}>
-                      <SearchResultSection
-                        result={sr}
-                        className="bg-gray-100 hover:bg-gray-200 duration-200"
-                      ></SearchResultSection>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {!isNil(queriedPosts) && (
+              <>
+                <strong className="block text-3xl font-bold">
+                  <Highlight>&quot;{currentQuery}&quot;</Highlight> 검색 결과:{" "}
+                  <Highlight>{queriedPosts?.length}</Highlight>개의 포스트
+                </strong>
+                {queriedPosts.length <= 0 && (
+                  <div className="flex flex-col place-items-center mt-16">
+                    <Image
+                      src={pepeSadImg}
+                      alt={"pepe-sad"}
+                      width={192}
+                      height={0}
+                    />
+                    <p className="text-lg mt-8">검색 결과가 없습니다요...</p>
+                  </div>
+                )}
+                {queriedPosts.length > 0 && (
+                  <ul className="mt-4">
+                    {queriedPosts.map((sr) => (
+                      <li key={sr.refIndex} className="mb-4 last:mb-0">
+                        <Link href={`/posts/${sr.item.data.slug}`}>
+                          <SearchResultSection
+                            result={sr}
+                            className="bg-gray-100 hover:bg-gray-200 duration-200"
+                          ></SearchResultSection>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
             )}
           </>
         )}
@@ -195,6 +190,13 @@ const SearchResultSection = (props: SearchResultSection) => {
       ) : (
         <p className="mt-4">{item.data.summary}</p>
       )}
+      <div className="mt-2 flex flex-row flex-wrap gap-1">
+        {item.data.tags.map((tag) => (
+          <Link href={`/tags/${tag}`}>
+            <Tag key={tag} text={tag} />
+          </Link>
+        ))}
+      </div>
     </section>
   );
 };

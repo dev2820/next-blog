@@ -29,6 +29,8 @@ const config: Config = {
       },
       lineHeight: {
         normal: "1.6",
+        6: "1.5rem",
+        8: "2rem",
       },
       fontSize: {
         paragraph: [
