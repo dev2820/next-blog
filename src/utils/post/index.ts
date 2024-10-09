@@ -53,6 +53,11 @@ export const getPostByTitle = (title: string): Post | undefined => {
   return undefined;
 };
 
+export const getPostsByTag = (tag: string): Post[] => {
+  // TODO: tag로 post 검색하기
+  return [];
+};
+
 const toPost = (rawPost: GrayMatterFile<string>): Post => {
   const { data, content } = rawPost;
 
