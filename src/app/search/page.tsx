@@ -24,6 +24,8 @@ import { Tag } from "@/components/Tag";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "terra-design-system/react";
 
+const BASE_PATH = process.env.basePath ?? "";
+
 export default function SearchPage() {
   return (
     <Suspense>
@@ -80,7 +82,7 @@ const SearchView = () => {
         <h2 className="text-5xl font-bold mb-8">Search</h2>
         <form
           className="w-full max-w-[568px] flex flex-col gap-4"
-          action={`/search?q=${typedQuery}`}
+          action={`${BASE_PATH}/search?q=${typedQuery}`}
           method="get"
         >
           <SearchInput
