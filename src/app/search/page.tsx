@@ -1,13 +1,14 @@
 "use client";
 
 import { useMount } from "@/hooks/use-mount";
-import { type SearchResult } from "@/utils/search";
+import { search, type SearchResult } from "@/utils/search";
 import Link from "next/link";
 import {
   ComponentProps,
   ElementRef,
+  FormEvent,
   ReactNode,
-  useEffect,
+  Suspense,
   useMemo,
   useRef,
   useState,
@@ -18,11 +19,11 @@ import { delayFn } from "@/utils/delay";
 import Image from "next/image";
 import pepeSadImg from "@/assets/images/pepe-sad.png";
 import { SearchInput } from "@/components/search/SearchInput";
-import { useSearchPosts } from "@/hooks/use-search-posts";
-import { useSearchQuery } from "@/hooks/use-search-query";
-import { Button } from "terra-design-system/react";
 import { fetchPostListForSearch } from "@/utils/search";
-import { isSuccess } from "@/utils/predicate";
+import { isFailed, isNil } from "@/utils/predicate";
+import { Tag } from "@/components/Tag";
+import { useSearchParams } from "next/navigation";
+import { Skeleton } from "terra-design-system/react";
 
 export default function SearchPage() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -37,99 +38,93 @@ export default function SearchPage() {
   }, [posts]);
 
   const searchInputRef = useRef<ElementRef<typeof SearchInput>>(null);
-  const { query, debouncedQuery, updateQuery, isStale } = useSearchQuery("");
-  const {
-    search,
-    isSearching,
-    results: searchResults,
-  } = useSearchPosts(posts, {
-    keys: ["data.title", "data.tags", "data.summary", "content"],
-  });
+  const searchParams = useSearchParams();
+  const currentQuery = searchParams.get("q");
+  const [typedQuery, setTypedQuery] = useState<string>(currentQuery ?? "");
+  const [queriedPosts, setQueriedPosts] = useState<SearchResult<Post>[] | null>(
+    null
+  );
 
-  const updatePosts = async () => {
+  const updatePosts = async (query: string) => {
     const result = await fetchPostListForSearch();
-    if (isSuccess(result)) {
-      setPosts(result.data);
+    if (isFailed(result)) {
+      return;
     }
+
+    const posts = result.value;
+    setPosts(posts);
+    const queriedPosts = search(query, posts, {
+      keys: ["data.title", "data.tags", "data.summary", "content"],
+    });
+    setQueriedPosts(queriedPosts);
   };
 
-  useEffect(() => {
-    search(debouncedQuery);
-  }, [debouncedQuery, search]);
-
   useMount(() => {
-    updatePosts();
     delayFn(200, () => {
       searchInputRef.current?.focus();
     });
+
+    if (currentQuery) {
+      updatePosts(currentQuery);
+    }
   });
 
-  const handleChangeSearch = (query: string) => {
-    updateQuery(query ?? "");
+  const handleChangeQuery = (newQuery: string) => {
+    setTypedQuery(newQuery ?? "");
   };
 
-  const handleClearSearch = () => {
-    updateQuery("");
-  };
-
-  const handleClickTag = () => {
-    // search tag
+  const handleClearQuery = () => {
+    setTypedQuery("");
   };
 
   return (
     <search className={cx("rounded-md flex flex-col items-center")}>
-      <fieldset className="bg-gray-200 rounded-lg w-full px-4 pt-20 pb-10 flex flex-col place-items-center">
+      <fieldset className="rounded-lg w-full pt-20 pb-6 flex flex-col place-items-center">
         <h2 className="text-5xl font-bold mb-8">Search</h2>
         <form
           className="w-full max-w-[568px] flex flex-col gap-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
+          action={`/search?q=${typedQuery}`}
+          method="get"
         >
           <SearchInput
-            className="w-full h-11"
+            className="flex-1 h-11"
             placeholder="Type to search"
-            value={query}
-            onChangeSearch={handleChangeSearch}
-            onClearSearch={handleClearSearch}
+            value={typedQuery}
+            onChangeSearch={handleChangeQuery}
+            onClearSearch={handleClearQuery}
             ref={searchInputRef}
+            name="q"
           />
-          <div className="flex flex-row gap-3 mt-6 flex-wrap">
-            {[...tagsMap.entries()].map(([tag, count]) => (
-              <Button
-                key={tag}
-                size="xs"
-                variant="outline"
-                theme="blackAlpha"
-                className="text-sm px-3"
-                onClick={handleClickTag}
-              >
-                {tag} ({count})
-              </Button>
-            ))}
-          </div>
         </form>
       </fieldset>
+      <div className="flex flex-row gap-3 mt-2 flex-wrap">
+        {[...tagsMap.entries()].map(([tag, count]) => (
+          <Link key={tag} href={`/tags/${tag}`}>
+            <Tag
+              key={tag}
+              className="text-sm px-3"
+              text={`${tag} (${count})`}
+            />
+          </Link>
+        ))}
+      </div>
+      <hr className="w-full my-8" />
       <div className="text-left w-full">
-        {isStale && debouncedQuery.length > 0 && !isSearching && (
+        {currentQuery && isNil(queriedPosts) && (
           <>
-            <strong className="mt-12 block text-3xl font-bold">
-              <Highlight>&quot;{debouncedQuery}&quot;</Highlight> 검색 결과:{" "}
-              <Highlight>{searchResults.length}</Highlight>개의 포스트
+            <Skeleton className="">
+              <strong className="block text-3xl font-bold">loading...</strong>
+            </Skeleton>
+            <Skeleton className="mt-4 block h-32" />
+          </>
+        )}
+        {!isNil(queriedPosts) && (
+          <>
+            <strong className="block text-3xl font-bold">
+              <Highlight>&quot;{currentQuery}&quot;</Highlight> 검색 결과:{" "}
+              <Highlight>{queriedPosts?.length}</Highlight>개의 포스트
             </strong>
-            <ul className="mt-4">
-              {searchResults.map((sr) => (
-                <li key={sr.refIndex} className="mb-4 last:mb-0">
-                  <Link href={`/posts/${sr.item.data.slug}`}>
-                    <SearchResultSection
-                      result={sr}
-                      className="bg-gray-100 hover:bg-gray-200 duration-200"
-                    ></SearchResultSection>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {searchResults.length === 0 && (
+            {queriedPosts.length <= 0 && (
               <div className="flex flex-col place-items-center mt-16">
                 <Image
                   src={pepeSadImg}
@@ -139,6 +134,20 @@ export default function SearchPage() {
                 />
                 <p className="text-lg mt-8">검색 결과가 없습니다요...</p>
               </div>
+            )}
+            {queriedPosts.length > 0 && (
+              <ul className="mt-4">
+                {queriedPosts.map((sr) => (
+                  <li key={sr.refIndex} className="mb-4 last:mb-0">
+                    <Link href={`/posts/${sr.item.data.slug}`}>
+                      <SearchResultSection
+                        result={sr}
+                        className="bg-gray-100 hover:bg-gray-200 duration-200"
+                      ></SearchResultSection>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             )}
           </>
         )}

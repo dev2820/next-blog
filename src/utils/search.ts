@@ -1,6 +1,7 @@
 import type { Post } from "@/types/post";
 import Fuse from "fuse.js";
 import mockPosts from "@/__mocks__/post-list.json";
+import { Failed, Result, Success } from "@/types/monad";
 
 export async function fetchPostListForSearch() {
   try {
@@ -8,24 +9,24 @@ export async function fetchPostListForSearch() {
       const result = mockPosts;
       return {
         isFailed: false,
-        data: result,
+        value: result,
         error: null,
-      };
+      } as Success<Post[]>;
     }
 
     const result = await (await fetch("/next-blog/post-list.json")).json();
 
     return {
       isFailed: false,
-      data: result as Post[],
+      value: result as Post[],
       error: null,
-    };
+    } as Success<Post[]>;
   } catch (err) {
     return {
       isFailed: true,
-      data: null,
+      value: null,
       error: err as Error,
-    };
+    } as Failed<Error>;
   }
 }
 
@@ -64,6 +65,18 @@ export const createSearch = <T>(
   return (keyword: string) => {
     return fuse.search(keyword) as SearchResult<T>[];
   };
+};
+
+export const search = <T>(
+  query: string,
+  list: T[],
+  options?: {
+    keys: string[];
+  }
+): SearchResult<T>[] => {
+  const searchFn = createSearch<T>(list, options);
+
+  return searchFn(query);
 };
 /**
  * 초성검색 기능 지원을 위해 한글의 자모를 분리한 문자열을 반환합니다.

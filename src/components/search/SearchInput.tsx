@@ -10,8 +10,9 @@ import {
   forwardRef,
   useState,
 } from "react";
+import { Button, IconButton } from "terra-design-system/react";
 
-export type SearchInputProps = ComponentPropsWithoutRef<"label"> & {
+export type SearchInputProps = ComponentPropsWithoutRef<"input"> & {
   onChangeSearch?: (keyword: string) => void;
   onClearSearch?: () => void;
   value?: string;
@@ -42,7 +43,7 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
 
     return (
       <>
-        <label className={cx("relative ", className)} {...rest} ref={ref}>
+        <label className={cx("relative flex gap-3")} ref={ref}>
           <SearchIcon
             size={20}
             className="absolute left-3 top-1/2 -translate-y-1/2"
@@ -52,22 +53,27 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
             placeholder={placeholder}
             className={cx(
               "peer",
-              "h-full w-full rounded-lg text-md bg-white caret-primary pl-11 pr-11 shadow-xl",
+              "flex-1 h-full rounded-lg text-md bg-white caret-primary pl-10 pr-10",
               "duration-200",
-              "border-2 focus:outline-none border-transparent focus:border-primary",
-              "focus-visible:outline-none focus-visible:border-primary"
+              "border-2 focus:outline-none border-primary/50 focus:border-primary",
+              "focus-visible:outline-none focus-visible:border-primary",
+              className
             )}
             value={value}
             onChange={handleTypingSearch}
+            {...rest}
           />
           <button
             id="search-cancel-btn"
-            className="peer-placeholder-shown:hidden absolute right-0 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
+            className="peer-placeholder-shown:hidden absolute right-[84px] top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
             type="button"
             onClick={handleClearSearch}
           >
             <XIcon size={20} />
           </button>
+          <Button size="lg" theme="primary" type="submit" className="flex-none">
+            <SearchIcon size={24} />
+          </Button>
         </label>
       </>
     );
