@@ -1,15 +1,14 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 export const useDisclosure = (defaultOpen: boolean = false) => {
   const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
 
-  const close = useCallback(() => {
+  const close = () => {
     setIsOpen(false);
-  }, [isOpen]);
-
-  const open = useCallback(() => {
+  };
+  const open = () => {
     setIsOpen(true);
-  }, [isOpen]);
+  };
 
   return {
     isOpen,
