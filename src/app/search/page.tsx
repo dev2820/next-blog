@@ -25,6 +25,14 @@ import { useSearchParams } from "next/navigation";
 import { Skeleton } from "terra-design-system/react";
 
 export default function SearchPage() {
+  return (
+    <Suspense>
+      <SearchView></SearchView>
+    </Suspense>
+  );
+}
+
+const SearchView = () => {
   const searchParams = useSearchParams();
   const currentQuery = searchParams.get("q");
   const [posts, setPosts] = useState<Post[]>([]);
@@ -67,84 +75,81 @@ export default function SearchPage() {
   };
 
   return (
-    <Suspense>
-      <search className={cx("rounded-md flex flex-col items-center")}>
-        <fieldset className="rounded-lg w-full pt-20 pb-6 flex flex-col place-items-center">
-          <h2 className="text-5xl font-bold mb-8">Search</h2>
-          <form
-            className="w-full max-w-[568px] flex flex-col gap-4"
-            action={`/search?q=${typedQuery}`}
-            method="get"
-          >
-            <SearchInput
-              className="flex-1 h-11"
-              placeholder="Type to search"
-              value={typedQuery}
-              onChangeSearch={handleChangeQuery}
-              onClearSearch={handleClearQuery}
-              ref={searchInputRef}
-              name="q"
-            />
-          </form>
-        </fieldset>
-        <hr className="w-full my-8" />
-        <div className="text-left w-full">
-          {currentQuery && (
-            <>
-              {isNil(queriedPosts) && (
-                <>
-                  <Skeleton className="">
-                    <strong className="block text-3xl font-bold">
-                      loading...
-                    </strong>
-                  </Skeleton>
-                  <Skeleton className="mt-4 block h-32" />
-                </>
-              )}
-              {!isNil(queriedPosts) && (
-                <>
+    <search className={cx("rounded-md flex flex-col items-center")}>
+      <fieldset className="rounded-lg w-full pt-20 pb-6 flex flex-col place-items-center">
+        <h2 className="text-5xl font-bold mb-8">Search</h2>
+        <form
+          className="w-full max-w-[568px] flex flex-col gap-4"
+          action={`/search?q=${typedQuery}`}
+          method="get"
+        >
+          <SearchInput
+            className="flex-1 h-11"
+            placeholder="Type to search"
+            value={typedQuery}
+            onChangeSearch={handleChangeQuery}
+            onClearSearch={handleClearQuery}
+            ref={searchInputRef}
+            name="q"
+          />
+        </form>
+      </fieldset>
+      <hr className="w-full my-8" />
+      <div className="text-left w-full">
+        {currentQuery && (
+          <>
+            {isNil(queriedPosts) && (
+              <>
+                <Skeleton className="">
                   <strong className="block text-3xl font-bold">
-                    <Highlight>&quot;{currentQuery}&quot;</Highlight> 검색 결과:{" "}
-                    <Highlight>{queriedPosts?.length}</Highlight>개의 포스트
+                    loading...
                   </strong>
-                  {queriedPosts.length <= 0 && (
-                    <div className="flex flex-col place-items-center mt-16">
-                      <Image
-                        src={pepeSadImg}
-                        alt={"pepe-sad"}
-                        width={192}
-                        height={0}
-                      />
-                      <p className="text-lg mt-8">검색 결과가 없습니다요...</p>
-                    </div>
-                  )}
-                  {queriedPosts.length > 0 && (
-                    <ul className="mt-4">
-                      {queriedPosts.map((sr) => (
-                        <li key={sr.refIndex} className="mb-4 last:mb-0">
-                          <Link href={`/posts/${sr.item.data.slug}`}>
-                            <SearchResultSection
-                              result={sr}
-                              className="bg-gray-100 hover:bg-gray-200 duration-200"
-                            ></SearchResultSection>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
-              )}
-            </>
-          )}
-        </div>
-        {/**
-         * 이런 포스트는 어떠세요
-         */}
-      </search>
-    </Suspense>
+                </Skeleton>
+                <Skeleton className="mt-4 block h-32" />
+              </>
+            )}
+            {!isNil(queriedPosts) && (
+              <>
+                <strong className="block text-3xl font-bold">
+                  <Highlight>&quot;{currentQuery}&quot;</Highlight> 검색 결과:{" "}
+                  <Highlight>{queriedPosts?.length}</Highlight>개의 포스트
+                </strong>
+                {queriedPosts.length <= 0 && (
+                  <div className="flex flex-col place-items-center mt-16">
+                    <Image
+                      src={pepeSadImg}
+                      alt={"pepe-sad"}
+                      width={192}
+                      height={0}
+                    />
+                    <p className="text-lg mt-8">검색 결과가 없습니다요...</p>
+                  </div>
+                )}
+                {queriedPosts.length > 0 && (
+                  <ul className="mt-4">
+                    {queriedPosts.map((sr) => (
+                      <li key={sr.refIndex} className="mb-4 last:mb-0">
+                        <Link href={`/posts/${sr.item.data.slug}`}>
+                          <SearchResultSection
+                            result={sr}
+                            className="bg-gray-100 hover:bg-gray-200 duration-200"
+                          ></SearchResultSection>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </div>
+      {/**
+       * 이런 포스트는 어떠세요
+       */}
+    </search>
   );
-}
-
+};
 type SearchResultSection = ComponentProps<"section"> & {
   result: SearchResult<Post>;
 };

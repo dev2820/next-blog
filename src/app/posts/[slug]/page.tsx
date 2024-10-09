@@ -36,7 +36,6 @@ import {
 } from "@/components/post/element";
 import { AuthorInfo } from "@/components/post/AuthorInfo";
 import { ShareButton } from "@/components/post/ShareButton";
-import { cx } from "@/utils/cx";
 import { TableOfContents } from "@/components/post/TableOfContents";
 import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";

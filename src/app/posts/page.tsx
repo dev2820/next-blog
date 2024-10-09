@@ -1,4 +1,4 @@
-import { getAllPosts, getPostByPath } from "@/utils/post";
+import { getAllPosts } from "@/utils/post";
 import Link from "next/link";
 
 export default function PostsPage() {

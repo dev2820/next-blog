@@ -19,9 +19,11 @@ type PageProps = {
 export async function generateStaticParams() {
   const posts = getAllPosts();
 
-  return posts.map((p) => ({
-    slug: p.data.slug,
-  }));
+  return posts
+    .filter((p) => p.data.draft)
+    .map((p) => ({
+      slug: p.data.slug,
+    }));
 }
 // TODO: Metadata 적용
 export async function generateMetadata({ params }: PageProps) {

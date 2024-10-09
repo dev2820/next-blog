@@ -5,23 +5,32 @@ import path from "node:path";
 import matter from "gray-matter";
 
 const postDir = path.join(process.cwd(), "public/posts");
+const outDir = path.join(process.cwd(), "out/posts");
+
 const postNames = fs
   .readdirSync(postDir)
   .filter((p) => !p.startsWith("."))
   .filter((p) => p !== "README.md");
-const posts = postNames.map((p) => {
-  const path2out = path.join(process.cwd(), "out/posts");
-  const mdxPath = path.join(path2out, p, "index.mdx");
-  const mdxFile = fs.readFileSync(mdxPath, "utf8");
-  const { data } = matter(mdxFile);
-  const htmlPath = path.join(path2out, `${data.slug}.html`);
-  const htmlFile = fs.readFileSync(htmlPath, "utf8");
+const posts = postNames
+  .map((p) => {
+    const mdxPath = path.join(postDir, p, "index.mdx");
+    const mdxFile = fs.readFileSync(mdxPath, "utf8");
+    const { data } = matter(mdxFile);
 
-  return {
-    data,
-    content: htmlFile,
-  };
-});
+    return {
+      data,
+    };
+  })
+  .filter((p) => p.data.draft)
+  .map((p) => {
+    const htmlPath = path.join(outDir, `${p.data.slug}.html`);
+    const htmlFile = fs.readFileSync(htmlPath, "utf8");
+
+    return {
+      data: p.data,
+      content: htmlFile,
+    };
+  });
 /**
  * @see https://github.com/jpmonette/feed
  */
