@@ -27,17 +27,6 @@ export default function SearchPage() {
   const searchParams = useSearchParams();
   const currentQuery = searchParams.get("q");
   const [posts, setPosts] = useState<Post[]>([]);
-  const [isFetching, setIsFetchPosts] = useState<boolean>(false);
-  const tagsMap = useMemo(() => {
-    return posts
-      .map((p) => p.data.tags)
-      .flat()
-      .reduce(
-        (map, tag) => map.set(tag, (map.get(tag) ?? 0) + 1),
-        new Map<string, number>()
-      );
-  }, [posts]);
-
   const queriedPosts = useMemo<SearchResult<Post>[] | null>(() => {
     if (!currentQuery || posts.length <= 0) {
       return null;
@@ -58,7 +47,6 @@ export default function SearchPage() {
 
     const posts = result.value;
     setPosts(posts);
-    setIsFetchPosts(true);
   };
 
   useMount(() => {
