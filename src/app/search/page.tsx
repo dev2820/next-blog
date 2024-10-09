@@ -180,8 +180,8 @@ const SearchResultSection = (props: SearchResultSection) => {
       )}
       <div className="mt-2 flex flex-row flex-wrap gap-1">
         {item.data.tags.map((tag) => (
-          <Link href={`/tags/${tag}`}>
-            <Tag key={tag} text={tag} />
+          <Link href={`/tags/${tag}`} key={tag}>
+            <Tag text={tag} />
           </Link>
         ))}
       </div>
