@@ -78,7 +78,6 @@ const SearchView = () => {
 
   return (
     <search className={cx("rounded-md flex flex-col items-center")}>
-      {"a" + BASE_PATH}
       <fieldset className="rounded-lg w-full pt-20 pb-6 flex flex-col place-items-center">
         <h2 className="text-5xl font-bold mb-8">Search</h2>
         <form
