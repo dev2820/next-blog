@@ -43,34 +43,36 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
 
     return (
       <>
-        <label className={cx("relative flex gap-3")} ref={ref}>
-          <SearchIcon
-            size={20}
-            className="absolute left-3 top-1/2 -translate-y-1/2"
-          />
-          <input
-            type="search"
-            placeholder={placeholder}
-            className={cx(
-              "peer",
-              "flex-1 h-full rounded-lg text-md bg-white caret-primary pl-10 pr-10",
-              "duration-200",
-              "border-2 focus:outline-none border-primary/50 focus:border-primary",
-              "focus-visible:outline-none focus-visible:border-primary",
-              className
-            )}
-            value={value}
-            onChange={handleTypingSearch}
-            {...rest}
-          />
-          <button
-            id="search-cancel-btn"
-            className="peer-placeholder-shown:hidden absolute right-[84px] top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
-            type="button"
-            onClick={handleClearSearch}
-          >
-            <XIcon size={20} />
-          </button>
+        <label className={cx("flex gap-3")} ref={ref}>
+          <div className="relative flex-1">
+            <SearchIcon
+              size={20}
+              className="absolute left-3 top-1/2 -translate-y-1/2"
+            />
+            <input
+              type="search"
+              placeholder={placeholder}
+              className={cx(
+                "peer",
+                "w-full h-full rounded-lg text-md bg-white caret-primary pl-10 pr-10",
+                "duration-200",
+                "border-2 focus:outline-none border-primary/50 focus:border-primary",
+                "focus-visible:outline-none focus-visible:border-primary",
+                className
+              )}
+              value={value}
+              onChange={handleTypingSearch}
+              {...rest}
+            />
+            <button
+              id="search-cancel-btn"
+              className="peer-placeholder-shown:hidden absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
+              type="button"
+              onClick={handleClearSearch}
+            >
+              <XIcon size={20} />
+            </button>
+          </div>
           <Button size="lg" theme="primary" type="submit" className="flex-none">
             <SearchIcon size={24} />
           </Button>
