@@ -53,7 +53,12 @@ export default function RootLayout({
         "scroll-smooth"
       )}
     >
-      <body className={cx(pretendard.className, "flex flex-col text-gray-800")}>
+      <body
+        className={cx(
+          pretendard.className,
+          "w-dvw overflow-x-hidden flex flex-col text-gray-800"
+        )}
+      >
         <Header className="self-center w-screen max-w-screen-md px-4 fixed top-0 z-50 bg-white/75 backdrop-blur-sm"></Header>
         <main className="self-center w-screen max-w-screen-md p-4 mt-16 text-gray-800">
           {children}
