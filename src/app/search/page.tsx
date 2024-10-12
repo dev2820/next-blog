@@ -131,12 +131,10 @@ const SearchView = () => {
                   <ul className="mt-4">
                     {queriedPosts.map((sr) => (
                       <li key={sr.refIndex} className="mb-4 last:mb-0">
-                        <Link href={`/posts/${sr.item.data.slug}`}>
-                          <SearchResultSection
-                            result={sr}
-                            className="bg-gray-100 hover:bg-gray-200 duration-200"
-                          ></SearchResultSection>
-                        </Link>
+                        <SearchResultSection
+                          result={sr}
+                          className="bg-gray-200"
+                        ></SearchResultSection>
                       </li>
                     ))}
                   </ul>
@@ -164,18 +162,23 @@ const SearchResultSection = (props: SearchResultSection) => {
 
   return (
     <section className={cx("rounded-md p-4", className)} {...rest}>
-      {titleMatch && titleMatch.value && titleMatch.indices ? (
-        <h3 className="text-2xl font-semibold">
-          {splitByIndices(
-            titleMatch.value,
-            titleMatch.indices as [number, number][]
-          ).map((token, idx) =>
-            idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
-          )}
-        </h3>
-      ) : (
-        <h3 className="text-2xl">{item.data.title}</h3>
-      )}
+      <Link href={`/posts/${item.data.slug}`}>
+        {titleMatch && titleMatch.value && titleMatch.indices ? (
+          <h3 className="text-2xl font-semibold hover:underline">
+            {splitByIndices(
+              titleMatch.value,
+              titleMatch.indices as [number, number][]
+            ).map((token, idx) =>
+              idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
+            )}
+          </h3>
+        ) : (
+          <h3 className="text-2xl font-semibold hover:underline">
+            {item.data.title}
+          </h3>
+        )}
+      </Link>
+
       {summaryMatch && summaryMatch.value && summaryMatch.indices ? (
         <p className="mt-4">
           {splitByIndices(
