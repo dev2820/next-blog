@@ -37,6 +37,7 @@ export default function SearchPage() {
 const SearchView = () => {
   const searchParams = useSearchParams();
   const currentQuery = searchParams.get("q");
+  const queryNotExist = isNil(currentQuery) || currentQuery === "";
   const [posts, setPosts] = useState<Post[]>([]);
   const queriedPosts = useMemo<SearchResult<Post>[] | null>(() => {
     if (!currentQuery || posts.length <= 0) {
@@ -59,6 +60,17 @@ const SearchView = () => {
     const posts = result.value;
     setPosts(posts);
   };
+
+  const tags = [
+    ...posts
+      .map((p) => p.data.tags)
+      .flat()
+      .reduce(
+        (map, tag) => map.set(tag, (map.get(tag) ?? 0) + 1),
+        new Map<string, number>()
+      )
+      .entries(),
+  ];
 
   useMount(() => {
     delayFn(200, () => {
@@ -96,9 +108,20 @@ const SearchView = () => {
           />
         </form>
       </fieldset>
-      <hr className="w-full my-8" />
-      <div className="text-left w-full">
-        {currentQuery && (
+      {queryNotExist && (
+        <ul className="flex flex-row gap-3 flex-wrap">
+          {tags.map(([tag, count]) => (
+            <li key={tag}>
+              <Link href={`${BASE_PATH}/tags/${tag}`} className="rounded-full">
+                <Tag>{`${tag} (${count})`}</Tag>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+      {/* <hr className="w-full my-8" /> */}
+      <div className="text-left w-full mt-16">
+        {!queryNotExist && (
           <>
             {isNil(queriedPosts) && (
               <>
@@ -112,7 +135,7 @@ const SearchView = () => {
             )}
             {!isNil(queriedPosts) && (
               <>
-                <strong className="block text-3xl font-bold">
+                <strong className="block text-3xl font-bold mb-12">
                   <Highlight>&quot;{currentQuery}&quot;</Highlight> 검색 결과:{" "}
                   <Highlight>{queriedPosts?.length}</Highlight>개의 포스트
                 </strong>
@@ -130,11 +153,11 @@ const SearchView = () => {
                 {queriedPosts.length > 0 && (
                   <ul className="mt-4">
                     {queriedPosts.map((sr) => (
-                      <li key={sr.refIndex} className="mb-4 last:mb-0">
-                        <SearchResultSection
-                          result={sr}
-                          className="bg-gray-200"
-                        ></SearchResultSection>
+                      <li
+                        key={sr.refIndex}
+                        className="mb-4 last:mb-0 border-b first:border-t"
+                      >
+                        <SearchResultSection result={sr}></SearchResultSection>
                       </li>
                     ))}
                   </ul>
@@ -180,7 +203,7 @@ const SearchResultSection = (props: SearchResultSection) => {
       </Link>
 
       {summaryMatch && summaryMatch.value && summaryMatch.indices ? (
-        <p className="mt-4">
+        <p className="mt-4 text-gray-500">
           {splitByIndices(
             summaryMatch.value,
             summaryMatch.indices as [number, number][]
@@ -189,12 +212,12 @@ const SearchResultSection = (props: SearchResultSection) => {
           )}
         </p>
       ) : (
-        <p className="mt-4">{item.data.summary}</p>
+        <p className="mt-4 text-gray-500">{item.data.summary}</p>
       )}
       <div className="mt-2 flex flex-row flex-wrap gap-1">
         {item.data.tags.map((tag) => (
           <Link href={`/tags/${tag}`} key={tag}>
-            <Tag text={tag} />
+            <Tag>{tag}</Tag>
           </Link>
         ))}
       </div>

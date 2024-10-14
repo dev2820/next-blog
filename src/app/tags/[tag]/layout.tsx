@@ -28,12 +28,13 @@ export async function generateStaticParams() {
       )
       .keys(),
   ];
-  return tags.map((tag) => ({ tag }));
+  return tags.map((tag) => ({ tag: encodeURIComponent(tag) }));
 }
 
 // TODO: Metadata 적용
 export async function generateMetadata({ params }: PageProps) {
-  const { tag } = params;
+  const { tag: _tag } = params;
+  const tag = decodeURIComponent(_tag);
   const posts = getPostsByTag(tag);
 
   // TODO: tag 페이지용 metadata

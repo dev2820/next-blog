@@ -8,9 +8,19 @@
   /**
    * css for terra-design-system
    */
-  --my-colors-primary: #4caf50;
-  --my-colors-primary-hover: #43a047;
-  --my-colors-primary-pressed: #388e3c;
+  --my-colors-primary-50: #f0fdf4;
+  --my-colors-primary-100: #dcfce7;
+  --my-colors-primary-200: #bbf7d0;
+  --my-colors-primary-300: #86efac;
+  --my-colors-primary-400: #4ade80;
+  --my-colors-primary-500: #22c55e;
+  --my-colors-primary-600: #16a34a;
+  --my-colors-primary-700: #15803d;
+  --my-colors-primary-800: #166534;
+  --my-colors-primary-900: #14532d;
+  --my-colors-primary: var(--my-colors-primary-500);
+  --my-colors-primary-hover: var(--my-colors-primary-600);
+  --my-colors-primary-pressed: var(--my-colors-primary-700);
 }
 
 @media (prefers-color-scheme: dark) {

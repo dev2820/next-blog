@@ -9,9 +9,9 @@ export type PostData = {
   title: string;
   published: string;
   tags: string[];
+  slug: string;
   modified?: string;
   summary?: string;
   draft?: boolean;
-  slug?: string;
   image?: string; // hero image까지의 path
 };

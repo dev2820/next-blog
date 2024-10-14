@@ -22,12 +22,13 @@ export async function generateStaticParams() {
   return posts
     .filter((p) => p.data.draft)
     .map((p) => ({
-      slug: p.data.slug,
+      slug: encodeURIComponent(p.data.slug),
     }));
 }
 // TODO: Metadata 적용
 export async function generateMetadata({ params }: PageProps) {
-  const { slug } = params;
+  const { slug: _slug } = params;
+  const slug = decodeURIComponent(_slug);
   const post = getPostBySlug(slug);
   const basePath = `${BASE_PATH}/posts/${slug}`;
 

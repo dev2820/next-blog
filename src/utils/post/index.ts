@@ -18,7 +18,8 @@ export const getAllPosts = () => {
   return postPaths
     .map((p) => fs.readFileSync(p, "utf-8"))
     .map((file) => getMatter(file))
-    .map(toPost);
+    .map(toPost)
+    .filter((p) => p.data.draft);
 };
 
 export const getAllPostsData = () => {
@@ -53,9 +54,25 @@ export const getPostByTitle = (title: string): Post | undefined => {
   return undefined;
 };
 
+/**
+ * post의 모든 tag를 가져온다.
+ * @returns [tagName, tagCount]
+ */
+export const getAllTags = (): [string, number][] => {
+  const tagMap = getAllPosts()
+    .map((post) => post.data.tags)
+    .flat()
+    .reduce(
+      (map, tag) => map.set(tag, (map.get(tag) ?? 0) + 1),
+      new Map<string, number>()
+    );
+
+  return Array.from(tagMap);
+};
+
 export const getPostsByTag = (tag: string): Post[] => {
   // TODO: tag로 post 검색하기
-  return [];
+  return getAllPosts().filter((post) => post.data.tags.includes(tag));
 };
 
 const toPost = (rawPost: GrayMatterFile<string>): Post => {

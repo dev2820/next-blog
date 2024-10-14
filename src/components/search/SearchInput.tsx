@@ -56,7 +56,7 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
                 "peer",
                 "w-full h-full rounded-lg text-md bg-white caret-primary pl-10 pr-10",
                 "duration-200",
-                "border-2 focus:outline-none border-primary/50 focus:border-primary",
+                "border-2 focus:outline-none border-primary-500 focus:ring-4 focus:ring-primary-200",
                 "focus-visible:outline-none focus-visible:border-primary",
                 className
               )}
@@ -66,14 +66,25 @@ export const SearchInput = forwardRef<HTMLLabelElement, SearchInputProps>(
             />
             <button
               id="search-cancel-btn"
-              className="peer-placeholder-shown:hidden absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
+              className={cx(
+                "peer-placeholder-shown:hidden absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex justify-center place-items-center"
+              )}
               type="button"
               onClick={handleClearSearch}
             >
               <XIcon size={20} />
             </button>
           </div>
-          <Button size="lg" theme="primary" type="submit" className="flex-none">
+          <Button
+            size="lg"
+            theme="primary"
+            type="submit"
+            className={cx(
+              "flex-none",
+              "focus:outline-none focus:ring-4 focus:ring-primary-200",
+              "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-200"
+            )}
+          >
             <SearchIcon size={24} />
           </Button>
         </label>

@@ -24,7 +24,19 @@ const config: Config = {
         desktop: "1023px",
       },
       colors: {
-        primary: "#4CAF50",
+        primary: {
+          DEFAULT: "var(--my-colors-primary)",
+          50: "var(--my-colors-primary-50)", // Lightest green
+          100: "var(--my-colors-primary-100)", // Very light green
+          200: "var(--my-colors-primary-200)", // Light green
+          300: "var(--my-colors-primary-300)", // Lighter green
+          400: "var(--my-colors-primary-400)", // Light-medium green
+          500: "var(--my-colors-primary-500)", // Base green
+          600: "var(--my-colors-primary-600)", // Medium green
+          700: "var(--my-colors-primary-700)", // Darker green
+          800: "var(--my-colors-primary-800)", // Dark green
+          900: "var(--my-colors-primary-900)", // Darkest green
+        },
         muted: "rgb(212 212 212)",
       },
       lineHeight: {
