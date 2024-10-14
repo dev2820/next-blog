@@ -52,7 +52,7 @@ export function CodeBlock(props: CodeBlockProps) {
       <div className="relative my-8">
         <_CodeBlock.Code
           className={cx(
-            "py-2 px-8 bg-[#282a36] rounded-md overflow-scroll",
+            "py-2 px-8 bg-[#282a36] rounded-md overflow-auto",
             className
           )}
           {...rest}
