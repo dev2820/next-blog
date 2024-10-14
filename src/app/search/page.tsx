@@ -23,6 +23,11 @@ import { isFailed, isNil } from "@/utils/predicate";
 import { Tag } from "@/components/Tag";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "terra-design-system/react";
+import {
+  SearchResultRoot,
+  SearchResultTitle,
+  SearchResultDescription,
+} from "@/components/search/SearchResult";
 
 const BASE_PATH = process.env.basePath ?? "";
 
@@ -184,36 +189,29 @@ const SearchResultSection = (props: SearchResultSection) => {
   const summaryMatch = matches?.find((match) => match.key === "data.summary");
 
   return (
-    <section className={cx("rounded-md p-4", className)} {...rest}>
+    <SearchResultRoot className={cx("rounded-md p-4", className)} {...rest}>
       <Link href={`/posts/${item.data.slug}`}>
-        {titleMatch && titleMatch.value && titleMatch.indices ? (
-          <h3 className="text-2xl font-semibold hover:underline">
-            {splitByIndices(
-              titleMatch.value,
-              titleMatch.indices as [number, number][]
+        <SearchResultTitle className="hover:underline">
+          {titleMatch && titleMatch.value && titleMatch.indices
+            ? splitByIndices(
+                titleMatch.value,
+                titleMatch.indices as [number, number][]
+              ).map((token, idx) =>
+                idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
+              )
+            : item.data.title}
+        </SearchResultTitle>
+      </Link>
+      <SearchResultDescription>
+        {summaryMatch && summaryMatch.value && summaryMatch.indices
+          ? splitByIndices(
+              summaryMatch.value,
+              summaryMatch.indices as [number, number][]
             ).map((token, idx) =>
               idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
-            )}
-          </h3>
-        ) : (
-          <h3 className="text-2xl font-semibold hover:underline">
-            {item.data.title}
-          </h3>
-        )}
-      </Link>
-
-      {summaryMatch && summaryMatch.value && summaryMatch.indices ? (
-        <p className="mt-4 text-gray-500">
-          {splitByIndices(
-            summaryMatch.value,
-            summaryMatch.indices as [number, number][]
-          ).map((token, idx) =>
-            idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
-          )}
-        </p>
-      ) : (
-        <p className="mt-4 text-gray-500">{item.data.summary}</p>
-      )}
+            )
+          : item.data.summary}
+      </SearchResultDescription>
       <div className="mt-2 flex flex-row flex-wrap gap-1">
         {item.data.tags.map((tag) => (
           <Link href={`/tags/${tag}`} key={tag}>
@@ -221,7 +219,7 @@ const SearchResultSection = (props: SearchResultSection) => {
           </Link>
         ))}
       </div>
-    </section>
+    </SearchResultRoot>
   );
 };
 
