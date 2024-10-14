@@ -17,6 +17,11 @@ const NAVIGATION_MENUS = [
     disabled: false,
   },
   {
+    href: "/tags",
+    label: "Tags",
+    disabled: false,
+  },
+  {
     href: "/about",
     label: "About Me",
     disabled: true,
