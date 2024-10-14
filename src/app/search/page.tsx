@@ -190,8 +190,8 @@ const SearchResultSection = (props: SearchResultSection) => {
 
   return (
     <SearchResultRoot className={cx("rounded-md p-4", className)} {...rest}>
-      <Link href={`/posts/${item.data.slug}`}>
-        <SearchResultTitle className="hover:underline">
+      <Link href={`/posts/${item.data.slug}`} className="hover:underline">
+        <SearchResultTitle>
           {titleMatch && titleMatch.value && titleMatch.indices
             ? splitByIndices(
                 titleMatch.value,

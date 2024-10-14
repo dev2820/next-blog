@@ -9,6 +9,12 @@ import { fetchPostListForSearch } from "@/utils/search";
 import { isFailed } from "@/utils/predicate";
 import { Skeleton } from "terra-design-system/react";
 import { getPostsByTag } from "@/utils/post";
+import {
+  SearchResultDescription,
+  SearchResultRoot,
+  SearchResultTitle,
+} from "@/components/search/SearchResult";
+import { Tag } from "@/components/Tag";
 
 type PageProps = {
   params: {
@@ -25,10 +31,30 @@ export default function TagPage({ params }: PageProps) {
   return (
     <div className={cx("rounded-md flex flex-col items-center")}>
       <h2 className="text-5xl font-bold mb-8">Tag: {tag}</h2>
-      <ul>
-        {taggedPosts.map((post, idx) => (
-          <li key={post.data.title}>
-            <Link href={`/posts/${post.data.slug}`}>{post.data.title}</Link>
+      <ul className="w-full">
+        {taggedPosts.map((post) => (
+          <li
+            key={post.data.title}
+            className="mb-4 last:mb-0 border-b first:border-t"
+          >
+            <SearchResultRoot className="p-4">
+              <Link
+                href={`/posts/${post.data.slug}`}
+                className="hover:underline"
+              >
+                <SearchResultTitle>{post.data.title}</SearchResultTitle>
+              </Link>
+              <SearchResultDescription>
+                {post.data.summary}
+              </SearchResultDescription>
+              <div className="mt-2 flex flex-row flex-wrap gap-1">
+                {post.data.tags.map((tag) => (
+                  <Link href={`/tags/${tag}`} key={tag}>
+                    <Tag>{tag}</Tag>
+                  </Link>
+                ))}
+              </div>
+            </SearchResultRoot>
           </li>
         ))}
       </ul>
