@@ -16,6 +16,8 @@ import {
 } from "@/components/search/SearchResult";
 import { Tag } from "@/components/Tag";
 
+const BASE_PATH = process.env.basePath ?? "";
+
 type PageProps = {
   params: {
     tag: string;
@@ -49,7 +51,7 @@ export default function TagPage({ params }: PageProps) {
               </SearchResultDescription>
               <div className="mt-2 flex flex-row flex-wrap gap-1">
                 {post.data.tags.map((tag) => (
-                  <Link href={`/tags/${tag}`} key={tag}>
+                  <Link href={`${BASE_PATH}/tags/${tag}`} key={tag}>
                     <Tag>{tag}</Tag>
                   </Link>
                 ))}
