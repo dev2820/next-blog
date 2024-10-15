@@ -13,14 +13,13 @@ export function Tag(props: TagProps) {
     <span
       className={
         cx(
-          "inline-block rounded-full border duration-200",
-          theme === "primary" &&
-            "text-primary-500 border-primary-500 hover:border-primary-600 hover:text-primary-600 ",
+          "inline-block rounded-full duration-200",
+          theme === "primary" && "bg-primary-200 hover:bg-primary-400",
           theme === "secondary" &&
-            "text-gray-400 border-gray-400 hover:border-gray-700 hover:text-gray-700",
+            "bg-gray-200 hover:bg-gray-400 hover:text-white",
           "font-light align-top",
-          "min-h-5 text-xs px-3"
-        ) + " leading-5"
+          "min-h-6 text-xs px-3"
+        ) + " leading-6"
       }
       {...rest}
     >

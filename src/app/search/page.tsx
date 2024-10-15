@@ -212,10 +212,10 @@ const SearchResultSection = (props: SearchResultSection) => {
             )
           : item.data.summary}
       </SearchResultDescription>
-      <div className="mt-2 flex flex-row flex-wrap gap-1">
+      <div className="mt-2 flex flex-row flex-wrap gap-3">
         {item.data.tags.map((tag) => (
           <Link href={`/tags/${tag}`} key={tag}>
-            <Tag>{tag}</Tag>
+            <Tag theme="primary">{tag}</Tag>
           </Link>
         ))}
       </div>
