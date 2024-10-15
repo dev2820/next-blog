@@ -6,6 +6,7 @@ import Link from "next/link";
 import { cx } from "@/utils/cx";
 import { Skeleton } from "terra-design-system/react";
 import { getAllPosts } from "@/utils/post";
+import { Tag } from "@/components/Tag";
 
 export default function TagsPage() {
   const posts = getAllPosts();
@@ -19,18 +20,24 @@ export default function TagsPage() {
       )
       .entries(),
   ];
+  const compare = (a: [string, number], b: [string, number]) => {
+    const aCount = a[1];
+    const bCount = b[1];
+    return aCount < bCount ? 1 : -1;
+  };
+  const sortedTags = tags.toSorted(compare);
 
   return (
     <div className={cx("rounded-md flex flex-col items-center")}>
       <h2 className="text-5xl font-bold mb-8">Tag</h2>
       <ul>
-        {tags.map(([tag, count], idx) => (
-          <li key={tag}>
-            {/* <Skeleton isLoaded={true}> */}
+        {sortedTags.map(([tag, count]) => (
+          <li key={tag} className="mb-2.5 text-center">
             <Link href={`tags/${tag}`}>
-              {tag} ({count})
+              <Tag theme="primary">
+                {tag} ({count})
+              </Tag>
             </Link>
-            {/* </Skeleton> */}
           </li>
         ))}
       </ul>

@@ -49,7 +49,7 @@ export default function TagPage({ params }: PageProps) {
               <SearchResultDescription>
                 {post.data.summary}
               </SearchResultDescription>
-              <div className="mt-2 flex flex-row flex-wrap gap-1">
+              <div className="mt-2 flex flex-row flex-wrap gap-2.5">
                 {post.data.tags.map((tag) => (
                   <Link href={`${BASE_PATH}/tags/${tag}`} key={tag}>
                     <Tag>{tag}</Tag>

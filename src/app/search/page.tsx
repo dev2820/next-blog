@@ -114,7 +114,7 @@ const SearchView = () => {
         </form>
       </fieldset>
       {queryNotExist && (
-        <ul className="flex flex-row gap-3 flex-wrap">
+        <ul className="flex flex-row gap-3 flex-wrap justify-center">
           {tags.map(([tag, count]) => (
             <li key={tag}>
               <Link href={`${BASE_PATH}/tags/${tag}`} className="rounded-full">
@@ -212,7 +212,7 @@ const SearchResultSection = (props: SearchResultSection) => {
             )
           : item.data.summary}
       </SearchResultDescription>
-      <div className="mt-2 flex flex-row flex-wrap gap-3">
+      <div className="mt-2 flex flex-row flex-wrap gap-2.5">
         {item.data.tags.map((tag) => (
           <Link href={`/tags/${tag}`} key={tag}>
             <Tag theme="primary">{tag}</Tag>
