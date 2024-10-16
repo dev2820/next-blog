@@ -1,13 +1,4 @@
-/**
- * TODO: tag 꾸미기
- * TODO: tag skeleton 애니메이션
- */
 import Link from "next/link";
-import { cx } from "@/utils/cx";
-import type { Post } from "@/types/post";
-import { fetchPostListForSearch } from "@/utils/search";
-import { isFailed } from "@/utils/predicate";
-import { Skeleton } from "terra-design-system/react";
 import { getPostsByTag } from "@/utils/post";
 import {
   SearchResultDescription,
@@ -31,7 +22,7 @@ export default function TagPage({ params }: PageProps) {
   const taggedPosts = posts.filter((p) => p.data.tags.includes(tag));
 
   return (
-    <div className={cx("rounded-md flex flex-col items-center")}>
+    <>
       <h2 className="text-5xl font-bold mb-16 mt-24">Tag: {tag}</h2>
       <ul className="w-full">
         {taggedPosts.map((post) => (
@@ -60,6 +51,6 @@ export default function TagPage({ params }: PageProps) {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }

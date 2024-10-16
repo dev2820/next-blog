@@ -33,10 +33,7 @@ export default function PostsPage() {
 
   return (
     <>
-      {/**
-       * 태그 검색
-       * 태그 표시(w. 갯수)
-       */}
+      <h2 className="text-5xl font-bold mb-16 mt-24">Posts</h2>
       <ul className="flex flex-row gap-3 flex-wrap mb-4">
         {tags.map(([tag, count]) => (
           <li key={tag}>
