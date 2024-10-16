@@ -4,7 +4,6 @@
  */
 import Link from "next/link";
 import { cx } from "@/utils/cx";
-import { Skeleton } from "terra-design-system/react";
 import { getAllPosts } from "@/utils/post";
 import { Tag } from "@/components/Tag";
 
@@ -30,11 +29,11 @@ export default function TagsPage() {
   return (
     <div className={cx("rounded-md flex flex-col items-center")}>
       <h2 className="text-5xl font-bold mb-8">Tag</h2>
-      <ul>
+      <ul className="flex flex-row flex-wrap gap-3 min-w-72 max-w-12 w-full justify-center">
         {sortedTags.map(([tag, count]) => (
-          <li key={tag} className="mb-2.5 text-center">
+          <li key={tag} className="mb-2.5">
             <Link href={`tags/${tag}`}>
-              <Tag theme="primary">
+              <Tag theme="secondary">
                 {tag} ({count})
               </Tag>
             </Link>

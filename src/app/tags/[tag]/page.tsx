@@ -32,7 +32,7 @@ export default function TagPage({ params }: PageProps) {
 
   return (
     <div className={cx("rounded-md flex flex-col items-center")}>
-      <h2 className="text-5xl font-bold mb-8">Tag: {tag}</h2>
+      <h2 className="text-5xl font-bold mb-16 mt-24">Tag: {tag}</h2>
       <ul className="w-full">
         {taggedPosts.map((post) => (
           <li
@@ -49,10 +49,10 @@ export default function TagPage({ params }: PageProps) {
               <SearchResultDescription>
                 {post.data.summary}
               </SearchResultDescription>
-              <div className="mt-2 flex flex-row flex-wrap gap-2.5">
+              <div className="mt-4 flex flex-row flex-wrap gap-2.5">
                 {post.data.tags.map((tag) => (
                   <Link href={`${BASE_PATH}/tags/${tag}`} key={tag}>
-                    <Tag>{tag}</Tag>
+                    <Tag theme="secondary">{tag}</Tag>
                   </Link>
                 ))}
               </div>

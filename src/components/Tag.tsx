@@ -20,11 +20,10 @@ export function Tag(props: TagProps) {
     <span
       className={cx(
         "inline-block rounded-full duration-200",
-        theme === "primary" && "bg-primary-200 hover:bg-primary-400",
-        theme === "secondary" &&
-          "bg-gray-200 hover:bg-gray-400 hover:text-white",
+        theme === "primary" && "bg-primary-100 hover:bg-primary-300",
+        theme === "secondary" && "bg-gray-100 hover:bg-gray-300 ",
         "font-light align-top",
-        size === "md" && "min-h-8 text-sm px-3 leading-8"
+        size === "md" && "min-h-8 text-sm px-4 leading-8"
       )}
       {...rest}
     >
