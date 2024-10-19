@@ -6,6 +6,7 @@ import {
   SearchResultTitle,
 } from "@/components/search/SearchResult";
 import { Tag } from "@/components/Tag";
+import { PageHeading } from "@/components/PageHeading";
 
 const BASE_PATH = process.env.basePath ?? "";
 
@@ -23,7 +24,7 @@ export default function TagPage({ params }: PageProps) {
 
   return (
     <>
-      <h2 className="text-5xl font-bold mb-16 mt-24">Tag: {tag}</h2>
+      <PageHeading>Tag: {tag}</PageHeading>
       <ul className="w-full">
         {taggedPosts.map((post) => (
           <li

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { cx } from "@/utils/cx";
 import { getAllPosts } from "@/utils/post";
 import { Tag } from "@/components/Tag";
+import { PageHeading } from "@/components/PageHeading";
 
 export default function TagsPage() {
   const posts = getAllPosts();
@@ -28,7 +29,7 @@ export default function TagsPage() {
 
   return (
     <div className={cx("rounded-md flex flex-col items-center")}>
-      <h2 className="text-5xl font-bold mb-8">Tags</h2>
+      <PageHeading>Tags</PageHeading>
       <ul className="flex flex-row flex-wrap gap-3 min-w-72 max-w-12 w-full justify-center">
         {sortedTags.map(([tag, count]) => (
           <li key={tag} className="mb-2.5">

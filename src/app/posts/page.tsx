@@ -1,3 +1,4 @@
+import { PageHeading } from "@/components/PageHeading";
 import {
   SearchResultRoot,
   SearchResultTitle,
@@ -33,7 +34,7 @@ export default function PostsPage() {
 
   return (
     <>
-      <h2 className="text-5xl font-bold mb-16 mt-24">Posts</h2>
+      <PageHeading>Posts</PageHeading>
       <ul className="flex flex-row gap-3 flex-wrap mb-4">
         {tags.map(([tag, count]) => (
           <li key={tag}>
