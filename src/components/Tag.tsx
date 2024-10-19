@@ -6,6 +6,7 @@ import { ComponentProps } from "react";
 export type TagProps = ComponentProps<"span"> & {
   theme?: "primary" | "secondary";
   size?: "md";
+  active?: boolean;
 };
 
 export function Tag(props: TagProps) {
@@ -14,6 +15,7 @@ export function Tag(props: TagProps) {
     className,
     theme = "primary",
     size = "md",
+    active,
     ...rest
   } = props;
   return (
@@ -21,9 +23,12 @@ export function Tag(props: TagProps) {
       className={cx(
         "inline-block rounded-full duration-200",
         theme === "primary" && "bg-primary-100 hover:bg-primary-300",
+        active && theme === "primary" && "bg-primary-300",
         theme === "secondary" && "bg-gray-100 hover:bg-gray-300 ",
+        active && theme === "secondary" && "bg-gray-300",
         "font-light align-top",
-        size === "md" && "min-h-8 text-sm px-4 leading-8"
+        size === "md" && "min-h-8 text-sm px-4 leading-8",
+        className
       )}
       {...rest}
     >
