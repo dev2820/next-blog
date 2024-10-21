@@ -5,5 +5,5 @@ export type StrongProps = ComponentProps<"strong">;
 export function Strong(props: StrongProps) {
   const { className, ...rest } = props;
 
-  return <strong className={cx("font-medium", className)} {...rest} />;
+  return <strong className={cx("font-bold", className)} {...rest} />;
 }
