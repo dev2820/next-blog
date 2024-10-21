@@ -84,7 +84,7 @@ export default async function PostPage({ params }: PageProps) {
           alt={alt ?? ""}
           width={0}
           height={0}
-          className="mx-auto my-12 w-full max-w-[704px]"
+          className="mx-auto my-12 w-full max-w-[704px] max-h-[600px] object-contain"
           {...rest}
         />
       ),
