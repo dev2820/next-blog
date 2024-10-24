@@ -21,7 +21,6 @@ import {
   Heading4,
   Heading5,
   Heading6,
-  Image,
   ListItem,
   OrderedList,
   Paragraph,
@@ -39,6 +38,7 @@ import { ShareButton } from "@/components/post/ShareButton";
 import { TableOfContents } from "@/components/post/TableOfContents";
 import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";
+import { Ficture } from "@/components/post/element/Ficture";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PageProps) {
       h6: Heading6,
       p: Paragraph,
       img: ({ alt, src, width, height, ...rest }) => (
-        <Image
+        <Ficture
           src={path.join(basePath, src ?? "")}
           alt={alt ?? ""}
           width={0}
@@ -151,15 +151,17 @@ export default async function PostPage({ params }: PageProps) {
             <TableOfContents toc={toc} className="sticky top-24" />
           </aside>
           {CompiledMDX}
-          <ShareButton
-            size="lg"
-            shareData={{
-              title: `${TITLE} - ${data.title}`,
-              text: data.summary,
-              url: basePath,
-            }}
-            aria-label="Share this article"
-          />
+          <div className="text-center my-36">
+            <ShareButton
+              size="lg"
+              shareData={{
+                title: `${TITLE} - ${data.title}`,
+                text: data.summary,
+                url: basePath,
+              }}
+              aria-label="Share this article"
+            />
+          </div>
         </div>
         <section id="author">
           <AuthorInfo />
