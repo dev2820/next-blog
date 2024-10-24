@@ -85,7 +85,7 @@ export default function PostsPage() {
   return (
     <>
       <PageHeading>Posts</PageHeading>
-      <ul className="flex flex-row gap-3 flex-wrap mb-16">
+      <ul className="flex flex-row gap-2.5 flex-wrap mb-16">
         {filterOptions.map(([filterOption, count]) => (
           <li key={filterOption}>
             <button onClick={handleClickTag} data-filter-option={filterOption}>
@@ -136,7 +136,7 @@ export default function PostsPage() {
                 <SearchResultDescription>
                   {post.data.summary}
                 </SearchResultDescription>
-                <div className="mt-4 flex flex-row flex-wrap gap-1">
+                <div className="mt-4 flex flex-row flex-wrap gap-2.5">
                   {post.data.tags.map((tag) => (
                     <Link href={`/tags/${tag}`} key={tag}>
                       <Tag theme="secondary">{tag}</Tag>
