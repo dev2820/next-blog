@@ -85,9 +85,9 @@ export default function PostsPage() {
   return (
     <>
       <PageHeading>Posts</PageHeading>
-      <ul className="flex flex-row gap-2.5 flex-wrap mb-16">
+      <ul className="flex flex-row gap-2.5 flex-nowrap mb-16 overflow-x-scroll tablet:flex-wrap tablet:h-auto tablet:overflow-x-hidden">
         {filterOptions.map(([filterOption, count]) => (
-          <li key={filterOption}>
+          <li key={filterOption} className="snap-center flex-none">
             <button onClick={handleClickTag} data-filter-option={filterOption}>
               <Tag
                 theme={currentFilter === filterOption ? "primary" : "secondary"}
