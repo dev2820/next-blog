@@ -29,7 +29,7 @@ const NAVIGATION_MENUS = [
   {
     href: "/contact",
     label: "Contact",
-    enabled: false,
+    enabled: true,
   },
 ];
 
