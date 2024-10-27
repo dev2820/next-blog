@@ -14,22 +14,22 @@ const NAVIGATION_MENUS = [
   {
     href: "/posts",
     label: "Posts",
-    disabled: false,
+    enabled: true,
   },
   {
     href: "/tags",
     label: "Tags",
-    disabled: false,
+    enabled: true,
   },
   {
     href: "/about",
     label: "About Me",
-    disabled: true,
+    enabled: false,
   },
   {
     href: "/contact",
     label: "Contact",
-    disabled: true,
+    enabled: false,
   },
 ];
 
@@ -71,18 +71,16 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                 {NAVIGATION_MENUS.map((m) => (
                   <li
                     key={m.href}
-                    className={cx(
-                      !m.disabled && "hover:bg-black/5 duration-200"
-                    )}
+                    className={cx(m.enabled && "hover:bg-black/5 duration-200")}
                   >
                     <Link
-                      href={m.disabled ? "" : m.href}
-                      aria-disabled={m.disabled}
+                      href={m.enabled ? m.href : ""}
+                      aria-disabled={!m.enabled}
                       onClick={drawerHandler.close}
                     >
                       <NavigationItem
                         active={pathname.startsWith(m.href)}
-                        disabled={m.disabled}
+                        disabled={!m.enabled}
                         className="h-12 leading-[48px] px-2 text-center"
                       >
                         {m.label}
@@ -103,10 +101,10 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
       <menu className="flex flex-row gap-8">
         {NAVIGATION_MENUS.map((m) => (
           <li key={m.href}>
-            <Link href={m.disabled ? "" : m.href} aria-disabled={m.disabled}>
+            <Link href={m.enabled ? m.href : ""} aria-disabled={!m.enabled}>
               <NavigationItem
                 active={pathname.startsWith(m.href)}
-                disabled={m.disabled}
+                disabled={!m.enabled}
               >
                 {m.label}
               </NavigationItem>
