@@ -40,15 +40,15 @@ const config: Config = {
         muted: "rgb(212 212 212)",
       },
       lineHeight: {
-        normal: "1.6",
+        normal: "1.7",
         6: "1.5rem",
         8: "2rem",
       },
       fontSize: {
         paragraph: [
-          "16px",
+          "17px",
           {
-            lineHeight: "1.5",
+            lineHeight: "1.7",
             fontWeight: "400",
           },
         ],
@@ -63,14 +63,14 @@ const config: Config = {
           "28px",
           {
             lineHeight: "1.3",
-            fontWeight: "700",
+            fontWeight: "600",
           },
         ],
         heading3: [
           "24px",
           {
             lineHeight: "1.5",
-            fontWeight: "500",
+            fontWeight: "600",
           },
         ],
         heading4: [
