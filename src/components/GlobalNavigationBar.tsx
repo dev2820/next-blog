@@ -61,7 +61,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
             <BrandLogo />
             <Drawer.CloseTrigger asChild onClick={drawerHandler.close}>
               <IconButton variant="ghost">
-                <XIcon strokeWidth={1} size={24} />
+                <XIcon size={24} />
               </IconButton>
             </Drawer.CloseTrigger>
           </Drawer.Title>

@@ -92,10 +92,10 @@ function Header(props: HeaderProps) {
         <BrandLogo height={48} />
       </Link>
       <div className="flex-1" />
-      <GlobalNavigationBar className="mr-1 desktop:mr-8" />
-      <Link href="/search">
+      <Link href="/search" className="mr-1 desktop:mr-8">
         <SearchButton />
       </Link>
+      <GlobalNavigationBar />
     </header>
   );
 }
