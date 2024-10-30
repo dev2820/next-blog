@@ -14,7 +14,7 @@ import { isFailed, isNil } from "@/utils/predicate";
 import { fetchPostListForSearch } from "@/utils/search";
 import Link from "next/link";
 import { MouseEvent, useCallback, useState } from "react";
-import { Select } from "terra-design-system/react";
+import { Select, Skeleton } from "terra-design-system/react";
 
 const ALL_POSTS = "전체 보기";
 const orderOptions = ["최신순", "오래된순"];
@@ -29,6 +29,7 @@ const compareFnTable = {
   },
 };
 export default function PostsPage() {
+  const [isFetching, setIsFetching] = useState<boolean>(true);
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentFilter, setCurrentFilter] = useState<string>(ALL_POSTS);
   const [currentOrder, setCurrentOrder] = useState<string>(orderOptions[0]);
@@ -63,6 +64,7 @@ export default function PostsPage() {
 
       const posts = result.value;
       setPosts(posts);
+      setIsFetching(false);
     };
     updatePosts();
   });
@@ -86,21 +88,34 @@ export default function PostsPage() {
     <>
       <PageHeading>Posts</PageHeading>
       <ul className="flex flex-row gap-2.5 flex-nowrap mb-16 overflow-x-scroll tablet:flex-wrap tablet:h-auto tablet:overflow-x-hidden">
-        {filterOptions.map(([filterOption, count]) => (
-          <li key={filterOption} className="snap-center flex-none">
-            <button onClick={handleClickTag} data-filter-option={filterOption}>
-              <Tag
-                theme={currentFilter === filterOption ? "primary" : "secondary"}
-                active={currentFilter === filterOption}
-                className={cx(
-                  currentFilter === filterOption
-                    ? "cursor-default"
-                    : "cursor-pointer"
-                )}
-              >{`${filterOption} (${count})`}</Tag>
-            </button>
-          </li>
-        ))}
+        {isFetching && (
+          <>
+            <Skeleton className="h-8 w-24 rounded-full" />
+            <Skeleton className="h-8 w-16 rounded-full" />
+            <Skeleton className="h-8 w-28 rounded-full" />
+          </>
+        )}
+        {!isFetching &&
+          filterOptions.map(([filterOption, count]) => (
+            <li key={filterOption} className="snap-center flex-none">
+              <button
+                onClick={handleClickTag}
+                data-filter-option={filterOption}
+              >
+                <Tag
+                  theme={
+                    currentFilter === filterOption ? "primary" : "secondary"
+                  }
+                  active={currentFilter === filterOption}
+                  className={cx(
+                    currentFilter === filterOption
+                      ? "cursor-default"
+                      : "cursor-pointer"
+                  )}
+                >{`${filterOption} (${count})`}</Tag>
+              </button>
+            </li>
+          ))}
       </ul>
       <div className="mb-4">
         <Select.Root
@@ -118,34 +133,45 @@ export default function PostsPage() {
         </Select.Root>
       </div>
       <ul className="w-full">
-        {posts
-          .filter(filterFn)
-          .toSorted(compareFnTable[currentOrder])
-          .map((post) => (
-            <li
-              key={post.data.title}
-              className="mb-4 last:mb-0 border-b first:border-t"
-            >
-              <SearchResultRoot className="p-4">
-                <Link
-                  href={`/posts/${post.data.slug}`}
-                  className="hover:underline"
-                >
-                  <SearchResultTitle>{post.data.title}</SearchResultTitle>
-                </Link>
-                <SearchResultDescription>
-                  {post.data.summary}
-                </SearchResultDescription>
-                <div className="mt-4 flex flex-row flex-wrap gap-2.5">
-                  {post.data.tags.map((tag) => (
-                    <Link href={`/tags/${tag}`} key={tag}>
-                      <Tag theme="secondary">{tag}</Tag>
-                    </Link>
-                  ))}
-                </div>
-              </SearchResultRoot>
+        {isFetching && (
+          <>
+            <li className="mb-4">
+              <Skeleton className="h-36 w-full" />
             </li>
-          ))}
+            <li>
+              <Skeleton className="h-36 w-full" />
+            </li>
+          </>
+        )}
+        {!isFetching &&
+          posts
+            .filter(filterFn)
+            .toSorted(compareFnTable[currentOrder])
+            .map((post) => (
+              <li
+                key={post.data.title}
+                className="mb-4 last:mb-0 border-b first:border-t"
+              >
+                <SearchResultRoot className="p-4">
+                  <Link
+                    href={`/posts/${post.data.slug}`}
+                    className="hover:underline"
+                  >
+                    <SearchResultTitle>{post.data.title}</SearchResultTitle>
+                  </Link>
+                  <SearchResultDescription>
+                    {post.data.summary}
+                  </SearchResultDescription>
+                  <div className="mt-4 flex flex-row flex-wrap gap-2.5">
+                    {post.data.tags.map((tag) => (
+                      <Link href={`/tags/${tag}`} key={tag}>
+                        <Tag theme="secondary">{tag}</Tag>
+                      </Link>
+                    ))}
+                  </div>
+                </SearchResultRoot>
+              </li>
+            ))}
       </ul>
     </>
   );
