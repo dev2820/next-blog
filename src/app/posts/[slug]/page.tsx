@@ -39,6 +39,7 @@ import { TableOfContents } from "@/components/post/TableOfContents";
 import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";
 import { Ficture } from "@/components/post/element/Ficture";
+import { CalendarDaysIcon, CalendarIcon, CoffeeIcon } from "lucide-react";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -134,15 +135,22 @@ export default async function PostPage({ params }: PageProps) {
           <time
             dateTime={publishedAt}
             aria-label={`Published on ${publishedAt}`}
+            className="flex flex-row place-items-center gap-2"
           >
-            {format(data.published, "yyyy-MM-dd")}
-          </time>{" "}
-          |{" "}
+            <CalendarDaysIcon size={20} />
+            <span className="text-md leading-8 mt-0.5">
+              {format(data.published, "yyyy년 MM월 dd일")}
+            </span>
+          </time>
           <time
             dateTime={`PT${readTime.minutes}M`}
             aria-label="Estimated reading time"
+            className="flex flex-row place-items-center gap-2"
           >
-            {readTime.minutes} mins
+            <CoffeeIcon size={20} />
+            <span className="text-md leading-8 mt-0.5">
+              {readTime.minutes} mins
+            </span>
           </time>
         </header>
 
