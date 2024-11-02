@@ -1,100 +1,62 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { cx } from "@/utils/cx";
-import { ComponentProps } from "react";
+import { Building, MailIcon, MapPinIcon } from "lucide-react";
+import { Link } from "terra-design-system/react";
+import githubLogo from "@/assets/images/github-mark.png";
+import linkedinLogo from "@/assets/images/linkedin-mark.png";
+import Image from "next/image";
 
-import logoSVG from "@/assets/logo.svg";
+const NAME = process.env.name;
 const NICKNAME = process.env.nickname;
+const POSITION = process.env.position;
+const COMPANY = process.env.company;
+const COMPANY_URL = process.env.companyURL;
 const GITHUB_ID = process.env.githubId;
 const GITHUB_URL = process.env.githubURL;
 const LINKEDIN_ID = process.env.linkedinId;
 const LINKEDIN_URL = process.env.linkedinURL;
+const COUNTRY = process.env.country;
+const REGION = process.env.region;
 
 export default function ContactPage() {
   // QR을 넣을까 말까
-  // 모바일용 세로 명함 생성 필요
   return (
-    <>
-      <BusinessCardFront className="mx-auto mb-8" />
-      <BusinessCardBehind className="mx-auto" />
-    </>
-  );
-}
-
-type BusinessCardFrontProps = ComponentProps<"div">;
-function BusinessCardFront(props: BusinessCardFrontProps) {
-  const { className, ...rest } = props;
-  return (
-    <div
-      className={cx(
-        "bg-primary-400 flex flex-col justify-center place-items-center shadow-lg",
-        className
-      )}
-      style={{
-        width: "450px",
-        height: "250px",
-      }}
-      {...rest}
-    >
-      <div className="flex flex-row place-items-center justify-center">
-        <Image
-          src={logoSVG}
-          alt={`${NICKNAME}`}
-          priority={true}
-          width={64}
-          height={64}
-          className="mr-2"
-        />
-        <span className="text-4xl">Terra</span>
+    <div className="flex flex-col place-items-center">
+      <div
+        className={cx(
+          "bg-[#F1F1EF] flex flex-col text-left shadow-lg shadow-[#c8c8c7] p-8 w-full max-w-[30rem] rounded-lg"
+        )}
+      >
+        <div className="text-3xl mb-1">
+          {NAME} ({NICKNAME})
+        </div>
+        <div className="text-md mb-4">{POSITION}</div>
+        <div className="mt-8 grid grid-cols-[24px_1fr] gap-x-2 gap-y-2 items-center">
+          <Building size={24} />
+          <Link href={COMPANY_URL!} target="_blank">
+            {COMPANY}
+          </Link>
+          <MailIcon size={24} />
+          <span>second28200@gmail.com</span>
+          <Image src={githubLogo} alt={"github logo"} className="w-6 h-6" />
+          <Link href={GITHUB_URL!} target="_blank">
+            {GITHUB_ID}
+          </Link>
+          <Image
+            src={linkedinLogo}
+            alt={"github logo"}
+            className="h-6 w-6 object-cover object-left-top"
+          />
+          <Link href={LINKEDIN_URL!} target="_blank">
+            {LINKEDIN_ID}
+          </Link>
+          <MapPinIcon size={24} />
+          <span>
+            {COUNTRY} / {REGION}
+          </span>
+        </div>
       </div>
-      <p className="text-sm text-center mt-2">FRONTEND DEVELOPER</p>
-    </div>
-  );
-}
-
-type BusinessCardBehindProps = ComponentProps<"div">;
-function BusinessCardBehind(props: BusinessCardBehindProps) {
-  const { className, ...rest } = props;
-  // 그리드 배치 필요
-  // 링크 호버시 이펙트 고려
-  return (
-    <div
-      className={cx(
-        "bg-white flex flex-col text-left shadow-lg p-4",
-        className
-      )}
-      style={{
-        width: "450px", // 90:50 비율
-        height: "250px",
-      }}
-      {...rest}
-    >
-      <span className="text-xl">양기조 (Terra)</span>
-      <span className="text-sm mb-4">네오사피엔스 / 프론트엔드 개발자</span>
-      <span>Seoul</span>
-      <span>second28200@gmail.com</span>
-      <span>
-        Github:{" "}
-        <Link
-          href={GITHUB_URL!}
-          target="_blank"
-          className="hover:text-primary transition-colors"
-        >
-          {GITHUB_ID}
-        </Link>
-      </span>
-      <span>
-        LinkedIn:{" "}
-        <Link
-          href={LINKEDIN_URL!}
-          target="_blank"
-          className="hover:text-primary transition-colors"
-        >
-          {LINKEDIN_ID}
-        </Link>
-      </span>
     </div>
   );
 }
