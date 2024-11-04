@@ -21,11 +21,12 @@ const NAVIGATION_MENUS = [
     label: "Tags",
     enabled: true,
   },
-  {
-    href: "/about",
-    label: "About Me",
-    enabled: false,
-  },
+  // TODO: About me 구상 후 구현
+  // {
+  //   href: "/about",
+  //   label: "About Me",
+  //   enabled: false,
+  // },
   {
     href: "/contact",
     label: "Contact",
