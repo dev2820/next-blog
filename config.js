@@ -1,5 +1,5 @@
 const config = {
-  title: "Terra Dev Blog",
+  title: "Terra's Dev Blog",
   description: "Hello World",
   company: "(주)네오사피엔스",
   companyURL: "https://company.typecast.ai/ko/",
