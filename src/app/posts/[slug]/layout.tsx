@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug: _slug } = params;
   const slug = decodeURIComponent(_slug);
   const post = getPostBySlug(slug);
-  const basePath = `${BASE_PATH}/posts/${slug}`;
+  const basePath = `/posts/${slug}`;
 
   return {
     metadataBase: new URL(SITE_URL),
