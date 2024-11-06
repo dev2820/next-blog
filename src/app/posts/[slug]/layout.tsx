@@ -1,14 +1,12 @@
 // TODO: JSON-LD 적용
 
 import { getAllPosts, getPostBySlug } from "@/utils/post";
-import Script from "next/script";
 import path from "node:path";
 
 const TITLE = process.env.title ?? "";
 const AUTHOR = process.env.author ?? "";
 const SITE_URL = process.env.siteURL ?? "";
 const GITHUB_URL = process.env.github_URL ?? "";
-const BASE_PATH = process.env.basePath ?? "";
 
 type PageProps = {
   params: {
