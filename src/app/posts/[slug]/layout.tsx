@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps) {
   const slug = decodeURIComponent(_slug);
   const post = getPostBySlug(slug);
   const basePath = `/posts/${slug}`;
-
+  const isImageExist = !!post?.data.image;
   return {
     metadataBase: new URL(SITE_URL),
     title: `${TITLE} - ${post?.data.title}`,
@@ -44,14 +44,17 @@ export async function generateMetadata({ params }: PageProps) {
       url: slug,
       title: post?.data.title,
       description: post?.data.summary,
-      images: [
-        {
-          url: path.join(basePath, post?.data.image ?? ""),
-          width: 800,
-          height: 600,
-          alt: post?.data.title,
-        },
-      ],
+      siteName: TITLE,
+      images: isImageExist
+        ? [
+            {
+              url: path.join(basePath, post?.data.image ?? ""),
+              width: 800,
+              height: 600,
+              alt: post?.data.title,
+            },
+          ]
+        : undefined,
       article: {
         publishedTime: post?.data.published,
         modifiedTime: post?.data.modified,
