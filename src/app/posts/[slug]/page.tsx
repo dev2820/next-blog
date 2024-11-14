@@ -116,7 +116,6 @@ export default async function PostPage({ params }: PageProps) {
   });
 
   const readTime = readingTime(content);
-  // TODO: localization 고려
   const publishedAt = format(data.published, "yyyy-MM-dd");
   return (
     <>
