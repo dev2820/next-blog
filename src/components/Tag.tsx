@@ -27,7 +27,7 @@ export function Tag(props: TagProps) {
         theme === "secondary" && "bg-gray-100 hover:bg-gray-300 ",
         active && theme === "secondary" && "bg-gray-300",
         "font-light align-top",
-        size === "md" && "min-h-8 text-sm px-4 leading-8",
+        size === "md" && "min-h-10 text-md px-4 leading-10",
         className
       )}
       {...rest}

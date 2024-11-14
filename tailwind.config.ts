@@ -56,35 +56,35 @@ const config: Config = {
           "40px",
           {
             lineHeight: "1.3",
-            fontWeight: "700",
+            fontWeight: "800",
           },
         ],
         heading2: [
           "28px",
           {
             lineHeight: "1.3",
-            fontWeight: "600",
+            fontWeight: "700",
           },
         ],
         heading3: [
           "24px",
           {
             lineHeight: "1.5",
-            fontWeight: "600",
+            fontWeight: "700",
           },
         ],
         heading4: [
           "18px",
           {
             lineHeight: "1.5",
-            fontWeight: "500",
+            fontWeight: "600",
           },
         ],
         heading5: [
           "16px",
           {
             lineHeight: "1.5",
-            fontWeight: "500",
+            fontWeight: "600",
           },
         ],
         heading6: [
