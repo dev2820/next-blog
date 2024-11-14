@@ -50,6 +50,7 @@ export function ShareButton(props: ShareButtonProps) {
     <>
       <IconButton
         size={size}
+        variant="outline"
         className={cx(className)}
         onClick={handleClickShare}
         {...rest}

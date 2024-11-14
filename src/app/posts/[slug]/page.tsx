@@ -158,7 +158,7 @@ export default async function PostPage({ params }: PageProps) {
             <TableOfContents toc={toc} className="sticky top-24" />
           </aside>
           {CompiledMDX}
-          <div className="text-center my-36">
+          <div className="text-center my-12">
             <ShareButton
               size="lg"
               shareData={{
@@ -170,7 +170,7 @@ export default async function PostPage({ params }: PageProps) {
             />
           </div>
         </div>
-        <section id="author">
+        <section id="author" className="mb-4">
           <AuthorInfo />
         </section>
         <section id="comments-and-reaction">

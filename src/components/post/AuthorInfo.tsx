@@ -11,16 +11,25 @@ export function AuthorInfo(props: AuthorInfoProps) {
 
   return (
     <div
-      className={cx("flex flex-row gap-4 items-center", className)}
+      className={cx(
+        "flex flex-row gap-4 items-center bg-gray-100 h-28 px-4 rounded-lg",
+        className
+      )}
       {...rest}
     >
-      <Avatar size={64} src={authorData?.avatarURL} className="w-16 h-16" />
+      <Avatar
+        size={72}
+        src={authorData?.avatarURL}
+        className="w-16 h-16 flex-none"
+      />
       <div className="text-pretty flex flex-col gap-2">
-        <strong className="inline-block h-6 min-w-36">
-          {authorData?.name}{" "}
+        <strong className="text-lg inline-block h-6 min-w-36">
+          {authorData?.name}
           {authorData?.nickname && <span>({authorData.nickname})</span>}
         </strong>
-        <p className="whitespace-pre-wrap h-6 min-w-64">{authorData?.bio}</p>
+        <p className="text-sm whitespace-pre-wrap h-6 min-w-64">
+          {authorData?.bio}
+        </p>
       </div>
     </div>
   );
