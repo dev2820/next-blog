@@ -1,7 +1,7 @@
 "use client";
 
 import { ComponentProps } from "react";
-import { Button, IconButton, Toast } from "terra-design-system/react";
+import { IconButton, Toast } from "terra-design-system/react";
 import { ShareIcon, XIcon } from "lucide-react";
 import { cx } from "@/utils/cx";
 import { share } from "@/utils/share";

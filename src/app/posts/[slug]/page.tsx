@@ -39,10 +39,13 @@ import { TableOfContents } from "@/components/post/TableOfContents";
 import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";
 import { Ficture } from "@/components/post/element/Ficture";
-import { CalendarDaysIcon, CoffeeIcon } from "lucide-react";
+import { CalendarDaysIcon, CoffeeIcon, FeatherIcon } from "lucide-react";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
+const GITHUB_URL = process.env.githubURL ?? "";
+const AUTHOR = process.env.author ?? "";
+const NICK_NAME = process.env.nickname ?? "";
 
 type PageProps = {
   params: {
@@ -131,10 +134,18 @@ export default async function PostPage({ params }: PageProps) {
             />
           )}
           <Heading1 id={data.title}>{data.title}</Heading1>
+          <div className="flex flex-row place-items-center gap-2 text-gray-500">
+            <FeatherIcon size={20} />
+            <span className="text-md leading-8 mt-0.5">
+              <Anchor href={GITHUB_URL}>
+                {AUTHOR} ({NICK_NAME})
+              </Anchor>
+            </span>
+          </div>
           <time
             dateTime={publishedAt}
             aria-label={`Published on ${publishedAt}`}
-            className="flex flex-row place-items-center gap-2 text-gray-400"
+            className="flex flex-row place-items-center gap-2 text-gray-500"
           >
             <CalendarDaysIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
@@ -144,7 +155,7 @@ export default async function PostPage({ params }: PageProps) {
           <time
             dateTime={`PT${readTime.minutes}M`}
             aria-label="Estimated reading time"
-            className="flex flex-row place-items-center gap-2 text-gray-400"
+            className="flex flex-row place-items-center gap-2 text-gray-500"
           >
             <CoffeeIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
