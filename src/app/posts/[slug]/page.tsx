@@ -8,7 +8,7 @@ import rehypeSlug from "rehype-slug";
 import path from "node:path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { HeroImage } from "@/components/post/HeroImage";
-import { readingTime } from "reading-time-estimator";
+import { readingTime } from "@/utils/reading-time";
 import {
   Anchor,
   Blockquote,
@@ -39,7 +39,7 @@ import { TableOfContents } from "@/components/post/TableOfContents";
 import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";
 import { Ficture } from "@/components/post/element/Ficture";
-import { CalendarDaysIcon, CalendarIcon, CoffeeIcon } from "lucide-react";
+import { CalendarDaysIcon, CoffeeIcon } from "lucide-react";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -116,6 +116,7 @@ export default async function PostPage({ params }: PageProps) {
   });
 
   const readTime = readingTime(content);
+  console.log(readTime);
   // TODO: localization 고려
   const publishedAt = format(data.published, "yyyy-MM-dd");
   return (
@@ -135,7 +136,7 @@ export default async function PostPage({ params }: PageProps) {
           <time
             dateTime={publishedAt}
             aria-label={`Published on ${publishedAt}`}
-            className="flex flex-row place-items-center gap-2"
+            className="flex flex-row place-items-center gap-2 text-gray-400"
           >
             <CalendarDaysIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
@@ -145,11 +146,11 @@ export default async function PostPage({ params }: PageProps) {
           <time
             dateTime={`PT${readTime.minutes}M`}
             aria-label="Estimated reading time"
-            className="flex flex-row place-items-center gap-2"
+            className="flex flex-row place-items-center gap-2 text-gray-400"
           >
             <CoffeeIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
-              {readTime.minutes} mins
+              {readTime.minutes} 분
             </span>
           </time>
         </header>
