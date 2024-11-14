@@ -137,7 +137,7 @@ export default async function PostPage({ params }: PageProps) {
           <div className="flex flex-row place-items-center gap-2 text-gray-500">
             <FeatherIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
-              <Anchor href={GITHUB_URL}>
+              <Anchor href={GITHUB_URL} target="_blank">
                 {AUTHOR} ({NICK_NAME})
               </Anchor>
             </span>
