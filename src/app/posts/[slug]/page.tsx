@@ -40,6 +40,8 @@ import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";
 import { Ficture } from "@/components/post/element/Ficture";
 import { CalendarDaysIcon, CoffeeIcon, FeatherIcon } from "lucide-react";
+import Link from "next/link";
+import { Tag } from "@/components/Tag";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -169,6 +171,18 @@ export default async function PostPage({ params }: PageProps) {
             <TableOfContents toc={toc} className="sticky top-24" />
           </aside>
           {CompiledMDX}
+          <ul className="flex flex-row gap-3 flex-wrap justify-start mt-40">
+            {data.tags.map((tag) => (
+              <li key={tag}>
+                <Link
+                  href={`${BASE_PATH}/tags/${tag}`}
+                  className="rounded-full"
+                >
+                  <Tag theme="secondary">{tag}</Tag>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <div className="text-center my-12">
             <ShareButton
               size="lg"

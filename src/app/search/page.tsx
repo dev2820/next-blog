@@ -118,7 +118,7 @@ const SearchView = () => {
           {tags.map(([tag, count]) => (
             <li key={tag}>
               <Link href={`${BASE_PATH}/tags/${tag}`} className="rounded-full">
-                <Tag>{`${tag} (${count})`}</Tag>
+                <Tag theme="secondary">{`${tag} (${count})`}</Tag>
               </Link>
             </li>
           ))}
