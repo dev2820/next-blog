@@ -8,6 +8,8 @@ import { getAllPosts } from "@/utils/post";
 import { Tag } from "@/components/Tag";
 import { PageHeading } from "@/components/PageHeading";
 
+const BASE_PATH = process.env.basePath ?? "";
+
 export default function TagsPage() {
   const posts = getAllPosts();
   const tags = [
@@ -33,7 +35,7 @@ export default function TagsPage() {
       <ul className="flex flex-row flex-wrap gap-3 min-w-72 max-w-12 w-full justify-center">
         {sortedTags.map(([tag, count]) => (
           <li key={tag} className="mb-2.5">
-            <Link href={`tags/${encodeURIComponent(tag)}`}>
+            <Link href={`${BASE_PATH}/tags/${encodeURIComponent(tag)}`}>
               <Tag theme="secondary">
                 {tag} ({count})
               </Tag>

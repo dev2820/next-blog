@@ -118,7 +118,7 @@ const SearchView = () => {
           {tags.map(([tag, count]) => (
             <li key={tag}>
               <Link
-                href={encodeURI(`${BASE_PATH}/tags/${tag}`)}
+                href={`${BASE_PATH}/tags/${encodeURIComponent(tag)}`}
                 className="rounded-full"
               >
                 <Tag theme="secondary">{`${tag} (${count})`}</Tag>
