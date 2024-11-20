@@ -12,6 +12,7 @@ const nextConfig = {
     mode: process.env.MODE,
   },
   basePath: DEV_MODE ? "" : "/next-blog",
+  trailingSlash: true,
 };
 
 export default nextConfig;
