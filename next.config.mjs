@@ -12,6 +12,7 @@ const nextConfig = {
     mode: process.env.MODE,
   },
   basePath: DEV_MODE ? "" : "/next-blog",
+  assetPrefix: DEV_MODE ? "" : "/next-blog",
   trailingSlash: true,
 };
 
