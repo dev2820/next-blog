@@ -14,8 +14,6 @@ type PageProps = {
   };
 };
 
-const BASE_PATH = process.env.basePath ?? "";
-
 export default function TagPage({ params }: PageProps) {
   const { tag: _tag } = params;
   const tag = decodeURIComponent(_tag);
@@ -43,10 +41,7 @@ export default function TagPage({ params }: PageProps) {
               </SearchResultDescription>
               <div className="mt-4 flex flex-row flex-wrap gap-2.5">
                 {post.data.tags.map((tag) => (
-                  <Link
-                    href={`${BASE_PATH}/tags/${encodeURIComponent(tag)}`}
-                    key={tag}
-                  >
+                  <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
                     <Tag theme="secondary">{tag}</Tag>
                   </Link>
                 ))}

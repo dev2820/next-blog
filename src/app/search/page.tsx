@@ -118,7 +118,7 @@ const SearchView = () => {
           {tags.map(([tag, count]) => (
             <li key={tag}>
               <Link
-                href={`${BASE_PATH}/tags/${encodeURIComponent(tag)}`}
+                href={`/tags/${encodeURIComponent(tag)}`}
                 className="rounded-full"
               >
                 <Tag theme="secondary">{`${tag} (${count})`}</Tag>
@@ -220,7 +220,7 @@ const SearchResultSection = (props: SearchResultSection) => {
       </SearchResultDescription>
       <div className="mt-2 flex flex-row flex-wrap gap-2.5">
         {item.data.tags.map((tag) => (
-          <Link href={`tags/${encodeURIComponent(tag)}`} key={tag}>
+          <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
             <Tag theme="primary">{tag}</Tag>
           </Link>
         ))}

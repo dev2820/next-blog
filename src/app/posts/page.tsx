@@ -16,8 +16,6 @@ import Link from "next/link";
 import { MouseEvent, useCallback, useState } from "react";
 import { Select, Skeleton } from "terra-design-system/react";
 
-const BASE_PATH = process.env.basePath ?? "";
-
 const ALL_POSTS = "전체 보기";
 const orderOptions = ["최신순", "오래된순"];
 const compareFnTable = {
@@ -166,10 +164,7 @@ export default function PostsPage() {
                   </SearchResultDescription>
                   <div className="mt-4 flex flex-row flex-wrap gap-2.5">
                     {post.data.tags.map((tag) => (
-                      <Link
-                        href={`${BASE_PATH}/tags/${encodeURIComponent(tag)}`}
-                        key={tag}
-                      >
+                      <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
                         <Tag theme="secondary">{tag}</Tag>
                       </Link>
                     ))}
