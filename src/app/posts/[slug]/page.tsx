@@ -175,7 +175,9 @@ export default async function PostPage({ params }: PageProps) {
             {data.tags.map((tag) => (
               <li key={tag}>
                 <Link
-                  href={encodeURI(`${BASE_PATH}/tags/${tag}`)}
+                  href={encodeURI(
+                    `${BASE_PATH}/tags/${encodeURIComponent(tag)}`
+                  )}
                   className="rounded-full"
                 >
                   <Tag theme="secondary">{tag}</Tag>

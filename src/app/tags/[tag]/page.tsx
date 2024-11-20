@@ -8,8 +8,6 @@ import {
 import { Tag } from "@/components/Tag";
 import { PageHeading } from "@/components/PageHeading";
 
-const BASE_PATH = process.env.basePath ?? "";
-
 type PageProps = {
   params: {
     tag: string;
@@ -43,7 +41,7 @@ export default function TagPage({ params }: PageProps) {
               </SearchResultDescription>
               <div className="mt-4 flex flex-row flex-wrap gap-2.5">
                 {post.data.tags.map((tag) => (
-                  <Link href={`/tags/${tag}`} key={tag}>
+                  <Link href={encodeURI(`/tags/${tag}`)} key={tag}>
                     <Tag theme="secondary">{tag}</Tag>
                   </Link>
                 ))}

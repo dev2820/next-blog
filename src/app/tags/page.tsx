@@ -33,7 +33,7 @@ export default function TagsPage() {
       <ul className="flex flex-row flex-wrap gap-3 min-w-72 max-w-12 w-full justify-center">
         {sortedTags.map(([tag, count]) => (
           <li key={tag} className="mb-2.5">
-            <Link href={encodeURI(`tags/${tag}`)}>
+            <Link href={`tags/${encodeURIComponent(tag)}`}>
               <Tag theme="secondary">
                 {tag} ({count})
               </Tag>

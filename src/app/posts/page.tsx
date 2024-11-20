@@ -164,7 +164,7 @@ export default function PostsPage() {
                   </SearchResultDescription>
                   <div className="mt-4 flex flex-row flex-wrap gap-2.5">
                     {post.data.tags.map((tag) => (
-                      <Link href={`/tags/${tag}`} key={tag}>
+                      <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
                         <Tag theme="secondary">{tag}</Tag>
                       </Link>
                     ))}
