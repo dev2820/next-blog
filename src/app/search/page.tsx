@@ -117,7 +117,10 @@ const SearchView = () => {
         <ul className="flex flex-row gap-3 flex-wrap justify-center">
           {tags.map(([tag, count]) => (
             <li key={tag}>
-              <Link href={`${BASE_PATH}/tags/${tag}`} className="rounded-full">
+              <Link
+                href={encodeURI(`${BASE_PATH}/tags/${tag}`)}
+                className="rounded-full"
+              >
                 <Tag theme="secondary">{`${tag} (${count})`}</Tag>
               </Link>
             </li>
@@ -190,7 +193,10 @@ const SearchResultSection = (props: SearchResultSection) => {
 
   return (
     <SearchResultRoot className={cx("rounded-md p-4", className)} {...rest}>
-      <Link href={`/posts/${item.data.slug}`} className="hover:underline">
+      <Link
+        href={encodeURI(`/posts/${item.data.slug}`)}
+        className="hover:underline"
+      >
         <SearchResultTitle>
           {titleMatch && titleMatch.value && titleMatch.indices
             ? splitByIndices(
