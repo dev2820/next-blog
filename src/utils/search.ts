@@ -14,7 +14,7 @@ export async function fetchPostListForSearch() {
       } as Success<Post[]>;
     }
 
-    const result = await (await fetch("/next-blog/post-list.json")).json();
+    const result = await (await fetch("/post-list.json")).json();
 
     return {
       isFailed: false,
