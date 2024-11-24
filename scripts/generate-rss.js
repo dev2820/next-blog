@@ -7,10 +7,21 @@ import matter from "gray-matter";
 const postDir = path.join(process.cwd(), "public/posts");
 const outDir = path.join(process.cwd(), "out/posts");
 
+function isDirectorySync(path) {
+  try {
+    const stats = fs.statSync(path); // 경로 상태 정보 가져오기
+    return stats.isDirectory(); // 디렉토리인지 확인
+  } catch (error) {
+    console.error(`Error checking path: ${path}`, error);
+    return false; // 경로가 존재하지 않거나 오류 발생 시 false 반환
+  }
+}
+
 const postNames = fs
   .readdirSync(postDir)
   .filter((p) => !p.startsWith("."))
-  .filter((p) => p !== "README.md");
+  .filter((p) => isDirectorySync(path.join(postDir, p)));
+
 const posts = postNames
   .map((p) => {
     const mdxPath = path.join(postDir, p, "index.mdx");
