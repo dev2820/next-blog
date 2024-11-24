@@ -17,6 +17,7 @@ type PageProps = {
 export default function TagPage({ params }: PageProps) {
   const { tag: _tag } = params;
   const tag = decodeURI(_tag);
+  console.log(tag);
   const posts = getPostsByTag(tag);
   const taggedPosts = posts.filter((p) => p.data.tags.includes(tag));
 
