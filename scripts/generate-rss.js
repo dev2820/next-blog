@@ -98,3 +98,5 @@ fs.writeFileSync("out/rss.xml", feed.rss2(), "utf-8");
 fs.writeFileSync("out/atom.xml", feed.atom1(), "utf-8");
 // Output: JSON Feed 1.0
 fs.writeFileSync("out/feed.json", feed.json1(), "utf-8");
+
+console.log("generate: rss generate finished");
