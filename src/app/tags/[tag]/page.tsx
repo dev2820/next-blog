@@ -16,13 +16,13 @@ type PageProps = {
 
 export default function TagPage({ params }: PageProps) {
   const { tag: _tag } = params;
-  const tag = decodeURIComponent(_tag);
+  const tag = decodeURI(_tag);
   const posts = getPostsByTag(tag);
   const taggedPosts = posts.filter((p) => p.data.tags.includes(tag));
 
   return (
     <>
-      <PageHeading>Tag: {_tag}</PageHeading>
+      <PageHeading>Tag: {tag}</PageHeading>
       <ul className="w-full">
         {taggedPosts.map((post) => (
           <li
