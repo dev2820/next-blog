@@ -98,7 +98,7 @@ export default async function PostPage({ params }: PageProps) {
         <Emphasize
           {...props}
           // for caption
-          className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-thin [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
+          className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-normal [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
         />
       ),
       strong: Strong,
