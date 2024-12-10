@@ -1,18 +1,13 @@
 "use client";
 
 import { PageHeading } from "@/components/PageHeading";
-import {
-  SearchResultRoot,
-  SearchResultTitle,
-  SearchResultDescription,
-} from "@/components/search/SearchResult";
+import { SearchResult } from "@/components/search/SearchResult";
 import { Tag } from "@/components/Tag";
 import { useMount } from "@/hooks/use-mount";
 import { Post } from "@/types/post";
 import { cx } from "@/utils/cx";
 import { isFailed, isNil } from "@/utils/predicate";
 import { fetchPostListForSearch } from "@/utils/search";
-import Link from "next/link";
 import { MouseEvent, useCallback, useState } from "react";
 import { Select, Skeleton } from "terra-design-system/react";
 
@@ -148,28 +143,8 @@ export default function PostsPage() {
             .filter(filterFn)
             .toSorted(compareFnTable[currentOrder])
             .map((post) => (
-              <li
-                key={post.data.title}
-                className="mb-4 last:mb-0 border-b first:border-t"
-              >
-                <SearchResultRoot className="p-4">
-                  <Link
-                    href={`/posts/${post.data.slug}`}
-                    className="hover:underline"
-                  >
-                    <SearchResultTitle>{post.data.title}</SearchResultTitle>
-                  </Link>
-                  <SearchResultDescription>
-                    {post.data.summary}
-                  </SearchResultDescription>
-                  <div className="mt-4 flex flex-row flex-wrap gap-2.5">
-                    {post.data.tags.map((tag) => (
-                      <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
-                        <Tag theme="secondary">{tag}</Tag>
-                      </Link>
-                    ))}
-                  </div>
-                </SearchResultRoot>
+              <li key={post.data.title} className="mb-16 last:mb-0 ">
+                <SearchResult className="p-4" post={post} />
               </li>
             ))}
       </ul>
