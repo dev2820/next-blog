@@ -33,7 +33,7 @@ export async function fetchPostListForSearch() {
 /**
  * TODO: fuse result 타입 개선하기 (fuse 숨기기)
  */
-export type SearchResult<T> = {
+export type SearchResultType<T> = {
   item: T;
   refIndex: number;
   score?: number;
@@ -49,7 +49,7 @@ export const createSearch = <T>(
   options?: {
     keys: string[];
   }
-): ((keyword: string) => SearchResult<T>[]) => {
+): ((keyword: string) => SearchResultType<T>[]) => {
   /**
    * @see https://www.fusejs.io/api/options.html
    */
@@ -63,7 +63,7 @@ export const createSearch = <T>(
   });
 
   return (keyword: string) => {
-    return fuse.search(keyword) as SearchResult<T>[];
+    return fuse.search(keyword) as SearchResultType<T>[];
   };
 };
 
@@ -73,7 +73,7 @@ export const search = <T>(
   options?: {
     keys: string[];
   }
-): SearchResult<T>[] => {
+): SearchResultType<T>[] => {
   const searchFn = createSearch<T>(list, options);
 
   return searchFn(query);

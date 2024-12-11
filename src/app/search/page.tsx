@@ -1,7 +1,7 @@
 "use client";
 
 import { useMount } from "@/hooks/use-mount";
-import { search, type SearchResult } from "@/utils/search";
+import { search, type SearchResultType } from "@/utils/search";
 import Link from "next/link";
 import {
   ComponentProps,
@@ -23,11 +23,7 @@ import { isFailed, isNil } from "@/utils/predicate";
 import { Tag } from "@/components/Tag";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "terra-design-system/react";
-import {
-  SearchResultRoot,
-  SearchResultTitle,
-  SearchResultDescription,
-} from "@/components/search/SearchResult";
+import { SearchResult } from "@/components/search/SearchResult";
 
 const BASE_PATH = process.env.basePath ?? "";
 
@@ -44,7 +40,7 @@ const SearchView = () => {
   const currentQuery = searchParams.get("q");
   const queryNotExist = isNil(currentQuery) || currentQuery === "";
   const [posts, setPosts] = useState<Post[]>([]);
-  const queriedPosts = useMemo<SearchResult<Post>[] | null>(() => {
+  const queriedPosts = useMemo<SearchResultType<Post>[] | null>(() => {
     if (!currentQuery || posts.length <= 0) {
       return null;
     }
@@ -161,10 +157,7 @@ const SearchView = () => {
                 {queriedPosts.length > 0 && (
                   <ul className="mt-4">
                     {queriedPosts.map((sr) => (
-                      <li
-                        key={sr.refIndex}
-                        className="mb-4 last:mb-0 border-b first:border-t"
-                      >
+                      <li key={sr.refIndex} className="mb-4 last:mb-0">
                         <SearchResultSection result={sr}></SearchResultSection>
                       </li>
                     ))}
@@ -182,50 +175,18 @@ const SearchView = () => {
   );
 };
 type SearchResultSection = ComponentProps<"section"> & {
-  result: SearchResult<Post>;
+  result: SearchResultType<Post>;
 };
 const SearchResultSection = (props: SearchResultSection) => {
   const { result, className, ...rest } = props;
-  const { item, matches } = result;
-
-  const titleMatch = matches?.find((match) => match.key === "data.title");
-  const summaryMatch = matches?.find((match) => match.key === "data.summary");
+  const { item } = result;
 
   return (
-    <SearchResultRoot className={cx("rounded-md p-4", className)} {...rest}>
-      <Link
-        href={encodeURI(`/posts/${item.data.slug}`)}
-        className="hover:underline"
-      >
-        <SearchResultTitle>
-          {titleMatch && titleMatch.value && titleMatch.indices
-            ? splitByIndices(
-                titleMatch.value,
-                titleMatch.indices as [number, number][]
-              ).map((token, idx) =>
-                idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
-              )
-            : item.data.title}
-        </SearchResultTitle>
-      </Link>
-      <SearchResultDescription>
-        {summaryMatch && summaryMatch.value && summaryMatch.indices
-          ? splitByIndices(
-              summaryMatch.value,
-              summaryMatch.indices as [number, number][]
-            ).map((token, idx) =>
-              idx % 2 === 1 ? <Highlight key={idx}>{token}</Highlight> : token
-            )
-          : item.data.summary}
-      </SearchResultDescription>
-      <div className="mt-2 flex flex-row flex-wrap gap-2.5">
-        {item.data.tags.map((tag) => (
-          <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
-            <Tag theme="primary">{tag}</Tag>
-          </Link>
-        ))}
-      </div>
-    </SearchResultRoot>
+    <SearchResult
+      className={cx("rounded-md p-4", className)}
+      post={item}
+      {...rest}
+    />
   );
 };
 
