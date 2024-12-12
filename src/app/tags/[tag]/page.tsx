@@ -20,7 +20,7 @@ export default function TagPage({ params }: PageProps) {
       <ul className="w-full">
         {taggedPosts.map((post) => (
           <li key={post.data.title} className="mb-16 last:mb-0">
-            <SearchResult className="p-4" post={post} />
+            <SearchResult post={post} />
           </li>
         ))}
       </ul>

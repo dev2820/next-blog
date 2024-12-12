@@ -143,8 +143,8 @@ export default function PostsPage() {
             .filter(filterFn)
             .toSorted(compareFnTable[currentOrder])
             .map((post) => (
-              <li key={post.data.title} className="mb-16 last:mb-0 ">
-                <SearchResult className="p-4" post={post} />
+              <li key={post.data.title} className="mb-16 last:mb-0">
+                <SearchResult post={post} />
               </li>
             ))}
       </ul>

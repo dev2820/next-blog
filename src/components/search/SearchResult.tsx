@@ -1,6 +1,6 @@
 import { Post } from "@/types/post";
 import { cx } from "@/utils/cx";
-import Link from "next/link";
+import RouterLink from "next/link";
 import { ComponentProps } from "react";
 import { Tag } from "@/components/Tag";
 import { format } from "date-fns";
@@ -13,17 +13,19 @@ export function SearchResult(props: SearchResultProps) {
 
   const dateStr = format(new Date(post.data.published), "yyyy년 MM월 dd일");
   return (
-    <SearchResultRoot className={cx("p-4", className)} {...rest}>
-      <Link href={`/posts/${post.data.slug}`} className="hover:underline">
-        <SearchResultTitle>{post.data.title}</SearchResultTitle>
-      </Link>
+    <SearchResultRoot className={cx("", className)} {...rest}>
+      <RouterLink href={`/posts/${post.data.slug}`}>
+        <SearchResultTitle className="hover:underline">
+          {post.data.title}
+        </SearchResultTitle>
+      </RouterLink>
       <SearchResultSummary>{post.data.summary}</SearchResultSummary>
       <SearchResultInfo>{dateStr}</SearchResultInfo>
       <div className="mt-4 flex flex-row flex-wrap gap-2.5">
         {post.data.tags.map((tag) => (
-          <Link href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
+          <RouterLink href={`/tags/${encodeURIComponent(tag)}`} key={tag}>
             <Tag theme="secondary">{tag}</Tag>
-          </Link>
+          </RouterLink>
         ))}
       </div>
     </SearchResultRoot>
@@ -48,7 +50,7 @@ function SearchResultTitle(props: SearchResultTitleProps) {
   return (
     <h3
       className={cx(
-        "text-3xl lg:text-4xl leading-[1.2] font-semibold",
+        "inline-block text-3xl lg:text-4xl leading-[1.2] font-semibold",
         className
       )}
       {...rest}
