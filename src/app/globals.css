@@ -5,6 +5,7 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 249, 249, 243;
+  overflow-x: hidden;
   /**
    * css for terra-design-system
    */
