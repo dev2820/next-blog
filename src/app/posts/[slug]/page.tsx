@@ -130,9 +130,9 @@ export default async function PostPage({ params }: PageProps) {
             <HeroImage
               src={path.join(basePath, data.image)}
               alt="hero image"
-              className="max-w-full w-full rounded-md"
+              className="max-w-full w-full rounded-md h-96 object-contain"
               width={0}
-              height={0}
+              height={96 * 4}
             />
           )}
           <Heading1 id={data.title}>{data.title}</Heading1>
