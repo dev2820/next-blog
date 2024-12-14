@@ -9,6 +9,7 @@ import { ComponentProps } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
 import { SearchButton } from "@/components/search/SearchButton";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
@@ -72,6 +73,7 @@ export default function RootLayout({
             reserved.
           </p>
         </footer>
+        <ScrollToTop />
       </body>
     </html>
   );

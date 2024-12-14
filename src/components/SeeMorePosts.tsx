@@ -8,7 +8,6 @@ export function SeeMorePosts(props: { className?: string }) {
   const router = useRouter();
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: "instant" });
     router.push("/posts", { scroll: true });
   };
 
