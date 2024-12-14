@@ -1,9 +1,7 @@
-import { Button } from "terra-design-system/react";
 import { PageHeading } from "@/components/PageHeading";
 import { SearchResult } from "@/components/search/SearchResult";
 import { getAllPosts } from "@/utils/post";
-import { SeeAllPostsButton } from "@/components/SeeAllPostsButton";
-import { useRouter } from "next/navigation";
+import { SeeMorePosts } from "@/components/SeeMorePosts";
 
 export default function HomePage() {
   const recentPosts = getAllPosts()
@@ -30,7 +28,7 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-        <SeeAllPostsButton className="mt-12 w-40 mx-auto" />
+        <SeeMorePosts className="mt-12 w-40 mx-auto" />
       </section>
     </>
   );
