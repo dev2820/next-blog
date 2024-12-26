@@ -6,7 +6,6 @@ const nextConfig = {
   images: { unoptimized: true },
   env: {
     ...config,
-    mode: process.env.MODE,
   },
   trailingSlash: true,
 };

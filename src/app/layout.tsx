@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.GOOGLE_SEARCH_CONSOLE,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE,
   },
 };
 
