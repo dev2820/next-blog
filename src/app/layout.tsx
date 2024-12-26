@@ -57,6 +57,12 @@ export default function RootLayout({
         "scroll-smooth"
       )}
     >
+      <head>
+        <meta
+          name="naver-site-verification"
+          content={process.env.NEXT_PUBLIC_NAVER_SEARCH_CONSOLE}
+        />
+      </head>
       <body
         className={cx(
           pretendard.className,
