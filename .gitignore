@@ -37,3 +37,8 @@ next-env.d.ts
 
 # data
 src/assets/data/github-profile.json
+
+# sitemap
+/build
+/public/robots.txt
+/public/sitemap*.xml
