@@ -3,6 +3,7 @@ import "terra-design-system/react/style"; // trds의 style의 우선순위를 �
 import "./globals.css";
 import localFont from "next/font/local";
 import { cx } from "@/utils/cx";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
@@ -63,6 +64,7 @@ export default function RootLayout({
           content={process.env.NEXT_PUBLIC_NAVER_SEARCH_CONSOLE}
         />
       </head>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
       <body
         className={cx(
           pretendard.className,
