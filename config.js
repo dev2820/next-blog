@@ -4,7 +4,7 @@ const config = {
   company: "(주)네오사피엔스",
   companyURL: "https://company.typecast.ai/ko/",
   position: "프론트엔드 개발자",
-  siteURL: "https://terra-dev.me",
+  siteURL: "https://www.terra-dev.me",
   language: "ko",
   image: "https://www.terra-dev.me/images/hero.jpg",
   favicon: "https://www.terra-dev.me/favicon.ico",
