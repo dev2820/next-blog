@@ -38,6 +38,9 @@ export const metadata: Metadata = {
       "application/json": process.env.siteURL + "/feed.json",
     },
   },
+  verification: {
+    google: process.env.GOOGLE_SEARCH_CONSOLE,
+  },
 };
 
 export default function RootLayout({
