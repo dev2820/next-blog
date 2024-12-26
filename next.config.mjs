@@ -7,7 +7,7 @@ const nextConfig = {
   env: {
     ...config,
     NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE:
-      process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE,
+      process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE ?? "Abc",
   },
   trailingSlash: true,
 };
