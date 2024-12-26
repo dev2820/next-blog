@@ -1,3 +1,4 @@
+import path from "path";
 /** @type {import('next-sitemap').IConfig} */
 const config = {
   siteUrl: "https://www.terra-dev.me/",
