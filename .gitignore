@@ -42,3 +42,6 @@ src/assets/data/github-profile.json
 /build
 /public/robots.txt
 /public/sitemap*.xml
+
+.env.development
+.env.production
