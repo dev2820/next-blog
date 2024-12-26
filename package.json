@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "MODE=development next dev",
-    "build": "MODE=production pnpm fetch:posts && pnpm fetch:github-profile && next build && next-sitemap && pnpm generate:post-list && pnpm generate:rss",
+    "build": "MODE=production pnpm fetch:posts && pnpm fetch:github-profile && next-sitemap && next build && pnpm generate:post-list && pnpm generate:rss",
     "generate:rss": "node ./scripts/generate-rss.js",
     "generate:post-list": "node ./scripts/generate-post-list.js",
     "preview": "MODE=development pnpm build && pnpx http-server out -o",
