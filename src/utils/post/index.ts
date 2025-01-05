@@ -27,7 +27,8 @@ export const getAllPostsData = () => {
   return postPaths
     .map((p) => fs.readFileSync(p, "utf-8"))
     .map((file) => getMatter(file))
-    .map(({ data }) => toPostData(data));
+    .map(({ data }) => toPostData(data))
+    .filter((d) => d.draft);
 };
 
 export const getPostByPath = (postPath: string): Post | undefined => {
