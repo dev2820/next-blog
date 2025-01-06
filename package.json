@@ -13,7 +13,7 @@
     "preview": "MODE=development pnpm build && pnpx http-server out -o",
     "start": "next start",
     "lint": "next lint",
-    "fetch:posts": "git submodule update --remote",
+    "fetch:posts": "./fetch-post.sh",
     "fetch:github-profile": "node ./scripts/fetch-github-profile.js"
   },
   "dependencies": {

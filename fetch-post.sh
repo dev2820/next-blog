@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 실행할 커맨드
-COMMAND="pnpm fetch:posts"
+COMMAND="git submodule update --remote"
 
 # 실행할 커맨드 수행
 $COMMAND
