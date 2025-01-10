@@ -19,18 +19,18 @@ export default function HomePage() {
       <div className="relative">
         <Image
           src={profilePng}
-          className="w-56 h-56 mt-20 rounded-full bg-white border-2"
+          className="w-56 h-56 mt-20 rounded-full bg-white border-[3px] border-gray-200"
           alt={"terra's avatar"}
         />
         <div
           aria-hidden
-          className="absolute bottom-3 left-3 p-1 border bg-white rounded-full text-center overflow-hidden"
+          className="absolute bottom-2 left-2 p-1 border-2 border-gray-100 bg-white rounded-full text-center overflow-hidden shadow-md"
         >
           <Image
             src={parrotGif}
             aria-hidden
             alt="smile"
-            className="size-8 p-1px rounded-full"
+            className="size-10 p-1px rounded-full"
           />
         </div>
       </div>
