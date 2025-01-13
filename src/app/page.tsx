@@ -2,9 +2,7 @@ import { PageHeading } from "@/components/PageHeading";
 import { SearchResult } from "@/components/search/SearchResult";
 import { getAllPosts } from "@/utils/post";
 import { SeeMorePosts } from "@/components/SeeMorePosts";
-// import profilePng from "@/assets/images/profile.png";
 import profilePng from "@/assets/images/profile-transparent.png";
-import smileSvg from "@/assets/smile.svg";
 import parrotGif from "@/assets/images/rightparrot.gif";
 import Image from "next/image";
 
