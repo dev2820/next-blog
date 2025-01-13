@@ -24,7 +24,7 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
-    "terra-design-system": "^1.0.32"
+    "terra-design-system": "^1.1.5"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

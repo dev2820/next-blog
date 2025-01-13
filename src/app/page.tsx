@@ -2,9 +2,10 @@ import { PageHeading } from "@/components/PageHeading";
 import { SearchResult } from "@/components/search/SearchResult";
 import { getAllPosts } from "@/utils/post";
 import { SeeMorePosts } from "@/components/SeeMorePosts";
-import profilePng from "@/assets/images/profile-transparent.png";
 import parrotGif from "@/assets/images/rightparrot.gif";
 import Image from "next/image";
+import authorData from "@/assets/data/github-profile.json";
+import { AuthorProfile } from "@/components/AuthorProfile";
 
 export default function HomePage() {
   const recentPosts = getAllPosts()
@@ -16,8 +17,10 @@ export default function HomePage() {
     <>
       <div className="relative">
         <Image
-          src={profilePng}
-          className="w-56 h-56 mt-20 rounded-full bg-white border-[3px] border-gray-200"
+          src={authorData.avatarURL}
+          width={224}
+          height={224}
+          className="mt-20 rounded-full bg-white border-[3px] border-gray-200"
           alt={"terra's avatar"}
         />
         <div
@@ -32,6 +35,7 @@ export default function HomePage() {
           />
         </div>
       </div>
+      <AuthorProfile />
       <PageHeading>
         <span className="text-primary">Terra</span>의 개발 블로그
       </PageHeading>
