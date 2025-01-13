@@ -22,6 +22,7 @@
   --my-colors-primary: var(--my-colors-primary-500);
   --my-colors-primary-hover: var(--my-colors-primary-600);
   --my-colors-primary-pressed: var(--my-colors-primary-700);
+  --my-colors-layer-alpha2: rgba(255, 255, 255, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -24,22 +24,13 @@ export function ShareButton(props: ShareButtonProps) {
 
   const onShareSuccess = () => {
     toaster.create({
-      title: "Successfully shared your content!",
-      type: "info",
+      title: "🙇‍♂️ Successfully shared your content!",
     });
   };
 
-  const onShareFailed = (error: Error) => {
-    toaster.create({
-      title: "Failed to share the content...",
-      description: error.message,
-      type: "info",
-    });
-  };
   const handleClickShare = async () => {
     const result = await share(shareData);
     if (isFailed(result)) {
-      onShareFailed(result.error);
       return;
     }
 
@@ -60,14 +51,19 @@ export function ShareButton(props: ShareButtonProps) {
       <Toast.Toaster toaster={toaster}>
         {(toast) => (
           <Toast.Root key={toast.id} className="bg-gray-800">
-            <Toast.Title className="text-white mb-0 font-normal text-md">
+            <Toast.Title className="text-white text-left  mb-0 font-normal text-md">
               {toast.title}
             </Toast.Title>
             <Toast.Description className="text-white font-light text-sm">
               {toast.description}
             </Toast.Description>
             <Toast.CloseTrigger asChild>
-              <IconButton size="xs" theme="whiteAlpha" variant="ghost">
+              <IconButton
+                size="xs"
+                theme="whiteAlpha"
+                variant="ghost"
+                className="text-white -mt-0.5"
+              >
                 <XIcon size={16} />
               </IconButton>
             </Toast.CloseTrigger>
