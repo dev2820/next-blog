@@ -7,10 +7,7 @@ export function ListItem(props: ListItemProps) {
 
   return (
     <li
-      className={cx(
-        "text-paragraph font-light leading-normal py-1 ml-6",
-        className,
-      )}
+      className={cx("text-paragraph leading-normal py-1 ml-6", className)}
       {...rest}
     />
   );
