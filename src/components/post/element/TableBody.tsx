@@ -6,7 +6,7 @@ import {
   type TableProps as _TableProps,
 } from "terra-design-system/react";
 
-export type TableBodyProps = _TableProps["body"];
+export type TableBodyProps = _TableProps["Body"];
 export function TableBody(props: TableBodyProps) {
   const { className, ...rest } = props;
 
