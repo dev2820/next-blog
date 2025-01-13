@@ -6,7 +6,7 @@ import {
   type TableProps as _TableProps,
 } from "terra-design-system/react";
 
-export type TableHeaderProps = _TableProps["header"];
+export type TableHeaderProps = _TableProps["Header"];
 export function TableHeader(props: TableHeaderProps) {
   const { className, ...rest } = props;
 
