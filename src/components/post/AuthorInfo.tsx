@@ -29,13 +29,12 @@ export function AuthorInfo(props: AuthorInfoProps) {
         className="w-24 h-24 flex-none"
       />
       <div className="text-pretty flex flex-col gap-2">
-        <Link href={GITHUB_URL}>
-          <strong className="text-lg inline-block h-6 min-w-36">
-            {`${authorData?.name}${
-              authorData.nickname && " (" + authorData.nickname + ")"
-            }`}
-          </strong>
-        </Link>
+        <strong className="text-xl inline-block h-6 min-w-36 font-semibold">
+          {authorData?.nickname}{" "}
+          <span className="text-gray-400">
+            {authorData.name && " (" + authorData.name + ")"}
+          </span>
+        </strong>
         <p className="text-sm whitespace-pre-wrap h-6 min-w-64">
           {authorData?.bio}
         </p>
