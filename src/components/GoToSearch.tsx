@@ -11,10 +11,10 @@ export function GoToSearch() {
       className={cx(
         "ml-1 desktop:ml-8",
         buttonVariants({ variant: "ghost" }),
-        "size-11"
+        "size-11 p-0"
       )}
     >
-      <SearchIcon />
+      <SearchIcon size={20} />
     </Link>
   );
 }
