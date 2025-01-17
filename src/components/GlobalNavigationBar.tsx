@@ -1,11 +1,11 @@
 "use client";
 
 import { cx } from "@/utils/cx";
-import Link from "next/link";
+import RouterLink from "next/link";
 import { ComponentProps, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScreen } from "@/hooks/use-screen";
-import { Drawer, IconButton } from "terra-design-system/react";
+import { Drawer, IconButton, linkVariants } from "terra-design-system/react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { useDisclosure } from "@/hooks/use-disclosure";
@@ -74,7 +74,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                     key={m.href}
                     className={cx(m.enabled && "hover:bg-black/5 duration-200")}
                   >
-                    <Link
+                    <RouterLink
                       href={m.enabled ? m.href : ""}
                       aria-disabled={!m.enabled}
                       onClick={drawerHandler.close}
@@ -86,7 +86,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                       >
                         {m.label}
                       </NavigationItem>
-                    </Link>
+                    </RouterLink>
                   </li>
                 ))}
               </menu>
@@ -102,14 +102,17 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
       <menu className="flex flex-row gap-8">
         {NAVIGATION_MENUS.map((m) => (
           <li key={m.href}>
-            <Link href={m.enabled ? m.href : ""} aria-disabled={!m.enabled}>
+            <RouterLink
+              href={m.enabled ? m.href : ""}
+              aria-disabled={!m.enabled}
+            >
               <NavigationItem
                 active={pathname.startsWith(m.href)}
                 disabled={!m.enabled}
               >
                 {m.label}
               </NavigationItem>
-            </Link>
+            </RouterLink>
           </li>
         ))}
       </menu>
@@ -127,7 +130,7 @@ const NavigationItem = (props: NavigationItemProps) => {
     <div
       className={cx(
         "cursor-pointer",
-        "text-neutral-500 hover:text-neutral-900 duration-200 font-medium",
+        linkVariants({ theme: "default", variant: "plain" }),
         active && "text-primary hover:text-primary",
         disabled && "cursor-not-allowed text-muted hover:text-muted",
         className
