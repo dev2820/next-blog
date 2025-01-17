@@ -11,6 +11,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoToSearch } from "@/components/GoToSearch";
+import { UseDarkMode } from "@/components/UseDarkMode";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
@@ -68,11 +69,12 @@ export default function RootLayout({
       <body
         className={cx(
           pretendard.className,
-          "w-dvw overflow-x-hidden flex flex-col text-gray-800"
+          "w-dvw overflow-x-hidden flex flex-col text-fg bg-base"
         )}
       >
+        <UseDarkMode />
         <Header className="self-center w-screen max-w-screen-md px-4 fixed top-0 z-50 bg-white/75 backdrop-blur-sm"></Header>
-        <main className="self-center w-full max-w-screen-md p-4 mt-16 text-gray-800">
+        <main className="self-center w-full max-w-screen-md p-4 mt-16">
           {children}
         </main>
         <footer className="self-center w-screen max-w-screen-md px-4 h-96">

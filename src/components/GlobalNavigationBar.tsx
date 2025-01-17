@@ -14,6 +14,7 @@ import {
 import { MenuIcon, XIcon } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { useDisclosure } from "@/hooks/use-disclosure";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 const NAVIGATION_MENUS = [
   {
@@ -83,6 +84,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                       <li
                         key={m.href}
                         className={cx(
+                          "h-12",
                           m.enabled && "hover:bg-black/5 duration-200"
                         )}
                       >
@@ -94,13 +96,16 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                           <NavigationItem
                             active={pathname.startsWith(m.href)}
                             disabled={!m.enabled}
-                            className="h-12 leading-[48px] px-2 text-center"
+                            className="h-full leading-[48px] px-2 text-center"
                           >
                             {m.label}
                           </NavigationItem>
                         </RouterLink>
                       </li>
                     ))}
+                    <li className="h-12 px-2">
+                      <DarkModeToggle className="h-full" />
+                    </li>
                   </menu>
                 </nav>
               </Drawer.Body>

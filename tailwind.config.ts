@@ -24,6 +24,8 @@ const config: Config = {
         desktop: "1023px",
       },
       colors: {
+        base: "var(--my-colors-base)",
+        fg: "var(--my-colors-fg)",
         primary: {
           DEFAULT: "var(--my-colors-primary)",
           50: "var(--my-colors-primary-50)", // Lightest green
