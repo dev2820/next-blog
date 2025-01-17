@@ -12,7 +12,7 @@ import {
   Portal,
 } from "terra-design-system/react";
 import { MenuIcon, XIcon } from "lucide-react";
-import { BrandLogo } from "./BrandLogo";
+import LogoFullSVG from "@/assets/logo-full.svg";
 import { useDisclosure } from "@/hooks/use-disclosure";
 import { DarkModeToggle } from "./DarkModeToggle";
 
@@ -69,7 +69,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
             <Drawer.Content className="w-svw max-w-96 flex flex-col">
               <Drawer.Header>
                 <Drawer.Title className="w-full mt-4 self-start px-4 flex flex-row justify-between items-center">
-                  <BrandLogo />
+                  <LogoFullSVG />
                   <Drawer.CloseTrigger asChild onClick={drawerHandler.close}>
                     <IconButton variant="ghost">
                       <XIcon size={24} />

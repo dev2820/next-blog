@@ -27,6 +27,7 @@
     "terra-design-system": "^1.1.6"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/glob": "^8.1.0",
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",

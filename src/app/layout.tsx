@@ -4,10 +4,10 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { cx } from "@/utils/cx";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import LogoFullSVG from "@/assets/logo-full.svg";
 
 import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
-import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoToSearch } from "@/components/GoToSearch";
@@ -73,7 +73,7 @@ export default function RootLayout({
         )}
       >
         <UseDarkMode />
-        <Header className="self-center w-screen max-w-screen-md px-4 fixed top-0 z-50 bg-white/75 backdrop-blur-sm"></Header>
+        <Header className="self-center w-screen max-w-screen-md px-4 fixed top-0 z-50 bg-alpha2 backdrop-blur-sm"></Header>
         <main className="self-center w-full max-w-screen-md p-4 mt-16">
           {children}
         </main>
@@ -104,7 +104,7 @@ function Header(props: HeaderProps) {
       {...rest}
     >
       <Link href="/">
-        <BrandLogo height={48} />
+        <LogoFullSVG />
       </Link>
       <div className="flex-1" />
       <GlobalNavigationBar />

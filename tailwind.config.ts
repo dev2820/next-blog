@@ -26,6 +26,7 @@ const config: Config = {
       colors: {
         base: "var(--my-colors-base)",
         fg: "var(--my-colors-fg)",
+        alpha2: "var(--my-colors-alpha2)",
         primary: {
           DEFAULT: "var(--my-colors-primary)",
           50: "var(--my-colors-primary-50)", // Lightest green
