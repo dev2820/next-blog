@@ -5,7 +5,12 @@ import RouterLink from "next/link";
 import { ComponentProps, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScreen } from "@/hooks/use-screen";
-import { Drawer, IconButton, linkVariants } from "terra-design-system/react";
+import {
+  Drawer,
+  IconButton,
+  linkVariants,
+  Portal,
+} from "terra-design-system/react";
 import { MenuIcon, XIcon } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { useDisclosure } from "@/hooks/use-disclosure";
@@ -57,42 +62,51 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
             <MenuIcon />
           </IconButton>
         </Drawer.Trigger>
-        <Drawer.Content className="w-svw max-w-96 flex flex-col">
-          <Drawer.Title className="w-full mt-4 self-start px-4 flex flex-row justify-between items-center">
-            <BrandLogo />
-            <Drawer.CloseTrigger asChild onClick={drawerHandler.close}>
-              <IconButton variant="ghost">
-                <XIcon size={24} />
-              </IconButton>
-            </Drawer.CloseTrigger>
-          </Drawer.Title>
-          <Drawer.Body className="mt-8">
-            <nav>
-              <menu className="flex flex-col divide-y">
-                {NAVIGATION_MENUS.map((m) => (
-                  <li
-                    key={m.href}
-                    className={cx(m.enabled && "hover:bg-black/5 duration-200")}
-                  >
-                    <RouterLink
-                      href={m.enabled ? m.href : ""}
-                      aria-disabled={!m.enabled}
-                      onClick={drawerHandler.close}
-                    >
-                      <NavigationItem
-                        active={pathname.startsWith(m.href)}
-                        disabled={!m.enabled}
-                        className="h-12 leading-[48px] px-2 text-center"
+        <Portal>
+          <Drawer.Backdrop />
+          <Drawer.Positioner>
+            <Drawer.Content className="w-svw max-w-96 flex flex-col">
+              <Drawer.Header>
+                <Drawer.Title className="w-full mt-4 self-start px-4 flex flex-row justify-between items-center">
+                  <BrandLogo />
+                  <Drawer.CloseTrigger asChild onClick={drawerHandler.close}>
+                    <IconButton variant="ghost">
+                      <XIcon size={24} />
+                    </IconButton>
+                  </Drawer.CloseTrigger>
+                </Drawer.Title>
+              </Drawer.Header>
+              <Drawer.Body className="mt-8">
+                <nav>
+                  <menu className="flex flex-col divide-y">
+                    {NAVIGATION_MENUS.map((m) => (
+                      <li
+                        key={m.href}
+                        className={cx(
+                          m.enabled && "hover:bg-black/5 duration-200"
+                        )}
                       >
-                        {m.label}
-                      </NavigationItem>
-                    </RouterLink>
-                  </li>
-                ))}
-              </menu>
-            </nav>
-          </Drawer.Body>
-        </Drawer.Content>
+                        <RouterLink
+                          href={m.enabled ? m.href : ""}
+                          aria-disabled={!m.enabled}
+                          onClick={drawerHandler.close}
+                        >
+                          <NavigationItem
+                            active={pathname.startsWith(m.href)}
+                            disabled={!m.enabled}
+                            className="h-12 leading-[48px] px-2 text-center"
+                          >
+                            {m.label}
+                          </NavigationItem>
+                        </RouterLink>
+                      </li>
+                    ))}
+                  </menu>
+                </nav>
+              </Drawer.Body>
+            </Drawer.Content>
+          </Drawer.Positioner>
+        </Portal>
       </Drawer.Root>
     );
   }
