@@ -8,6 +8,7 @@ import { Post } from "@/types/post";
 import { cx } from "@/utils/cx";
 import { isFailed, isNil } from "@/utils/predicate";
 import { fetchPostListForSearch } from "@/utils/search";
+import { ChevronDownIcon } from "lucide-react";
 import { MouseEvent, useCallback, useState } from "react";
 import { Select, Skeleton } from "terra-design-system/react";
 
@@ -120,11 +121,25 @@ export default function PostsPage() {
           defaultValue={[orderOptions[0]]}
           onValueChange={handleChangeSelect}
         >
-          {orderOptions.map((order) => (
-            <Select.Item key={order} item={order}>
-              {order}
-            </Select.Item>
-          ))}
+          <Select.Control>
+            <Select.Trigger>
+              <Select.ValueText />
+              <Select.Indicator>
+                <ChevronDownIcon size={16} className="text-gray-400" />
+              </Select.Indicator>
+            </Select.Trigger>
+          </Select.Control>
+          <Select.Positioner>
+            <Select.Content>
+              {orderOptions.map((order) => (
+                <Select.Item item={order} key={order}>
+                  <Select.ItemText>{order}</Select.ItemText>
+                  <Select.ItemIndicator>✓</Select.ItemIndicator>
+                </Select.Item>
+              ))}
+            </Select.Content>
+          </Select.Positioner>
+          <Select.HiddenSelect />
         </Select.Root>
       </div>
       <ul className="w-full">
