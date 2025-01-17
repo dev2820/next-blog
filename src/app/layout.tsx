@@ -9,8 +9,8 @@ import { GlobalNavigationBar } from "@/components/GlobalNavigationBar";
 import { ComponentProps } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 import Link from "next/link";
-import { SearchButton } from "@/components/search/SearchButton";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { GoToSearch } from "@/components/GoToSearch";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
@@ -105,10 +105,8 @@ function Header(props: HeaderProps) {
         <BrandLogo height={48} />
       </Link>
       <div className="flex-1" />
-      <Link href="/search" className="mr-1 desktop:mr-8">
-        <SearchButton />
-      </Link>
       <GlobalNavigationBar />
+      <GoToSearch />
     </header>
   );
 }
