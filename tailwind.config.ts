@@ -25,7 +25,7 @@ const config: Config = {
       },
       colors: {
         base: "var(--my-colors-base)",
-        alpha2: "var(--my-colors-alpha2)",
+
         primary: {
           DEFAULT: "var(--my-colors-primary)",
           50: "var(--my-colors-primary-50)", // Lightest green
@@ -56,6 +56,7 @@ const config: Config = {
           fill: "var(--my-colors-layer-fill)",
           hover: "var(--my-colors-layer-hover)",
           pressed: "var(--my-colors-layer-pressed)",
+          alpha2: "var(--my-colors-layer-alpha2)",
         },
         fg: {
           DEFAULT: "var(--my-colors-fg)",

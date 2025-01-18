@@ -73,7 +73,7 @@ export default function RootLayout({
         )}
       >
         <UseDarkMode />
-        <Header className="self-center w-screen max-w-screen-md px-4 fixed top-0 z-50 bg-alpha2 backdrop-blur-sm"></Header>
+        <Header className="self-center w-screen fixed top-0 z-50"></Header>
         <main className="self-center w-full max-w-screen-md p-4 mt-16">
           {children}
         </main>
@@ -97,18 +97,17 @@ function Header(props: HeaderProps) {
   const { className, ...rest } = props;
   return (
     <header
-      className={cx(
-        "flex flex-row justify-center py-2 items-center",
-        className
-      )}
+      className={cx("px-4 py-2 bg-layer-alpha2 backdrop-blur-sm", className)}
       {...rest}
     >
-      <Link href="/">
-        <LogoFullSVG />
-      </Link>
-      <div className="flex-1" />
-      <GlobalNavigationBar />
-      <GoToSearch />
+      <div className="flex flex-row justify-center place-items-center w-full max-w-screen-md mx-auto">
+        <Link href="/">
+          <LogoFullSVG />
+        </Link>
+        <div className="flex-1" />
+        <GlobalNavigationBar />
+        <GoToSearch />
+      </div>
     </header>
   );
 }
