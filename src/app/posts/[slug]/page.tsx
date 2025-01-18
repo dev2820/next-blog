@@ -46,6 +46,8 @@ import { Tag } from "@/components/Tag";
 import { NextPost } from "@/components/post/NextPost";
 import { PrevPost } from "@/components/post/PrevPost";
 import { cx } from "@/utils/cx";
+import { Portal } from "terra-design-system/react";
+import { createPortal } from "react-dom";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -173,9 +175,6 @@ export default async function PostPage({ params }: PageProps) {
         </header>
 
         <div id="content" className="relative">
-          <aside className="absolute -right-12 translate-x-full h-full w-52 desktop:block hidden">
-            <TableOfContents toc={toc} className="sticky top-24" />
-          </aside>
           {CompiledMDX}
           <div className="text-center my-12">
             <ShareButton
@@ -230,6 +229,9 @@ export default async function PostPage({ params }: PageProps) {
         <section id="comments-and-reaction">
           <Comment className="w-full" />
         </section>
+        <aside className="h-full absolute top-0 -right-12 translate-x-full w-52 desktop-lg:block hidden">
+          <TableOfContents toc={toc} className="sticky top-24" />
+        </aside>
       </article>
     </>
   );

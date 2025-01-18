@@ -11,6 +11,7 @@ import {
   forwardRef,
   useRef,
 } from "react";
+import { createPortal } from "react-dom";
 
 export type TableOfContentProps = ComponentProps<"nav"> & {
   toc: TableOfContentsItem[];
@@ -28,20 +29,16 @@ export function TableOfContents(props: TableOfContentProps) {
       );
 
       if (targetEl) {
+        const prevActiveEl = document.querySelector('[data-active="true"]');
+        if (prevActiveEl) {
+          (prevActiveEl as HTMLElement).dataset["active"] = "false";
+        }
         targetEl.dataset["active"] = "true";
-      }
-    },
-    onInvisible: (entry) => {
-      const id = entry.target.getAttribute("aria-labelledby");
-      const targetEl = itemsRef.current.find(
-        ($el) => $el?.dataset["id"] === `#${id}`
-      );
-      if (targetEl) {
-        targetEl.dataset["active"] = "false";
       }
     },
   });
 
+  // return createPortal(
   return (
     <nav {...rest}>
       <ol>
@@ -60,6 +57,7 @@ export function TableOfContents(props: TableOfContentProps) {
         ))}
       </ol>
     </nav>
+    // document.body
   );
 }
 
@@ -72,7 +70,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(function Item(props, ref) {
   return (
     <div
       className={cx(
-        'text-sm font-light data-[active="true"]:text-base data-[active="true"]:font-semibold py-0.5 text-neutral-400 data-[active="true"]:text-primary duration-200 hover:text-primary',
+        'text-sm font-light py-0.5 text-neutral-400 last:data-[active="true"]:text-primary duration-200 hover:text-primary',
         item.level === 1 && "pl-2",
         item.level === 2 && "pl-4",
         item.level === 3 && "pl-10",

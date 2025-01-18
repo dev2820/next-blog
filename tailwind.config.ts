@@ -22,6 +22,7 @@ const config: Config = {
       screens: {
         tablet: "601px",
         desktop: "1023px",
+        "desktop-lg": "1280px",
       },
       colors: {
         base: "var(--my-colors-base)",
