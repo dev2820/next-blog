@@ -67,7 +67,7 @@ function SearchResultSummary(props: SearchResultSummaryProps) {
   return (
     <p
       className={cx(
-        "text-gray-800 font-light text-lg lg:text-xl mt-4",
+        "text-fg-description font-light text-lg lg:text-xl mt-4",
         className
       )}
       {...rest}

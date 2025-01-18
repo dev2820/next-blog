@@ -24,8 +24,8 @@ export function Tag(props: TagProps) {
         "inline-block rounded-full duration-200",
         theme === "primary" && "bg-primary-100 hover:bg-primary-300",
         active && theme === "primary" && "bg-primary-300",
-        theme === "secondary" && "bg-gray-100 hover:bg-gray-300 ",
-        active && theme === "secondary" && "bg-gray-300",
+        theme === "secondary" && "bg-layer-fill hover:bg-layer-hover",
+        active && theme === "secondary" && "bg-layer-pressed",
         "font-light align-top",
         size === "md" && "min-h-10 text-md px-4 leading-10",
         className
