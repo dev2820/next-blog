@@ -37,6 +37,7 @@ next-env.d.ts
 
 # data
 src/assets/data/github-profile.json
+src/__mocks__/*
 
 # sitemap
 /build
