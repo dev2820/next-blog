@@ -9,7 +9,7 @@ $COMMAND
 # 커맨드가 성공했는지 확인
 if [ $? -eq 0 ]; then
   # 변경된 파일을 git staging에 추가
-  git add .
+  git add public
 
   # 한줄 커밋 생성
   git commit -m "chore: update posts"
