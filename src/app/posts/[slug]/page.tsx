@@ -43,6 +43,9 @@ import { Ficture } from "@/components/post/element/Ficture";
 import { CalendarDaysIcon, CoffeeIcon, FeatherIcon } from "lucide-react";
 import Link from "next/link";
 import { Tag } from "@/components/Tag";
+import { NextPost } from "@/components/post/NextPost";
+import { PrevPost } from "@/components/post/PrevPost";
+import { cx } from "@/utils/cx";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -142,7 +145,7 @@ export default async function PostPage({ params }: PageProps) {
           <div className="flex flex-row place-items-center gap-2 text-gray-500">
             <FeatherIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
-              <Anchor href={GITHUB_URL} target="_blank">
+              <Anchor href={GITHUB_URL} target="_blank" theme="primary">
                 {AUTHOR} ({NICK_NAME})
               </Anchor>
             </span>
@@ -185,13 +188,7 @@ export default async function PostPage({ params }: PageProps) {
               aria-label="Share this article"
             />
           </div>
-          <div>
-            {prevPost && prevPost.data.draft && (
-              <RouterLink href={`/posts/${prevPost.data.slug}`}>
-                {prevPost.data.title}
-              </RouterLink>
-            )}
-          </div>
+
           <ul className="flex flex-row gap-3 flex-wrap justify-start mb-20">
             {data.tags.map((tag) => (
               <li key={tag}>
@@ -205,6 +202,28 @@ export default async function PostPage({ params }: PageProps) {
             ))}
           </ul>
         </div>
+        <section
+          id="another-posts"
+          className={cx("flex flex-col justify-between mb-10", "sm:flex-row")}
+        >
+          {prevPost && prevPost.data.draft && (
+            <RouterLink
+              href={`/posts/${prevPost.data.slug}`}
+              className="flex-none self-start"
+            >
+              <PrevPost post={post} />
+            </RouterLink>
+          )}
+          <div className="flex-1 min-w-4 min-h-4"></div>
+          {nextPost && nextPost.data.draft && (
+            <RouterLink
+              href={`/posts/${nextPost.data.slug}`}
+              className="flex-none self-end"
+            >
+              <NextPost post={post} />
+            </RouterLink>
+          )}
+        </section>
         <section id="author" className="mb-4">
           <AuthorInfo />
         </section>

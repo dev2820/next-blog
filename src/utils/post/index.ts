@@ -95,6 +95,8 @@ const toPostData = (rawPostData: GrayMatterFile<string>["data"]): PostData => {
     summary: rawPostData.summary,
     draft: rawPostData.draft,
     image: rawPostData.image,
+    prev: rawPostData.prev,
+    next: rawPostData.next,
   };
 };
 
