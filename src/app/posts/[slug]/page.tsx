@@ -1,6 +1,7 @@
 import { generateTOC, getPostBySlug } from "@/utils/post";
 import { isNil } from "@/utils/predicate";
 import { notFound } from "next/navigation";
+import RouterLink from "next/link";
 import { format } from "date-fns";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
@@ -122,6 +123,8 @@ export default async function PostPage({ params }: PageProps) {
 
   const readTime = readingTime(content);
   const publishedAt = format(data.published, "yyyy-MM-dd");
+  const prevPost = data.prev ? getPostBySlug(data.prev) : null;
+  const nextPost = data.next ? getPostBySlug(data.next) : null;
   return (
     <>
       <article className="relative">
@@ -171,18 +174,6 @@ export default async function PostPage({ params }: PageProps) {
             <TableOfContents toc={toc} className="sticky top-24" />
           </aside>
           {CompiledMDX}
-          <ul className="flex flex-row gap-3 flex-wrap justify-start mt-40">
-            {data.tags.map((tag) => (
-              <li key={tag}>
-                <Link
-                  href={`/tags/${encodeURIComponent(tag)}`}
-                  className="rounded-full"
-                >
-                  <Tag theme="secondary">{tag}</Tag>
-                </Link>
-              </li>
-            ))}
-          </ul>
           <div className="text-center my-12">
             <ShareButton
               size="lg"
@@ -194,6 +185,25 @@ export default async function PostPage({ params }: PageProps) {
               aria-label="Share this article"
             />
           </div>
+          <div>
+            {prevPost && prevPost.data.draft && (
+              <RouterLink href={`/posts/${prevPost.data.slug}`}>
+                {prevPost.data.title}
+              </RouterLink>
+            )}
+          </div>
+          <ul className="flex flex-row gap-3 flex-wrap justify-start mb-20">
+            {data.tags.map((tag) => (
+              <li key={tag}>
+                <Link
+                  href={`/tags/${encodeURIComponent(tag)}`}
+                  className="rounded-full"
+                >
+                  <Tag theme="secondary">{tag}</Tag>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <section id="author" className="mb-4">
           <AuthorInfo />
