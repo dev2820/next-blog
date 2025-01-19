@@ -38,7 +38,7 @@ const config: Config = {
           800: "var(--my-colors-primary-800)", // Dark green
           900: "var(--my-colors-primary-900)", // Darkest green
           subtlest: "var(--my-colors-primary-subtlest)",
-          subtler: "var(--my-colors-primary-sublter)",
+          subtler: "var(--my-colors-primary-subtler)",
           subtle: "var(--my-colors-primary-subtle)",
           strong: "var(--my-colors-primary-strong)",
           stronger: "var(--my-colors-primary-stronger)",
@@ -69,12 +69,14 @@ const config: Config = {
           popover: "var(--my-colors-layer-popover)",
           highlight: "var(--my-colors-layer-highlight)",
           input: "var(--my-colors-layer-input)",
+          trigger: "var(--my-colors-layer-trigger)",
         },
         fg: {
           DEFAULT: "var(--my-colors-fg)",
           title: "var(--my-colors-fg-title)",
           description: "var(--my-colors-fg-description)",
           caption: "var(--my-colors-fg-caption)",
+          trigger: "var(--my-colors-fg-trigger)",
         },
         muted: "rgb(212 212 212)",
       },

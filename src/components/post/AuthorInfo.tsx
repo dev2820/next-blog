@@ -2,9 +2,9 @@
 
 import { ComponentProps } from "react";
 import { cx } from "@/utils/cx";
-import { Avatar, Link } from "terra-design-system/react";
+import { Avatar } from "terra-design-system/react";
 import authorData from "@/assets/data/github-profile.json";
-import githubLogo from "@/assets/images/github-mark.png";
+import GithubLogo from "@/assets/github.svg";
 import linkedinLogo from "@/assets/images/linkedin-mark.png";
 import Image from "next/image";
 
@@ -41,7 +41,10 @@ export function AuthorInfo(props: AuthorInfoProps) {
         <ul className="flex flex-row gap-3">
           <li>
             <a href={GITHUB_URL} target="_blank">
-              <Image src={githubLogo} alt={"github logo"} className="w-5 h-5" />
+              <GithubLogo
+                alt={"github logo"}
+                className="w-5 h-5 fill-current text-fg"
+              />
             </a>
           </li>
           <li>

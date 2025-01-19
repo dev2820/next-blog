@@ -6,6 +6,7 @@ import parrotGif from "@/assets/images/rightparrot.gif";
 import Image from "next/image";
 import authorData from "@/assets/data/github-profile.json";
 import { AuthorProfile } from "@/components/AuthorProfile";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 export default function HomePage() {
   const recentPosts = getAllPosts()

@@ -25,7 +25,7 @@ export default function ContactPage() {
     <div className="flex flex-col place-items-center">
       <div
         className={cx(
-          "bg-[#F1F1EF] flex flex-col text-left shadow-lg shadow-[#c8c8c7] p-8 w-full max-w-[30rem] rounded-lg"
+          "bg-layer-fill flex flex-col text-left shadow-lg p-8 w-full max-w-[30rem] rounded-lg"
         )}
       >
         <div className="text-3xl mb-1">

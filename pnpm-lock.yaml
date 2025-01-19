@@ -27,8 +27,8 @@ dependencies:
     specifier: ^2.5.2
     version: 2.5.2
   terra-design-system:
-    specifier: ^1.1.9
-    version: 1.1.9(@ark-ui/react@3.13.0)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)
+    specifier: ^1.1.11
+    version: 1.1.11(@ark-ui/react@3.13.0)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1)
 
 devDependencies:
   '@svgr/webpack':
@@ -6741,8 +6741,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /terra-design-system@1.1.9(@ark-ui/react@3.13.0)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1):
-    resolution: {integrity: sha512-h97DB46bnTaRVIhNX45Homh1mzgP7EecpmTRRRfnYHeQua8rAm9M6/1McXKnA76cWoYJutwrxb7ZZIcXjFTCCw==}
+  /terra-design-system@1.1.11(@ark-ui/react@3.13.0)(react-dom@18.3.1)(react@18.3.1)(tailwind-variants@0.2.1):
+    resolution: {integrity: sha512-AexSPI6IbpWUOYxWxsF9n6tJmJbsXbq5XdfHSjUXE3h7apjhg2LfA4PERP+Twy+D4plLP+8e4xLncXMJkz78OA==}
     peerDependencies:
       '@ark-ui/react': ^3.6.2
       react: ^18.2.0

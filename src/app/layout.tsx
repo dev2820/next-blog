@@ -12,6 +12,7 @@ import Link from "next/link";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoToSearch } from "@/components/GoToSearch";
 import { UseDarkMode } from "@/components/UseDarkMode";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
@@ -69,7 +70,7 @@ export default function RootLayout({
       <body
         className={cx(
           pretendard.className,
-          "w-dvw flex flex-col text-fg bg-layer"
+          "w-dvw flex flex-col text-fg bg-layer transition-colors duration-300"
         )}
       >
         <UseDarkMode />
@@ -106,7 +107,8 @@ function Header(props: HeaderProps) {
         </Link>
         <div className="flex-1" />
         <GlobalNavigationBar />
-        <GoToSearch />
+        <GoToSearch className="mr-2" />
+        <DarkModeToggle className="hidden desktop:flex" />
       </div>
     </header>
   );
