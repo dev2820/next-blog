@@ -69,7 +69,7 @@ export default function RootLayout({
       <body
         className={cx(
           pretendard.className,
-          "w-dvw flex flex-col text-fg bg-base"
+          "w-dvw flex flex-col text-fg bg-layer"
         )}
       >
         <UseDarkMode />

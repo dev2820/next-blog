@@ -6,9 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 249, 249, 243;
   overflow-x: hidden;
-  /**
-   * css for terra-design-system
-   */
+
   --my-colors-primary-50: #f0fdf4;
   --my-colors-primary-100: #dcfce7;
   --my-colors-primary-200: #bbf7d0;
@@ -31,14 +29,20 @@
   --my-colors-neutral-800: #1f2937;
   --my-colors-neutral-900: #111827;
 
-  --my-colors-base: #ffffff;
+  /**
+   * semantic tokens
+   */
   --my-colors-primary: var(--my-colors-primary-500);
   --my-colors-primary-strong: var(--my-colors-primary-600);
   --my-colors-primary-stronger: var(--my-colors-primary-700);
-  --my-colors-layer-hover: var(--my-colors-neutral-300);
-  --my-colors-layer-fill: var(--my-colors-neutral-200);
-  --my-colors-layer-pressed: var(--my-colors-neutral-400);
+
+  --my-colors-layer: #ffffff;
+  --my-colors-layer-alpha: rgba(255, 255, 255, 0);
   --my-colors-layer-alpha2: rgba(255, 255, 255, 0.08);
+  --my-colors-layer-fill: var(--my-colors-neutral-200);
+  --my-colors-layer-hover: var(--my-colors-neutral-300);
+  --my-colors-layer-pressed: var(--my-colors-neutral-400);
+
   --my-colors-fg: rgb(31 41 55);
   --my-colors-fg-description: var(--my-colors-neutral-700);
 }

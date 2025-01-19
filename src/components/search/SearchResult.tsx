@@ -15,7 +15,7 @@ export function SearchResult(props: SearchResultProps) {
   return (
     <SearchResultRoot className={cx("", className)} {...rest}>
       <RouterLink href={`/posts/${post.data.slug}`}>
-        <SearchResultTitle className="hover:underline">
+        <SearchResultTitle className="hover:underline underline-offset-4">
           {post.data.title}
         </SearchResultTitle>
       </RouterLink>

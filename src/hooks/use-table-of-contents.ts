@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 
 export type UseTableOfContentsProps = {
+  targetQuery: string;
   onVisible?: (entry: IntersectionObserverEntry) => void;
   onInvisible?: (entry: IntersectionObserverEntry) => void;
 };
 export const useTableOfContents = (props: UseTableOfContentsProps) => {
-  const { onVisible, onInvisible } = props;
+  const { targetQuery, onVisible, onInvisible } = props;
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export const useTableOfContents = (props: UseTableOfContentsProps) => {
       }
     );
 
-    const contentSections = document.querySelectorAll("div#content section");
+    const contentSections = document.querySelectorAll(targetQuery);
     contentSections.forEach(($el) => {
       observerRef.current?.observe($el);
     });
@@ -38,7 +39,7 @@ export const useTableOfContents = (props: UseTableOfContentsProps) => {
         observerRef.current.disconnect();
       }
     };
-  }, [onVisible, onInvisible]);
+  }, [onVisible, onInvisible, targetQuery]);
 
   return null;
 };

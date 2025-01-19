@@ -25,8 +25,6 @@ const config: Config = {
         "desktop-lg": "1280px",
       },
       colors: {
-        base: "var(--my-colors-base)",
-
         primary: {
           DEFAULT: "var(--my-colors-primary)",
           50: "var(--my-colors-primary-50)", // Lightest green
@@ -54,9 +52,11 @@ const config: Config = {
           900: "var(--my-colors-neutral-900)", // Darkest green
         },
         layer: {
+          DEFAULT: "var(--my-colors-layer)",
           fill: "var(--my-colors-layer-fill)",
           hover: "var(--my-colors-layer-hover)",
           pressed: "var(--my-colors-layer-pressed)",
+          alpha: "var(--my-colors-layer-alpha)",
           alpha2: "var(--my-colors-layer-alpha2)",
         },
         fg: {

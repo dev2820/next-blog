@@ -11,7 +11,6 @@ import {
   forwardRef,
   useRef,
 } from "react";
-import { createPortal } from "react-dom";
 
 export type TableOfContentProps = ComponentProps<"nav"> & {
   toc: TableOfContentsItem[];
@@ -21,6 +20,7 @@ export function TableOfContents(props: TableOfContentProps) {
   const itemsRef = useRef<(ElementRef<typeof Item> | null)[]>([]);
 
   useTableOfContents({
+    targetQuery: "div#content section",
     onVisible: (entry) => {
       const id = entry.target.getAttribute("aria-labelledby");
 
