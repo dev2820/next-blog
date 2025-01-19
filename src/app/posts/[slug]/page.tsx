@@ -45,6 +45,7 @@ import { Tag } from "@/components/Tag";
 import { NextPost } from "@/components/post/NextPost";
 import { PrevPost } from "@/components/post/PrevPost";
 import { cx } from "@/utils/cx";
+import { GoToTopButton } from "@/components/GoToTopButton";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -173,7 +174,7 @@ export default async function PostPage({ params }: PageProps) {
 
         <div id="content" className="relative">
           {CompiledMDX}
-          <div className="text-center my-12">
+          <div className="flex flex-row gap-3 justify-center my-12">
             <ShareButton
               size="lg"
               theme="primary"
@@ -185,6 +186,7 @@ export default async function PostPage({ params }: PageProps) {
               }}
               aria-label="Share this article"
             />
+            <GoToTopButton />
           </div>
 
           <ul className="flex flex-row gap-3 flex-wrap justify-start mb-20">

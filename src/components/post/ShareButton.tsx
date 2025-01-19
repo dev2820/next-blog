@@ -1,13 +1,18 @@
 "use client";
 
 import { ComponentProps } from "react";
-import { IconButton, Toast, Tooltip } from "terra-design-system/react";
+import {
+  IconButton,
+  IconButtonProps,
+  Toast,
+  Tooltip,
+} from "terra-design-system/react";
 import { ShareIcon, XIcon } from "lucide-react";
 import { cx } from "@/utils/cx";
 import { share } from "@/utils/share";
 import { isFailed } from "@/utils/predicate";
 
-export type ShareButtonProps = ComponentProps<typeof IconButton> & {
+export type ShareButtonProps = IconButtonProps & {
   shareData: ShareData;
 };
 
