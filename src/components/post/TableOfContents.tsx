@@ -22,7 +22,6 @@ export function TableOfContents(props: TableOfContentProps) {
   useTableOfContents({
     targetQuery: "div#content h2,h3",
     onVisible: (entry) => {
-      console.log(entry.target);
       const id = entry.target.id;
 
       const targetEl = itemsRef.current.find(
