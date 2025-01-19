@@ -84,7 +84,14 @@ export function CodeBlock(props: CodeBlockProps) {
               <ClipboardIcon />
             </IconButton>
           </Tooltip.Trigger>
-          <Tooltip.Content>Copied!</Tooltip.Content>
+          <Tooltip.Positioner>
+            <Tooltip.Content>
+              <Tooltip.Arrow>
+                <Tooltip.ArrowTip />
+              </Tooltip.Arrow>
+              Copied!
+            </Tooltip.Content>
+          </Tooltip.Positioner>
         </Tooltip.Root>
       </div>
     </_CodeBlock>
