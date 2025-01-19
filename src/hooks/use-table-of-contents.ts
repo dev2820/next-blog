@@ -24,7 +24,7 @@ export const useTableOfContents = (props: UseTableOfContentsProps) => {
       },
       {
         root: null,
-        rootMargin: "-30% 0px",
+        rootMargin: "-40% 0px -40%",
         threshold: 0,
       }
     );

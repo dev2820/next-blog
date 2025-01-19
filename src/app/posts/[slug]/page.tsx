@@ -37,7 +37,6 @@ import {
 import { AuthorInfo } from "@/components/post/AuthorInfo";
 import { ShareButton } from "@/components/post/ShareButton";
 import { TableOfContents } from "@/components/post/TableOfContents";
-import { remarkSectionize } from "@/utils/remark";
 import { Comment } from "@/components/post/Comment";
 import { Ficture } from "@/components/post/element/Ficture";
 import { CalendarDaysIcon, CoffeeIcon, FeatherIcon } from "lucide-react";
@@ -46,8 +45,6 @@ import { Tag } from "@/components/Tag";
 import { NextPost } from "@/components/post/NextPost";
 import { PrevPost } from "@/components/post/PrevPost";
 import { cx } from "@/utils/cx";
-import { Portal } from "terra-design-system/react";
-import { createPortal } from "react-dom";
 
 const BASE_PATH = process.env.basePath ?? "";
 const TITLE = process.env.title ?? "";
@@ -78,7 +75,7 @@ export default async function PostPage({ params }: PageProps) {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkSectionize],
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
       },
     },

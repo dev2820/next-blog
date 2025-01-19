@@ -20,16 +20,19 @@ export function TableOfContents(props: TableOfContentProps) {
   const itemsRef = useRef<(ElementRef<typeof Item> | null)[]>([]);
 
   useTableOfContents({
-    targetQuery: "div#content section",
+    targetQuery: "div#content h2,h3",
     onVisible: (entry) => {
-      const id = entry.target.getAttribute("aria-labelledby");
+      console.log(entry.target);
+      const id = entry.target.id;
 
       const targetEl = itemsRef.current.find(
         ($el) => $el?.dataset["id"] === `#${id}`
       );
 
       if (targetEl) {
-        const prevActiveEl = document.querySelector('[data-active="true"]');
+        const prevActiveEl = document.querySelector(
+          '[data-toc-item=true][data-active="true"]'
+        );
         if (prevActiveEl) {
           (prevActiveEl as HTMLElement).dataset["active"] = "false";
         }
@@ -38,7 +41,6 @@ export function TableOfContents(props: TableOfContentProps) {
     },
   });
 
-  // return createPortal(
   return (
     <nav {...rest}>
       <ol>
@@ -47,6 +49,7 @@ export function TableOfContents(props: TableOfContentProps) {
             <Link href={item.slug}>
               <Item
                 item={item}
+                data-toc-item
                 data-id={item.slug}
                 ref={(el) => {
                   itemsRef.current[idx] = el;
@@ -57,7 +60,6 @@ export function TableOfContents(props: TableOfContentProps) {
         ))}
       </ol>
     </nav>
-    // document.body
   );
 }
 
