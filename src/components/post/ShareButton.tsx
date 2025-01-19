@@ -1,7 +1,7 @@
 "use client";
 
 import { ComponentProps } from "react";
-import { IconButton, Toast } from "terra-design-system/react";
+import { IconButton, Toast, Tooltip } from "terra-design-system/react";
 import { ShareIcon, XIcon } from "lucide-react";
 import { cx } from "@/utils/cx";
 import { share } from "@/utils/share";
@@ -39,15 +39,27 @@ export function ShareButton(props: ShareButtonProps) {
 
   return (
     <>
-      <IconButton
-        size={size}
-        variant="outline"
-        className={cx(className)}
-        onClick={handleClickShare}
-        {...rest}
-      >
-        <ShareIcon size={24} />
-      </IconButton>
+      <Tooltip.Root theme="neutral">
+        <Tooltip.Trigger asChild>
+          <IconButton
+            size={size}
+            variant="outline"
+            className={cx(className)}
+            onClick={handleClickShare}
+            {...rest}
+          >
+            <ShareIcon size={24} />
+          </IconButton>
+        </Tooltip.Trigger>
+        <Tooltip.Positioner>
+          <Tooltip.Content>
+            <Tooltip.Arrow>
+              <Tooltip.ArrowTip />
+            </Tooltip.Arrow>
+            Share with others!
+          </Tooltip.Content>
+        </Tooltip.Positioner>
+      </Tooltip.Root>
       <Toast.Toaster toaster={toaster}>
         {(toast) => (
           <Toast.Root key={toast.id} className="bg-gray-800">

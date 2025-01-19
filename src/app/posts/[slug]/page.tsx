@@ -176,6 +176,8 @@ export default async function PostPage({ params }: PageProps) {
           <div className="text-center my-12">
             <ShareButton
               size="lg"
+              theme="primary"
+              variant="filled"
               shareData={{
                 title: `${TITLE} - ${data.title}`,
                 text: data.summary,
