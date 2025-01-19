@@ -22,8 +22,8 @@ export function Tag(props: TagProps) {
     <span
       className={cx(
         "inline-block rounded-full duration-200",
-        theme === "primary" && "bg-primary-100 hover:bg-primary-300",
-        active && theme === "primary" && "bg-primary-300",
+        theme === "primary" && "bg-primary-subtler hover:bg-primary-subtle",
+        active && theme === "primary" && "bg-primary-subtle",
         theme === "secondary" && "bg-layer-fill hover:bg-layer-hover",
         active && theme === "secondary" && "bg-layer-pressed",
         "font-light align-top",

@@ -20,12 +20,12 @@ export default function HomePage() {
           src={authorData.avatarURL}
           width={224}
           height={224}
-          className="mt-20 rounded-full bg-white border-[3px] border-gray-200"
+          className="mt-20 rounded-full bg-layer border-[3px] border-neutral-subtle"
           alt={"terra's avatar"}
         />
         <div
           aria-hidden
-          className="absolute bottom-2 left-2 p-1 border-2 border-gray-100 bg-white rounded-full text-center overflow-hidden shadow-md"
+          className="absolute bottom-2 left-2 p-1 border-2 border-neutral-subtler bg-layer rounded-full text-center overflow-hidden shadow-md"
         >
           <Image
             src={parrotGif}

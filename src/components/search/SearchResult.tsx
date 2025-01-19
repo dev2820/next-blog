@@ -84,7 +84,7 @@ function SearchResultInfo(props: SearchResultInfoProps) {
   return (
     <i
       className={cx(
-        "inline-block text-gray-400 font-light text-md lg:text-lg mt-4",
+        "inline-block text-fg-caption font-light text-md lg:text-lg mt-4",
         className
       )}
       {...rest}

@@ -58,7 +58,7 @@ export function CodeBlock(props: CodeBlockProps) {
           {...rest}
         >
           <div className="table-row">
-            <_CodeBlock.LineNumber className="table-cell pr-4 text-sm text-gray-500 text-right select-none" />
+            <_CodeBlock.LineNumber className="table-cell pr-4 text-sm text-fg-caption text-right select-none" />
             <_CodeBlock.LineContent className="table-cell">
               <_CodeBlock.Token />
             </_CodeBlock.LineContent>

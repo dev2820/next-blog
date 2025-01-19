@@ -17,7 +17,7 @@ export function PrevPost(props: PrevPostProps) {
         buttonVariants({ theme: "neutral", variant: "filled" }),
         "w-full max-w-80",
         "py-8",
-        "hover:bg-primary-200 active:bg-primary-300",
+        "hover:bg-primary-subtler active:bg-primary-subtle",
         className
       )}
       {...rest}

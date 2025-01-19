@@ -24,7 +24,7 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
-    "terra-design-system": "^1.1.7"
+    "terra-design-system": "^1.1.9"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

@@ -102,7 +102,7 @@ export default async function PostPage({ params }: PageProps) {
         <Emphasize
           {...props}
           // for caption
-          className="[img+&]:block [img+&]:text-center [img+&]:text-gray-400 [img+&]:font-normal [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
+          className="[img+&]:block [img+&]:text-center [img+&]:text-fg-caption [img+&]:font-normal [img+&]:not-italic [img+&]:text-sm [img+&]:-translate-y-10"
         />
       ),
       strong: Strong,
@@ -131,7 +131,7 @@ export default async function PostPage({ params }: PageProps) {
   return (
     <>
       <article className="relative">
-        <header id="post-meta">
+        <header id="post-meta" className="text-fg-title">
           {data.image && (
             <HeroImage
               src={path.join(basePath, data.image)}
@@ -142,7 +142,7 @@ export default async function PostPage({ params }: PageProps) {
             />
           )}
           <Heading1 id={data.title}>{data.title}</Heading1>
-          <div className="flex flex-row place-items-center gap-2 text-gray-500">
+          <div className="flex flex-row place-items-center gap-2 text-fg-description">
             <FeatherIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
               <Anchor href={GITHUB_URL} target="_blank" theme="primary">
@@ -153,7 +153,7 @@ export default async function PostPage({ params }: PageProps) {
           <time
             dateTime={publishedAt}
             aria-label={`Published on ${publishedAt}`}
-            className="flex flex-row place-items-center gap-2 text-gray-500"
+            className="flex flex-row place-items-center gap-2 text-fg-description"
           >
             <CalendarDaysIcon size={20} />
             <span className="text-md leading-8 mt-0.5">
@@ -163,7 +163,7 @@ export default async function PostPage({ params }: PageProps) {
           <time
             dateTime={`PT${readTime.minutes}M`}
             aria-label="Estimated reading time"
-            className="flex flex-row place-items-center gap-2 text-gray-500"
+            className="flex flex-row place-items-center gap-2 text-fg-description"
           >
             <CoffeeIcon size={20} />
             <span className="text-md leading-8 mt-0.5">

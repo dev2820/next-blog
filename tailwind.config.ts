@@ -37,6 +37,11 @@ const config: Config = {
           700: "var(--my-colors-primary-700)", // Darker green
           800: "var(--my-colors-primary-800)", // Dark green
           900: "var(--my-colors-primary-900)", // Darkest green
+          subtlest: "var(--my-colors-primary-subtlest)",
+          subtler: "var(--my-colors-primary-sublter)",
+          subtle: "var(--my-colors-primary-subtle)",
+          strong: "var(--my-colors-primary-strong)",
+          stronger: "var(--my-colors-primary-stronger)",
         },
         neutral: {
           DEFAULT: "var(--my-colors-neutral)",
@@ -50,6 +55,9 @@ const config: Config = {
           700: "var(--my-colors-neutral-700)", // Darker green
           800: "var(--my-colors-neutral-800)", // Dark green
           900: "var(--my-colors-neutral-900)", // Darkest green
+          strong: "var(--my-colors-neutral-strong)",
+          stronger: "var(--my-colors-neutral-stronger)",
+          strongest: "var(--my-colors-neutral-strongest)",
         },
         layer: {
           DEFAULT: "var(--my-colors-layer)",
@@ -58,10 +66,15 @@ const config: Config = {
           pressed: "var(--my-colors-layer-pressed)",
           alpha: "var(--my-colors-layer-alpha)",
           alpha2: "var(--my-colors-layer-alpha2)",
+          popover: "var(--my-colors-layer-popover)",
+          highlight: "var(--my-colors-layer-highlight)",
+          input: "var(--my-colors-layer-input)",
         },
         fg: {
           DEFAULT: "var(--my-colors-fg)",
+          title: "var(--my-colors-fg-title)",
           description: "var(--my-colors-fg-description)",
+          caption: "var(--my-colors-fg-caption)",
         },
         muted: "rgb(212 212 212)",
       },
@@ -122,6 +135,9 @@ const config: Config = {
         ],
       },
     },
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
   },
   plugins: [],
 };

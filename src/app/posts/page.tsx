@@ -125,7 +125,7 @@ export default function PostsPage() {
             <Select.Trigger>
               <Select.ValueText />
               <Select.Indicator>
-                <ChevronDownIcon size={16} className="text-gray-400" />
+                <ChevronDownIcon size={16} className="text-fg-input" />
               </Select.Indicator>
             </Select.Trigger>
           </Select.Control>

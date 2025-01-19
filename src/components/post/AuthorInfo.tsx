@@ -18,7 +18,7 @@ export function AuthorInfo(props: AuthorInfoProps) {
   return (
     <div
       className={cx(
-        "flex flex-row gap-4 items-center bg-gray-100 h-32 px-4 rounded-lg",
+        "flex flex-row gap-4 items-center bg-layer-fill h-32 px-4 rounded-lg",
         className
       )}
       {...rest}
@@ -31,7 +31,7 @@ export function AuthorInfo(props: AuthorInfoProps) {
       <div className="text-pretty flex flex-col gap-2">
         <strong className="text-xl inline-block h-6 min-w-36 font-semibold">
           {authorData?.nickname}{" "}
-          <span className="text-gray-400">
+          <span className="font-light">
             {authorData.name && " (" + authorData.name + ")"}
           </span>
         </strong>

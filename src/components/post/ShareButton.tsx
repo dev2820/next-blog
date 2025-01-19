@@ -29,7 +29,7 @@ export function ShareButton(props: ShareButtonProps) {
 
   const onShareSuccess = () => {
     toaster.create({
-      title: "🙇‍♂️ Successfully shared your content!",
+      title: "✅ Successfully shared your content!",
     });
   };
 
@@ -67,7 +67,7 @@ export function ShareButton(props: ShareButtonProps) {
       </Tooltip.Root>
       <Toast.Toaster toaster={toaster}>
         {(toast) => (
-          <Toast.Root key={toast.id} className="bg-gray-800">
+          <Toast.Root key={toast.id} className="bg-neutral-800">
             <Toast.Title className="text-white text-left  mb-0 font-normal text-md">
               {toast.title}
             </Toast.Title>

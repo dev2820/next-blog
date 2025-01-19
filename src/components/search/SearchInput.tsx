@@ -50,7 +50,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             ref={ref}
             className={cx(
               "peer",
-              "w-full h-full rounded-lg text-md bg-white caret-primary pl-10 pr-10",
+              "w-full h-full rounded-lg text-md bg-layer-input caret-primary pl-10 pr-10",
               "duration-200",
               "border-2 focus:outline-none border-primary-500 focus:ring-4 focus:ring-primary-200",
               "focus-visible:outline-none focus-visible:border-primary",

@@ -17,7 +17,7 @@ export function NextPost(props: NextPostProps) {
         buttonVariants({ theme: "neutral", variant: "filled" }),
         "w-72",
         "py-8",
-        "hover:bg-primary-200 active:bg-primary-300",
+        "hover:bg-primary-subtler active:bg-primary-subtle",
         className
       )}
       {...rest}
