@@ -1,53 +1,31 @@
 "use client";
 
+import { useDarkMode } from "@/hooks/use-dark-mode";
 import { cx } from "@/utils/cx";
 import Script from "next/script";
 import { ComponentProps, useEffect } from "react";
-import { isDarkMode } from "@/utils/darkmode";
+
 export type CommentProps = ComponentProps<"div">;
 export function Comment(props: CommentProps) {
   const { className, ...rest } = props;
+  const { isDark } = useDarkMode();
 
   useEffect(() => {
-    const targetNode = document.documentElement;
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame"
+    );
+    iframe?.contentWindow?.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  }, [isDark]);
 
-    const config = { attributes: true };
-
-    // Create an observer instance linked to the callback function
-    const observer = new MutationObserver((mutationList) => {
-      console.log(mutationList);
-      for (const mutation of mutationList) {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "class"
-        ) {
-          const isDarkMode =
-            document.documentElement.classList.contains("dark");
-          const iframe = document.querySelector<HTMLIFrameElement>(
-            "iframe.giscus-frame"
-          );
-          iframe?.contentWindow?.postMessage(
-            {
-              giscus: {
-                setConfig: {
-                  theme: isDarkMode ? "dark" : "light",
-                },
-              },
-            },
-            "https://giscus.app"
-          );
-        }
-      }
-    });
-
-    // Start observing the target node for configured mutations
-    observer.observe(targetNode, config);
-
-    // Later, you can stop observing
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
   return (
     <>
       {/**
@@ -64,7 +42,7 @@ export function Comment(props: CommentProps) {
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="top"
-        data-theme={"light"}
+        data-theme={isDark ? "dark" : "light"}
         data-lang="ko"
         data-loading="lazy"
         cross-origin="anonymous"

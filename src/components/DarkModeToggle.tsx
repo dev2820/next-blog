@@ -12,6 +12,7 @@ export function DarkModeToggle(props: DarkModeToggleProps) {
   const { isDark, on, off } = useDarkMode();
   const handleChangeMode = (event: FormEvent<HTMLLabelElement>) => {
     const isOn = (event.target as HTMLInputElement).checked;
+
     isOn ? on() : off();
   };
 
@@ -19,7 +20,7 @@ export function DarkModeToggle(props: DarkModeToggleProps) {
     <Switch.Root
       size={size}
       onChange={handleChangeMode}
-      defaultChecked={isDark}
+      checked={isDark}
       {...rest}
     >
       <Switch.Label>

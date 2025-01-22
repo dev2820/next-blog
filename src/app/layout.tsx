@@ -11,7 +11,6 @@ import { ComponentProps } from "react";
 import Link from "next/link";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoToSearch } from "@/components/GoToSearch";
-import { UseDarkMode } from "@/components/UseDarkMode";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 const AUTHOR = process.env.author ?? "";
@@ -73,7 +72,6 @@ export default function RootLayout({
           "w-dvw flex flex-col text-fg bg-layer transition-colors duration-300"
         )}
       >
-        <UseDarkMode />
         <Header className="self-center w-screen fixed top-0 z-50"></Header>
         <main className="self-center w-full max-w-screen-md p-4 mt-16">
           {children}
