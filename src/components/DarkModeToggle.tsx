@@ -26,6 +26,7 @@ export function DarkModeToggle(props: DarkModeToggleProps) {
       <Switch.Label>
         <div className="relative w-6">
           <MoonIcon
+            strokeWidth={1}
             className={cx(
               "absolute top-1/2 -translate-y-1/2 text-yellow-500 fill-current transition-opacity",
               isDark ? "opacity-1" : "opacity-0"
