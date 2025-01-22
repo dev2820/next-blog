@@ -4,10 +4,6 @@ import matter from "gray-matter";
 
 const postDir = path.join(process.cwd(), "public/posts");
 const path2PostList = path.join(process.cwd(), "out/post-list.json");
-const path2MockPostList = path.join(
-  process.cwd(),
-  "src/__mocks__/post-list.json"
-);
 
 const postNames = fs
   .readdirSync(postDir)
@@ -25,10 +21,6 @@ const generatePostList = (posts) => {
   const postList = posts.filter((p) => p.data.draft);
 
   fs.writeFileSync(path2PostList, JSON.stringify(postList), {
-    encoding: "utf-8",
-    flag: "w+",
-  });
-  fs.writeFileSync(path2MockPostList, JSON.stringify(postList), {
     encoding: "utf-8",
     flag: "w+",
   });
