@@ -2,12 +2,11 @@ import type { Post } from "@/types/post";
 import Fuse from "fuse.js";
 import { Failed, Success } from "@/types/monad";
 
+const SITE_URL = process.env.siteURL ?? "";
 export async function fetchPostListForSearch() {
   try {
     if (process.env.NEXT_PUBLIC_MODE === "development") {
-      const result = await (
-        await fetch("https://www.terra-dev.me/post-list.json")
-      ).json();
+      const result = await (await fetch(`${SITE_URL}/post-list.json`)).json();
       return {
         isFailed: false,
         value: result,
