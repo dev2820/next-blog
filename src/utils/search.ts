@@ -4,8 +4,10 @@ import { Failed, Success } from "@/types/monad";
 
 export async function fetchPostListForSearch() {
   try {
-    if (process.env.NODE_ENV === "development") {
-      const result = await import("../__mocks__/post-list.json");
+    if (process.env.NEXT_PUBLIC_MODE === "development") {
+      const result = await (
+        await fetch("https://www.terra-dev.me/post-list.json")
+      ).json();
       return {
         isFailed: false,
         value: result,
