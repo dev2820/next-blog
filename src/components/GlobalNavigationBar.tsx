@@ -43,12 +43,11 @@ const NAVIGATION_MENUS = [
 export type GlobalNavigationBarProps = ComponentProps<"nav">;
 export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
   const { className, ...rest } = props;
-  const { isSmallerThanDesktop } = useScreen();
   const pathname = usePathname();
   const drawerHandler = useDisclosure(false);
 
-  if (isSmallerThanDesktop) {
-    return (
+  return (
+    <>
       <Drawer.Root
         open={drawerHandler.isOpen}
         onInteractOutside={drawerHandler.close}
@@ -57,7 +56,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
         <Drawer.Trigger asChild>
           <IconButton
             variant="ghost"
-            className={cx(className)}
+            className={cx(className, "desktop:hidden")}
             onClick={drawerHandler.open}
           >
             <MenuIcon />
@@ -113,29 +112,26 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
           </Drawer.Positioner>
         </Portal>
       </Drawer.Root>
-    );
-  }
-
-  return (
-    <nav className={cx(className)} {...rest}>
-      <menu className="flex flex-row gap-8">
-        {NAVIGATION_MENUS.map((m) => (
-          <li key={m.href}>
-            <RouterLink
-              href={m.enabled ? m.href : ""}
-              aria-disabled={!m.enabled}
-            >
-              <NavigationItem
-                active={pathname.startsWith(m.href)}
-                disabled={!m.enabled}
+      <nav className={cx(className, "hidden desktop:block")} {...rest}>
+        <menu className="flex flex-row gap-8">
+          {NAVIGATION_MENUS.map((m) => (
+            <li key={m.href}>
+              <RouterLink
+                href={m.enabled ? m.href : ""}
+                aria-disabled={!m.enabled}
               >
-                {m.label}
-              </NavigationItem>
-            </RouterLink>
-          </li>
-        ))}
-      </menu>
-    </nav>
+                <NavigationItem
+                  active={pathname.startsWith(m.href)}
+                  disabled={!m.enabled}
+                >
+                  {m.label}
+                </NavigationItem>
+              </RouterLink>
+            </li>
+          ))}
+        </menu>
+      </nav>
+    </>
   );
 }
 
