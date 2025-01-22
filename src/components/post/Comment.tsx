@@ -48,7 +48,7 @@ export function Comment(props: CommentProps) {
         cross-origin="anonymous"
         async
       ></Script>
-      <div className={cx("giscus", className)} {...rest}></div>
+      <div id="comment" className={cx("giscus", className)} {...rest}></div>
     </>
   );
 }
