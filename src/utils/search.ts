@@ -5,7 +5,7 @@ import { Failed, Success } from "@/types/monad";
 export async function fetchPostListForSearch() {
   try {
     if (process.env.NODE_ENV === "development") {
-      const result = await import("@/__mocks__/post-list.json");
+      const result = await import("../__mocks__/post-list.json");
       return {
         isFailed: false,
         value: result,
