@@ -1,6 +1,7 @@
 const DARKMODE_KEY = "_darkMode";
 
 export const changeMode = (isDarkmode: boolean) => {
+  console.log("change mode", isDarkmode);
   localStorage.setItem(DARKMODE_KEY, isDarkmode ? "true" : "false");
   if (isDarkmode && !document.documentElement.classList.contains("dark")) {
     document.documentElement.classList.add("dark");
