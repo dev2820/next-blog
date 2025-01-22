@@ -1,12 +1,11 @@
 import type { Post } from "@/types/post";
 import Fuse from "fuse.js";
-import mockPosts from "@/__mocks__/post-list.json";
-import { Failed, Result, Success } from "@/types/monad";
+import { Failed, Success } from "@/types/monad";
 
 export async function fetchPostListForSearch() {
   try {
     if (process.env.NEXT_PUBLIC_MODE === "development") {
-      const result = mockPosts;
+      const result = await import("@/__mocks__/post-list.json");
       return {
         isFailed: false,
         value: result,
