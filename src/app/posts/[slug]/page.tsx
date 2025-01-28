@@ -211,7 +211,7 @@ export default async function PostPage({ params }: PageProps) {
               href={`/posts/${prevPost.data.slug}`}
               className="flex-none self-start"
             >
-              <PrevPost post={post} />
+              <PrevPost post={prevPost} />
             </RouterLink>
           )}
           <div className="flex-1 min-w-4 min-h-4"></div>
@@ -220,7 +220,7 @@ export default async function PostPage({ params }: PageProps) {
               href={`/posts/${nextPost.data.slug}`}
               className="flex-none self-end"
             >
-              <NextPost post={post} />
+              <NextPost post={nextPost} />
             </RouterLink>
           )}
         </section>
