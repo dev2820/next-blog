@@ -101,7 +101,7 @@ function Header(props: HeaderProps) {
     >
       <div className="flex flex-row justify-center place-items-center w-full max-w-screen-md mx-auto">
         <Link href="/">
-          <LogoFullSVG />
+          <LogoFullSVG className="color-black dark:color-white" />
         </Link>
         <div className="flex-1" />
         <GlobalNavigationBar />

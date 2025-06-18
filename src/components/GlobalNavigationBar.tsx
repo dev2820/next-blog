@@ -68,7 +68,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
             <Drawer.Content className="w-svw max-w-96 flex flex-col">
               <Drawer.Header>
                 <Drawer.Title className="w-full mt-4 self-start px-4 flex flex-row justify-between items-center">
-                  <LogoFullSVG />
+                  <LogoFullSVG className="text-black dark:text-white" />
                   <Drawer.CloseTrigger asChild onClick={drawerHandler.close}>
                     <IconButton variant="ghost">
                       <XIcon size={24} />
