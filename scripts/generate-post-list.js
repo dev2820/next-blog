@@ -8,7 +8,8 @@ const path2PostList = path.join(process.cwd(), "out/post-list.json");
 const postNames = fs
   .readdirSync(postDir)
   .filter((p) => !p.startsWith("."))
-  .filter((p) => p !== "README.md");
+  .filter((p) => p !== "README.md")
+  .filter((p) => p !== "template");
 
 const posts = postNames.map((p) => {
   const mdxPath = path.join(postDir, p, "index.mdx");
