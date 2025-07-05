@@ -38,7 +38,7 @@ import { AuthorInfo } from "@/components/post/AuthorInfo";
 import { ShareButton } from "@/components/post/ShareButton";
 import { TableOfContents } from "@/components/post/TableOfContents";
 import { Comment } from "@/components/post/Comment";
-import { Ficture } from "@/components/post/element/Ficture";
+import { Picture } from "@/components/post/element/Picture";
 import { CalendarDaysIcon, CoffeeIcon, FeatherIcon } from "lucide-react";
 import Link from "next/link";
 import { Tag } from "@/components/Tag";
@@ -89,7 +89,7 @@ export default async function PostPage({ params }: PageProps) {
       h6: Heading6,
       p: Paragraph,
       img: ({ alt, src, width, height, ...rest }) => (
-        <Ficture
+        <Picture
           src={path.join(basePath, src ?? "")}
           alt={alt ?? ""}
           width={0}
