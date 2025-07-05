@@ -8,6 +8,11 @@ export function Anchor(props: AnchorProps) {
   const { className, target = "_blank", theme = "default", ...rest } = props;
 
   return (
-    <Link className={cx(className)} target={target} theme={theme} {...rest} />
+    <Link
+      className={cx("text-wrap", className)}
+      target={target}
+      theme={theme}
+      {...rest}
+    />
   );
 }
