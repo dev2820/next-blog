@@ -12,7 +12,7 @@ export type PostData = {
   slug: string;
   modified?: string;
   summary?: string;
-  draft?: boolean;
+  draft: boolean;
   image?: string; // hero image까지의 path
   prev?: string; // 이전 글의 slug
   next?: string; // 다음 글의 slug

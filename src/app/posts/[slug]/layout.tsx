@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   const posts = getAllPosts();
 
   return posts
-    .filter((p) => p.data.draft)
+    .filter((p) => !p.data.draft)
     .map((p) => ({
       slug: encodeURIComponent(p.data.slug),
     }));

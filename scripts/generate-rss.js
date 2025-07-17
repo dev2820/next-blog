@@ -32,7 +32,7 @@ const posts = postNames
       data,
     };
   })
-  .filter((p) => p.data.draft)
+  .filter((p) => !p.data.draft)
   .map((p) => {
     const htmlPath = path.join(outDir, `${p.data.slug}/index.html`);
     const htmlFile = fs.readFileSync(htmlPath, "utf8");

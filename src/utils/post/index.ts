@@ -19,7 +19,7 @@ export const getAllPosts = () => {
     .map((p) => fs.readFileSync(p, "utf-8"))
     .map((file) => getMatter(file))
     .map(toPost)
-    .filter((p) => p.data.draft);
+    .filter((p) => !p.data.draft);
 };
 
 export const getAllPostsData = () => {
@@ -28,7 +28,7 @@ export const getAllPostsData = () => {
     .map((p) => fs.readFileSync(p, "utf-8"))
     .map((file) => getMatter(file))
     .map(({ data }) => toPostData(data))
-    .filter((d) => d.draft);
+    .filter((d) => !d.draft);
 };
 
 export const getPostByPath = (postPath: string): Post | undefined => {
@@ -65,7 +65,7 @@ export const getAllTags = (): [string, number][] => {
     .flat()
     .reduce(
       (map, tag) => map.set(tag, (map.get(tag) ?? 0) + 1),
-      new Map<string, number>()
+      new Map<string, number>(),
     );
 
   return Array.from(tagMap);
@@ -119,7 +119,7 @@ export const generateTOC = (markdown: string): TableOfContentsItem[] => {
           .toLowerCase()
           .replace(
             /[^\w\s\u4E00-\u9FFF\uAC00-\uD7A3\u3130-\u318F\u3040-\u30FF\u00C0-\u024F\u1E00-\u1EFF-]/g,
-            ""
+            "",
           ) // Remove special characters
           .replace(/\s+/g, "-"); // Replace spaces with hyphens
 

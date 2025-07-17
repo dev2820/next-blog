@@ -206,7 +206,7 @@ export default async function PostPage({ params }: PageProps) {
           id="another-posts"
           className={cx("flex flex-col justify-between mb-10", "sm:flex-row")}
         >
-          {prevPost && prevPost.data.draft && (
+          {prevPost && !prevPost.data.draft && (
             <RouterLink
               href={`/posts/${prevPost.data.slug}`}
               className="flex-none self-start"
@@ -215,7 +215,7 @@ export default async function PostPage({ params }: PageProps) {
             </RouterLink>
           )}
           <div className="flex-1 min-w-4 min-h-4"></div>
-          {nextPost && nextPost.data.draft && (
+          {nextPost && !nextPost.data.draft && (
             <RouterLink
               href={`/posts/${nextPost.data.slug}`}
               className="flex-none self-end"
