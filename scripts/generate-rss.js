@@ -20,6 +20,7 @@ function isDirectorySync(path) {
 const postNames = fs
   .readdirSync(postDir)
   .filter((p) => !p.startsWith("."))
+  .filter((p) => !p.startsWith("_"))
   .filter((p) => isDirectorySync(path.join(postDir, p)));
 
 const posts = postNames
