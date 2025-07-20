@@ -8,9 +8,9 @@ export function Code(props: CodeProps) {
   return (
     <code
       className={cx(
-        "rounded-md text-sm bg-layer-fill text-red-400",
-        "py-0.5 px-2",
-        className
+        "rounded-[4px] text-sm bg-layer-fill text-red-400",
+        "py-0.5 px-1",
+        className,
       )}
       {...rest}
     />
