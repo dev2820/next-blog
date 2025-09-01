@@ -1,7 +1,6 @@
 // TODO: JSON-LD 적용
-import { type Metadata } from "next";
 import path from "node:path";
-import { type PropsWithChildren } from "react"
+import { type PropsWithChildren } from "react";
 
 import { getAllPosts, getPostBySlug } from "@/utils/post";
 
@@ -22,7 +21,7 @@ export async function generateStaticParams() {
   return posts
     .filter((p) => !p.data.draft)
     .map((p) => ({
-      slug: encodeURIComponent(p.data.slug)
+      slug: encodeURIComponent(p.data.slug),
     }));
 }
 
@@ -46,7 +45,7 @@ export async function generateMetadata({ params }: PageProps) {
       type: "article",
       locale: "ko_KR",
       url: slug,
-      title: `${TITLE} - ${post?.data.title},
+      title: `${TITLE} - ${post?.data.title ?? ""}`,
       description: post?.data.summary,
       siteName: TITLE,
       images: isImageExist
@@ -59,10 +58,10 @@ export async function generateMetadata({ params }: PageProps) {
             },
           ]
         : undefined,
-    }
-  }
+    },
+  };
 }
 
-export default function PostLayout({ children }:PropsWithChildren) {
+export default function PostLayout({ children }: PropsWithChildren) {
   return children;
 }
