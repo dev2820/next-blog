@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   return posts
     .filter((p) => !p.data.draft)
     .map((p) => ({
-      slug: encodeURIComponent(p.data.slug),
+      slug: encodeURIComponent(p.data.slug)
     }));
 }
 
@@ -59,10 +59,10 @@ export async function generateMetadata({ params }: PageProps) {
             },
           ]
         : undefined,
-    },
-  };
+    }
+  }
 }
 
 export default function PostLayout({ children }:PropsWithChildren) {
-  return <>{children}</>;
+  return children;
 }
