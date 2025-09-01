@@ -1,8 +1,9 @@
 // TODO: JSON-LD 적용
+import { type Metadata } from "next";
+import path from "node:path";
+import { type PropsWithChildren } from "react"
 
 import { getAllPosts, getPostBySlug } from "@/utils/post";
-import { Metadata } from "next";
-import path from "node:path";
 
 const TITLE = process.env.title ?? "";
 const AUTHOR = process.env.author ?? "";
@@ -64,8 +65,6 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default function PostLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}:PropsWithChildren) {
   return <>{children}</>;
 }

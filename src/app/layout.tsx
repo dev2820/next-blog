@@ -19,6 +19,7 @@ const SITE_URL = process.env.siteURL ?? "";
 const TITLE = process.env.title!;
 const DESC = process.env.description!;
 const HERO_IMAGE = process.env.image!;
+const ICON = process.env.favicon!;
 
 const pretendard = localFont({
   src: "../assets/fonts/PretendardVariable.woff2",
@@ -47,6 +48,7 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE,
   },
+  icons: ICON,
   openGraph: {
     type: "website",
     url: SITE_URL,
