@@ -63,8 +63,6 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default function PostLayout({
-  children,
-}:PropsWithChildren) {
+export default function PostLayout({ children }:PropsWithChildren) {
   return <>{children}</>;
 }
