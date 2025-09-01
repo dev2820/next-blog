@@ -15,6 +15,10 @@ import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
+const SITE_URL = process.env.siteURL ?? "";
+const TITLE = process.env.title!;
+const DESC = process.env.description!;
+const HERO_IMAGE = process.env.image!;
 
 const pretendard = localFont({
   src: "../assets/fonts/PretendardVariable.woff2",
@@ -43,6 +47,13 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE,
   },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    title: TITLE,
+    description: DESC,
+    images: HERO_IMAGE,
+  },
 };
 
 export default function RootLayout({
@@ -56,7 +67,7 @@ export default function RootLayout({
       className={cx(
         pretendard.variable,
         monospaceNeon.variable,
-        "scroll-smooth"
+        "scroll-smooth",
       )}
     >
       <head>
@@ -69,7 +80,7 @@ export default function RootLayout({
       <body
         className={cx(
           pretendard.className,
-          "w-dvw flex flex-col text-fg bg-layer transition-colors duration-300"
+          "w-dvw flex flex-col text-fg bg-layer transition-colors duration-300",
         )}
       >
         <Header className="self-center w-screen fixed top-0 z-50"></Header>

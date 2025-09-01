@@ -6,12 +6,11 @@ import parrotGif from "@/assets/images/rightparrot.gif";
 import Image from "next/image";
 import authorData from "@/assets/data/github-profile.json";
 import { AuthorProfile } from "@/components/AuthorProfile";
-import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 export default function HomePage() {
   const recentPosts = getAllPosts()
     .toSorted((a, b) =>
-      new Date(a.data.published) < new Date(b.data.published) ? 1 : -1
+      new Date(a.data.published) < new Date(b.data.published) ? 1 : -1,
     )
     .slice(0, 3);
   return (

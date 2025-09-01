@@ -1,6 +1,7 @@
 // TODO: JSON-LD 적용
 
 import { getAllPosts, getPostBySlug } from "@/utils/post";
+import { Metadata } from "next";
 import path from "node:path";
 
 const TITLE = process.env.title ?? "";
@@ -23,18 +24,20 @@ export async function generateStaticParams() {
       slug: encodeURIComponent(p.data.slug),
     }));
 }
-// TODO: Metadata 적용
+
 export async function generateMetadata({ params }: PageProps) {
   const { slug: _slug } = params;
   const slug = decodeURIComponent(_slug);
   const post = getPostBySlug(slug);
   const basePath = `/posts/${slug}`;
   const isImageExist = !!post?.data.image;
+
   return {
     metadataBase: new URL(SITE_URL),
     title: `${TITLE} - ${post?.data.title}`,
     description: post?.data.summary,
-    author: AUTHOR,
+    authors: { name: AUTHOR, url: GITHUB_URL },
+    keywords: post?.data.tags,
     alternates: {
       canonical: slug,
     },
@@ -42,7 +45,7 @@ export async function generateMetadata({ params }: PageProps) {
       type: "article",
       locale: "ko_KR",
       url: slug,
-      title: post?.data.title,
+      title: `${TITLE} - ${post?.data.title},
       description: post?.data.summary,
       siteName: TITLE,
       images: isImageExist
@@ -55,12 +58,6 @@ export async function generateMetadata({ params }: PageProps) {
             },
           ]
         : undefined,
-      article: {
-        publishedTime: post?.data.published,
-        modifiedTime: post?.data.modified,
-        authors: [GITHUB_URL],
-        tags: post?.data.tags,
-      },
     },
   };
 }
