@@ -89,15 +89,7 @@ export default function RootLayout({
         <main className="self-center w-full max-w-screen-md p-4 mt-16">
           {children}
         </main>
-        <footer className="self-center w-screen max-w-screen-md px-4 h-96">
-          {/**
-           * TODO: Contact me 추가
-           */}
-          <p>
-            &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights
-            reserved.
-          </p>
-        </footer>
+        <Footer className="self-center w-screen max-w-screen-md h-96" />
         <ScrollToTop />
       </body>
     </html>
@@ -122,5 +114,20 @@ function Header(props: HeaderProps) {
         <DarkModeToggle className="hidden desktop:flex" />
       </div>
     </header>
+  );
+}
+
+type FooterProps = ComponentProps<"footer">;
+function Footer(props: FooterProps) {
+  const { className, ...rest } = props;
+  return (
+    <footer className={cx("px-4", className)} {...rest}>
+      {/**
+       * TODO: Contact me 추가
+       */}
+      <p>
+        &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights reserved.
+      </p>
+    </footer>
   );
 }
