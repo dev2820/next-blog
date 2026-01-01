@@ -5,5 +5,5 @@ export type OrderedListProps = ComponentProps<"ol">;
 export function OrderedList(props: OrderedListProps) {
   const { className, ...rest } = props;
 
-  return <ol className={cx("list-decimal my-4", className)} {...rest} />;
+  return <ol className={cx("list-decimal my-1", className)} {...rest} />;
 }
