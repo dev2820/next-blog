@@ -13,7 +13,7 @@ const config = {
   nickname: "Terra",
   email: "second28200@gmail.com",
   cv: "https://www.terra-dev.me/about",
-  country: "Korea",
+  country: "South Korea",
   region: "Seoul",
   profile: "https://avatars.githubusercontent.com/u/40891497?v=4",
   githubId: "dev2820",
