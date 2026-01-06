@@ -18,7 +18,7 @@ export function NextPost(props: NextPostProps) {
         "w-72",
         "py-8",
         "hover:bg-primary-subtler active:bg-primary-subtle",
-        className
+        className,
       )}
       {...rest}
     >
