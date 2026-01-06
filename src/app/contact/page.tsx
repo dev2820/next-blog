@@ -9,6 +9,7 @@ import Image from "next/image";
 
 const NAME = process.env.name;
 const NICKNAME = process.env.nickname;
+const EMAIL = process.env.email;
 const POSITION = process.env.position;
 const COMPANY = process.env.company;
 const COMPANY_URL = process.env.companyURL;
@@ -25,7 +26,7 @@ export default function ContactPage() {
     <div className="flex flex-col place-items-center">
       <div
         className={cx(
-          "bg-layer-fill flex flex-col text-left shadow-lg p-8 w-full max-w-[30rem] rounded-lg"
+          "bg-layer-fill flex flex-col text-left shadow-lg p-8 w-full max-w-[30rem] rounded-lg",
         )}
       >
         <div className="text-3xl mb-1">
@@ -38,7 +39,7 @@ export default function ContactPage() {
             {COMPANY}
           </Link>
           <MailIcon size={24} />
-          <span>second28200@gmail.com</span>
+          <Link href={`mailto:${EMAIL}`}>{EMAIL}</Link>
           <Image src={githubLogo} alt={"github logo"} className="w-6 h-6" />
           <Link href={GITHUB_URL!} target="_blank">
             {GITHUB_ID}
