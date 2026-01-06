@@ -82,14 +82,14 @@ export default function RootLayout({
       <body
         className={cx(
           pretendard.className,
-          "w-dvw flex flex-col text-fg bg-layer transition-colors duration-300",
+          "flex flex-col text-fg bg-layer transition-colors duration-300",
         )}
       >
-        <Header className="self-center w-screen fixed top-0 z-50"></Header>
+        <Header className="self-center w-full fixed top-0 z-50"></Header>
         <main className="self-center w-full max-w-screen-md p-4 mt-16">
           {children}
         </main>
-        <Footer className="self-center w-screen max-w-screen-md h-96" />
+        <Footer className="self-center w-full max-w-screen-md h-96" />
         <ScrollToTop />
       </body>
     </html>
