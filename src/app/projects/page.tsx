@@ -1,0 +1,78 @@
+"use client";
+
+import { PageHeading } from "@/components/PageHeading";
+import { Link } from "terra-design-system/react";
+import GithubSvg from "@/assets/github.svg";
+import Image from "next/image";
+
+type Project = {
+  title: string;
+  description: string;
+  link: string;
+  github: string;
+  img: string;
+};
+/**
+ * 나열할 프로젝트 목록
+ */
+const PROJECTS: Project[] = [
+  {
+    title: "image-optimizer",
+    description: "서버를 거치지 않는 안전한 이미지 최적화 서비스",
+    link: "https://dev2820.github.io/image-optimizer/",
+    github: "https://github.com/dev2820/image-optimizer",
+    img: "https://dev2820.github.io/image-optimizer/logo.png",
+  },
+] as const;
+
+export default function ProjectsPage() {
+  return (
+    <>
+      <PageHeading>Projects</PageHeading>
+      <ul className="flex flex-wrap gap-6">
+        {PROJECTS.map((project) => (
+          <li key={project.title}>
+            <ProjectCard project={project} />
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+const ProjectCard = (props: { project: Project }) => {
+  const { project } = props;
+
+  return (
+    <a
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block w-72 overflow-hidden rounded-xl border border-neutral-200 bg-layer transition-shadow hover:shadow-lg"
+    >
+      <div className="aspect-video w-full overflow-hidden bg-neutral-100">
+        <Image
+          src={project.img}
+          alt={project.title}
+          width={288}
+          height={(288 * 9) / 16}
+          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-col gap-1 p-4">
+        <h3 className="text-lg font-semibold text-fg-title">{project.title}</h3>
+        <p className="text-sm text-fg-description">{project.description}</p>
+      </div>
+      <div className="flex items-center gap-2 border-t border-neutral-200 px-4 py-3">
+        <Link
+          href={project.github}
+          target="_blank"
+          onClick={(e) => e.stopPropagation()}
+          className="text-fg-caption transition-colors hover:text-fg"
+        >
+          <GithubSvg fill="currentColor" width={18} height={18} />
+        </Link>
+      </div>
+    </a>
+  );
+};

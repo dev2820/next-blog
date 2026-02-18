@@ -27,15 +27,14 @@ const NAVIGATION_MENUS = [
     label: "Tags",
     enabled: true,
   },
-  // TODO: About me 구상 후 구현
-  // {
-  //   href: "/about",
-  //   label: "About Me",
-  //   enabled: false,
-  // },
   {
     href: "/contact",
     label: "Contact",
+    enabled: true,
+  },
+  {
+    href: "/projects",
+    label: "Projects",
     enabled: true,
   },
 ];
@@ -84,7 +83,7 @@ export function GlobalNavigationBar(props: GlobalNavigationBarProps) {
                         key={m.href}
                         className={cx(
                           "h-12",
-                          m.enabled && "hover:bg-black/5 duration-200"
+                          m.enabled && "hover:bg-black/5 duration-200",
                         )}
                       >
                         <RouterLink
@@ -148,7 +147,7 @@ const NavigationItem = (props: NavigationItemProps) => {
         linkVariants({ theme: "default", variant: "plain" }),
         active && "text-primary hover:text-primary",
         disabled && "cursor-not-allowed text-muted hover:text-muted",
-        className
+        className,
       )}
       {...rest}
     >

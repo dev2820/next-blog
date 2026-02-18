@@ -1,0 +1,191 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1771394942318,
+  "projectRoot": "/Users/yang-gijo/Desktop/codes/next-blog",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "14.2.5",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "18",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "18",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "pnpm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "pnpm build",
+    "testCommand": null,
+    "lintCommand": "pnpm lint",
+    "devCommand": "pnpm dev",
+    "scripts": {
+      "dev": "MODE=development next dev",
+      "prebuild": "pnpm fetch:posts && pnpm fetch:github-profile",
+      "build": "MODE=production next build",
+      "postbuild": "pnpm generate:post-list && pnpm generate:rss",
+      "generate:rss": "node ./scripts/generate-rss.js",
+      "generate:post-list": "node ./scripts/generate-post-list.js",
+      "preview": "MODE=development pnpm build && pnpx http-server out -o",
+      "start": "next start",
+      "lint": "next lint",
+      "fetch:posts": "./fetch-post.sh",
+      "fetch:github-profile": "node ./scripts/fetch-github-profile.js"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "scripts",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 3,
+      "lastAccessed": 1771394942304,
+      "keyFiles": [
+        "next.svg",
+        "vercel.svg"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 3,
+      "lastAccessed": 1771394942307,
+      "keyFiles": [
+        "fetch-github-profile.js",
+        "generate-post-list.js",
+        "generate-rss.js"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 0,
+      "lastAccessed": 1771394942307,
+      "keyFiles": []
+    },
+    "src/app": {
+      "path": "src/app",
+      "purpose": "Application code",
+      "fileCount": 9,
+      "lastAccessed": 1771394942308,
+      "keyFiles": [
+        "favicon.ico",
+        "globals.css",
+        "layout.tsx"
+      ]
+    },
+    "src/assets": {
+      "path": "src/assets",
+      "purpose": "Static assets",
+      "fileCount": 4,
+      "lastAccessed": 1771394942309,
+      "keyFiles": [
+        "github.svg",
+        "global.css",
+        "logo-full.svg"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 9,
+      "lastAccessed": 1771394942309,
+      "keyFiles": [
+        "AuthorProfile.tsx",
+        "DarkModeToggle.tsx",
+        "GlobalNavigationBar.tsx"
+      ]
+    },
+    "src/types": {
+      "path": "src/types",
+      "purpose": "Type definitions",
+      "fileCount": 0,
+      "lastAccessed": 1771394942310,
+      "keyFiles": []
+    },
+    "src/utils": {
+      "path": "src/utils",
+      "purpose": "Utility functions",
+      "fileCount": 12,
+      "lastAccessed": 1771394942310,
+      "keyFiles": [
+        "clipboard.ts",
+        "cx.ts",
+        "darkmode.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/app/projects/page.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1771395253408,
+      "type": "file"
+    },
+    {
+      "path": "src/components/PageHeading.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1771395071458,
+      "type": "file"
+    },
+    {
+      "path": "src/assets/github.svg",
+      "accessCount": 1,
+      "lastAccessed": 1771395072212,
+      "type": "file"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1771395079014,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
