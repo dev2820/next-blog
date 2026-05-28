@@ -9,12 +9,16 @@ const BASE_PATH = "/public/posts/raw";
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 export const getAllPostsPath = () => {
-  const postPaths: string[] = sync(`${POSTS_PATH}/**/index.mdx`);
+  const postPaths: string[] = sync(`${POSTS_PATH}/**/index.mdx`, {
+    ignore: [`${POSTS_PATH}/**/.*/**`],
+  });
   return postPaths;
 };
 
 export const getAllPosts = () => {
-  const postPaths: string[] = sync(`${POSTS_PATH}/**/index.mdx`);
+  const postPaths: string[] = sync(`${POSTS_PATH}/**/index.mdx`, {
+    ignore: [`${POSTS_PATH}/**/.*/**`],
+  });
   return postPaths
     .map((p) => fs.readFileSync(p, "utf-8"))
     .map((file) => getMatter(file))
@@ -23,7 +27,9 @@ export const getAllPosts = () => {
 };
 
 export const getAllPostsData = () => {
-  const postPaths: string[] = sync(`${POSTS_PATH}/**/index.mdx`);
+  const postPaths: string[] = sync(`${POSTS_PATH}/**/index.mdx`, {
+    ignore: [`${POSTS_PATH}/**/.*/**`],
+  });
   return postPaths
     .map((p) => fs.readFileSync(p, "utf-8"))
     .map((file) => getMatter(file))

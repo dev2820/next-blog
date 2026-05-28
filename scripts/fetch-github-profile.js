@@ -4,7 +4,7 @@ import path from "path";
 const fetchAuthor = async (githubID) => {
   const res = await fetch(`https://api.github.com/users/${githubID}`);
   const rawAuthor = await res.json();
-
+  console.log(rawAuthor);
   return toAuthor(rawAuthor);
 };
 
@@ -23,7 +23,7 @@ const toAuthor = (rawAuthor) => {
 async function updateAuthor() {
   const pathToData = path.join(
     process.env.PWD,
-    "./src/assets/data/github-profile.json"
+    "./src/assets/data/github-profile.json",
   );
 
   const author = await fetchAuthor("dev2820");
