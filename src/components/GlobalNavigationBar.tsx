@@ -2,9 +2,8 @@
 
 import { cx } from "@/utils/cx";
 import RouterLink from "next/link";
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
 import { usePathname } from "next/navigation";
-import { useScreen } from "@/hooks/use-screen";
 import {
   Drawer,
   IconButton,

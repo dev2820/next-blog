@@ -15,7 +15,6 @@ const COMPANY = process.env.company;
 const COMPANY_URL = process.env.companyURL;
 const GITHUB_ID = process.env.githubId;
 const GITHUB_URL = process.env.githubURL;
-const LINKEDIN_ID = process.env.linkedinId;
 const LINKEDIN_URL = process.env.linkedinURL;
 const COUNTRY = process.env.country;
 const REGION = process.env.region;
