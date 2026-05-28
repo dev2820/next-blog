@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
-const postDir = path.join(process.cwd(), "public/posts");
+const postDir = path.join(process.cwd(), "public/posts/raw");
 const outDir = path.join(process.cwd(), "out/posts");
 
 function isDirectorySync(path) {

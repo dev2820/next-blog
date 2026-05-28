@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
-const postDir = path.join(process.cwd(), "public/posts");
+const postDir = path.join(process.cwd(), "public/posts/raw");
 const path2PostList = path.join(process.cwd(), "out/post-list.json");
 
 const postNames = fs

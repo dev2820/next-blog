@@ -5,7 +5,7 @@ import fs from "fs";
 import type { Post, PostData } from "@/types/post";
 import { TableOfContentsItem } from "@/types/post/table-of-contents";
 
-const BASE_PATH = "/public/posts";
+const BASE_PATH = "/public/posts/raw";
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 export const getAllPostsPath = () => {
