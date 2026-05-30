@@ -118,7 +118,9 @@ export const generateTOC = (markdown: string): TableOfContentsItem[] => {
     const match = line.match(headerRegex);
     if (match) {
       const level = Number(match[1].length); // Number of # characters
-      const content = match[2].trim(); // Extract header content
+      const content = match[2]
+        .trim()
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1"); // Unwrap [text](url) to text
       const slug =
         "#" +
         content
