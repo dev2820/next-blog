@@ -103,6 +103,9 @@
   --my-colors-boundary-trigger: #2e2e2e;
   --my-colors-boundary-popover: #363636;
 }
+html {
+  scroll-padding-top: 15vh;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--background-rgb);
