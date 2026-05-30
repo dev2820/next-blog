@@ -62,7 +62,7 @@ type PageProps = {
 export default async function PostPage({ params }: PageProps) {
   const { slug } = params;
   const post = getPostBySlug(slug);
-  const basePath = `${BASE_PATH}/posts/${slug}`;
+  const basePath = `${BASE_PATH}/posts/raw/${slug}`;
   if (isNil(post)) {
     notFound();
   }

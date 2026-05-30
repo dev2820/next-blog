@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug: _slug } = params;
   const slug = decodeURIComponent(_slug);
   const post = getPostBySlug(slug);
-  const basePath = `/posts/${slug}`;
+  const basePath = `/posts/raw/${slug}`;
   const isImageExist = !!post?.data.image;
 
   return {
