@@ -4,7 +4,7 @@ import path from "path";
 const fetchAuthor = async (githubID) => {
   const res = await fetch(`https://api.github.com/users/${githubID}`);
   const rawAuthor = await res.json();
-
+  console.log(rawAuthor);
   return toAuthor(rawAuthor);
 };
 
@@ -26,20 +26,23 @@ async function updateAuthor() {
     "./src/assets/data/github-profile.json",
   );
 
-  const author = await fetchAuthor("dev2820");
-
   // 폴더 경로를 추출
   const dir = path.dirname(pathToData);
-
   // 폴더가 존재하지 않으면 생성
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  fs.writeFileSync(pathToData, JSON.stringify(author), {
-    encoding: "utf-8",
-    flag: "w+",
-  });
+  try {
+    const author = await fetchAuthor("dev2820");
+
+    fs.writeFileSync(pathToData, JSON.stringify(author), {
+      encoding: "utf-8",
+      flag: "w+",
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 updateAuthor();
