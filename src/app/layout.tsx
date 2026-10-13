@@ -12,6 +12,7 @@ import Link from "next/link";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { GoToSearch } from "@/components/GoToSearch";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
+import { Spacer } from "@/components/ui/Spacer";
 
 const AUTHOR = process.env.author ?? "";
 const NICKNAME = process.env.nickname ?? AUTHOR;
@@ -121,11 +122,12 @@ type FooterProps = ComponentProps<"footer">;
 function Footer(props: FooterProps) {
   const { className, ...rest } = props;
   return (
-    <footer className={cx("px-4", className)} {...rest}>
+    <footer className={cx("px-4 flex flex-col", className)} {...rest}>
       {/**
        * TODO: Contact me 추가
        */}
-      <p>
+      <Spacer />
+      <p className="text-center text-gray-500 mb-10">
         &copy; 2024-{new Date().getFullYear()} {AUTHOR}. All rights reserved.
       </p>
     </footer>
