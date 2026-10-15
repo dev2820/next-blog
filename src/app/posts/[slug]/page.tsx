@@ -131,7 +131,10 @@ export default async function PostPage({ params }: PageProps) {
   return (
     <>
       <article className="relative">
-        <header id="post-meta" className="text-fg-title">
+        <header
+          id="post-meta"
+          className={cx("text-fg-title", !data.image && "mt-32")}
+        >
           {data.image && (
             <HeroImage
               src={path.join(basePath, data.image)}
