@@ -130,7 +130,7 @@ export default async function PostPage({ params }: PageProps) {
   const nextPost = data.next ? getPostBySlug(data.next) : null;
   return (
     <>
-      <article className="relative">
+      <article className="relative mt-10 tablet:mt-20">
         <header id="post-meta" className="text-fg-title">
           {data.image && (
             <HeroImage
