@@ -10,13 +10,19 @@ type Project = {
   title: string;
   description: string;
   link: string;
-  github: string;
+  github?: string;
   img: string;
 };
 /**
  * 나열할 프로젝트 목록
  */
 const PROJECTS: Project[] = [
+  {
+    title: "VoCue: IELTS 영어 단어장",
+    description: "단어와 예문을 기록하고 카드로 반복 복습하는 개인 단어장 앱",
+    link: "https://play.google.com/store/apps/details?id=com.dev2820.vocue&hl=ko",
+    img: "https://play-lh.googleusercontent.com/6zU7TcKEVn-TRrOooJVddUKvH9NrantyZO1vOHU6nfPXm5CxLZ9e_Hh-8caJgKlq6mS60DFW89DLENsvySmecA=s0-br30",
+  },
   {
     title: "Terra Design System",
     description: "개인용 디자인 시스템",
@@ -59,15 +65,8 @@ const ProjectCard = (props: { project: Project }) => {
   const { project } = props;
 
   return (
-    <div
-      className="group block w-72 overflow-hidden rounded-xl border border-neutral-200 bg-layer transition-shadow hover:shadow-lg"
-    >
-      <a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-      >
+    <div className="group block w-72 overflow-hidden rounded-xl border border-neutral-200 bg-layer transition-shadow hover:shadow-lg">
+      <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
         <div className="aspect-video w-full overflow-hidden bg-neutral-100">
           {project.img ? (
             <Image
@@ -79,28 +78,25 @@ const ProjectCard = (props: { project: Project }) => {
             />
           ) : (
             <div className="flex h-full items-center justify-center">
-              <LogoFullSvg
-                aria-hidden="true"
-                className="h-10 w-auto text-black dark:text-white"
-              />
+              <LogoFullSvg aria-hidden="true" className="h-10 w-auto text-black dark:text-white" />
             </div>
           )}
         </div>
         <div className="flex h-24 flex-col gap-1 p-4">
-          <h3 className="text-lg font-semibold text-fg-title">
-            {project.title}
-          </h3>
+          <h3 className="text-lg font-semibold text-fg-title">{project.title}</h3>
           <p className="text-sm text-fg-description">{project.description}</p>
         </div>
       </a>
-      <div className="flex items-center gap-2 border-t border-neutral-200 px-4 py-3">
-        <Link
-          href={project.github}
-          target="_blank"
-          className="text-fg-caption transition-colors hover:text-fg"
-        >
-          <GithubSvg fill="currentColor" width={18} height={18} />
-        </Link>
+      <div className="flex h-12 items-center gap-2 border-t border-neutral-200 px-4 py-3">
+        {project.github && (
+          <Link
+            href={project.github}
+            target="_blank"
+            className="text-fg-caption transition-colors hover:text-fg"
+          >
+            <GithubSvg fill="currentColor" width={18} height={18} />
+          </Link>
+        )}
       </div>
     </div>
   );
